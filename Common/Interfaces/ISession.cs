@@ -14,7 +14,8 @@ namespace DevSpace.Common {
 		ITimeSlot TimeSlot { get; }
 		IRoom Room { get; }
 		int EventId { get; }
-		
+		int? SessionizeId { get; }
+
 		ISession UpdateId( int value );
 		ISession UpdateUserId( int value );
 		ISession UpdateTitle( string value );
@@ -28,5 +29,6 @@ namespace DevSpace.Common {
 		ISession UpdateTimeSlot( ITimeSlot value );
 		ISession UpdateRoom( IRoom value );
 		ISession UpdateEventId( int value );
+		ISession UpdateSessionizeId( int? value );
 	}
 }
