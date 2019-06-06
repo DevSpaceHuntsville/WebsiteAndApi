@@ -29,6 +29,9 @@ namespace DevSpace.Database.Models {
 		public string Website { get; internal set; }
 		public Guid SessionToken { get; internal set; }
 		public DateTime SessionExpires { get; internal set; }
+		public string Blog { get; internal set; }
+		public string ProfilePicture { get; internal set; }
+		public Guid? SessionizeId { get; internal set; }
 
 		public IUser UpdateId( int newId ) {
 			UserModel newUser = Clone();
@@ -90,6 +93,24 @@ namespace DevSpace.Database.Models {
 			return newUser;
 		}
 
+		public IUser UpdateBlog( string newBlog ) {
+			UserModel newUser = Clone();
+			newUser.Blog = newBlog;
+			return newUser;
+		}
+
+		public IUser UpdateProfilePicture( string newProfilePicture ) {
+			UserModel newUser = Clone();
+			newUser.ProfilePicture = newProfilePicture;
+			return newUser;
+		}
+
+		public IUser UpdateSessionizeId( Guid? newSessionizeId ) {
+			UserModel newUser = Clone();
+			newUser.SessionizeId = newSessionizeId;
+			return newUser;
+		}
+
 		private UserModel Clone() {
 			UserModel cloned = new UserModel();
 			cloned.Id = this.Id;
@@ -102,6 +123,9 @@ namespace DevSpace.Database.Models {
 			if( null != this.Website ) cloned.Website = string.Copy( this.Website );
 			cloned.SessionToken = this.SessionToken;
 			cloned.SessionExpires = this.SessionExpires;
+			if( null != this.Blog ) cloned.Blog = string.Copy( this.Blog );
+			if( null != this.ProfilePicture ) cloned.ProfilePicture = string.Copy( this.ProfilePicture );
+			if( this.SessionizeId.HasValue ) cloned.SessionizeId = this.SessionizeId;
 			return cloned;
 		}
 	}

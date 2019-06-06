@@ -61,6 +61,7 @@ namespace DevSpace.Common {
 		}
 
 		[DataMember] public int EventId { get; private set; }
+		[DataMember] public int? SessionizeId { get; private set; }
 
 		public ISession UpdateAbstract( string value ) {
 			Session newSession = this.Clone();
@@ -139,6 +140,12 @@ namespace DevSpace.Common {
 			newSession.EventId = value;
 			return newSession;
 		}
+
+		public ISession UpdateSessionizeId( int? value ) {
+			Session newSession = this.Clone();
+			newSession.SessionizeId = value;
+			return newSession;
+		}
 		#endregion
 
 		private Session Clone() {
@@ -150,7 +157,8 @@ namespace DevSpace.Common {
 				SessionLength = this.SessionLength,
 				Level = this.Level,
 				Accepted = this.Accepted,
-				EventId = this.EventId
+				EventId = this.EventId,
+				SessionizeId = this.SessionizeId
 			};
 
 			if( null != TimeSlot )

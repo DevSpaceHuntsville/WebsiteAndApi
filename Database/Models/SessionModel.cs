@@ -42,6 +42,7 @@ namespace DevSpace.Database.Models {
 		public IRoom Room { get; internal set; }
 
 		public int EventId { get; internal set; }
+		public int? SessionizeId { get; internal set; }
 
 		public ISession UpdateAbstract( string value ) {
 			SessionModel newSession = this.Clone();
@@ -132,6 +133,12 @@ namespace DevSpace.Database.Models {
 			newSession.EventId = value;
 			return newSession;
 		}
+
+		public ISession UpdateSessionizeId( int? value ) {
+			SessionModel newSession = this.Clone();
+			newSession.SessionizeId = value;
+			return newSession;
+		}
 		#endregion
 
 		private SessionModel Clone() {
@@ -146,7 +153,8 @@ namespace DevSpace.Database.Models {
 				Tags = this.Tags?.ToImmutableList(),
 				TimeSlotId = this.TimeSlotId,
 				RoomId = this.RoomId,
-				EventId = this.EventId
+				EventId = this.EventId,
+				SessionizeId = this.SessionizeId
 			};
 
 			if( null != this.TimeSlot )

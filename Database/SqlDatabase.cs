@@ -299,6 +299,17 @@ UPDATE VersionInfo SET DbVersion = '01.00.03.0005';";
 ( 2019, 'DevSpace 2019', '2015-10-11', '2015-10-12' );
 
 UPDATE VersionInfo SET DbVersion = '01.00.03.0006';";
+
+				case "01.00.03.0006":
+					return
+@"ALTER TABLE Users ADD Blog VARCHAR(230) NULL;
+ALTER TABLE Users ADD ProfilePicture VARCHAR(230) NULL;
+ALTER TABLE Users ADD SessionizeId UNIQUEIDENTIFIER NULL;
+
+ALTER TABLE Sessions ADD SessionizeId INT NULL;
+
+UPDATE VersionInfo SET DbVersion = '01.00.04.0000';";
+
 				default:
 					return string.Empty;
 			}

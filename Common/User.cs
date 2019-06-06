@@ -6,7 +6,7 @@ namespace DevSpace.Common {
 	public class User : IUser {
 		private User() {}
 
-		[DataMember]public string Bio { get; private set; }
+		[DataMember]	public string Bio { get; private set; }
 		[DataMember]	public string DisplayName { get; private set; }
 		[DataMember]	public string EmailAddress { get; private set; }
 		[DataMember]	public int Id { get; private set; }
@@ -16,6 +16,9 @@ namespace DevSpace.Common {
 		[DataMember]	public string Website { get; private set; }
 		public Guid SessionToken { get; private set; }
 		public DateTime SessionExpires { get; private set; }
+		[DataMember]	public string Blog { get; private set; }
+		[DataMember]	public string ProfilePicture { get; private set; }
+		[DataMember]	public Guid? SessionizeId { get; private set; }
 
 		public IUser UpdateId( int newId ) {
 			User newUser = Clone();
@@ -77,6 +80,24 @@ namespace DevSpace.Common {
 			return newUser;
 		}
 
+		public IUser UpdateBlog( string newBlog ) {
+			User newUser = Clone();
+			newUser.Blog = newBlog;
+			return newUser;
+		}
+
+		public IUser UpdateProfilePicture( string newProfilePicture ) {
+			User newUser = Clone();
+			newUser.ProfilePicture = newProfilePicture;
+			return newUser;
+		}
+
+		public IUser UpdateSessionizeId( Guid? newSessionizeId ) {
+			User newUser = Clone();
+			newUser.SessionizeId = newSessionizeId;
+			return newUser;
+		}
+
 		private User Clone() {
 			User cloned = new User();
 			cloned.Id = this.Id;
@@ -89,6 +110,9 @@ namespace DevSpace.Common {
 			if( null != this.Website ) cloned.Website = string.Copy( this.Website );
 			cloned.SessionToken = this.SessionToken;
 			cloned.SessionExpires = this.SessionExpires;
+			if( null != this.Blog ) cloned.Blog = string.Copy( this.Blog );
+			if( null != this.ProfilePicture ) cloned.ProfilePicture = string.Copy( this.ProfilePicture );
+			if( this.SessionizeId.HasValue ) cloned.SessionizeId = this.SessionizeId;
 			return cloned;
 		}
 	}

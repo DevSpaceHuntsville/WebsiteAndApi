@@ -71,9 +71,17 @@ namespace DevSpace.WebsiteAndApi.Test {
 				}
 			}
 
+			public string Blog => throw new NotImplementedException();
+
+			public string ProfilePicture => throw new NotImplementedException();
+
+			public Guid? SessionizeId => throw new NotImplementedException();
+
 			public IUser UpdateBio( string newBio ) {
 				throw new NotImplementedException();
 			}
+
+			public IUser UpdateBlog( string newBlog ) => throw new NotImplementedException();
 
 			public IUser UpdateDisplayName( string newDisplayName ) {
 				throw new NotImplementedException();
@@ -95,9 +103,13 @@ namespace DevSpace.WebsiteAndApi.Test {
 				throw new NotImplementedException();
 			}
 
+			public IUser UpdateProfilePicture( string newProfilePicture ) => throw new NotImplementedException();
+
 			public IUser UpdateSessionExpires( DateTime newSessionExpires ) {
 				throw new NotImplementedException();
 			}
+
+			public IUser UpdateSessionizeId( Guid? newSessionizeId ) => throw new NotImplementedException();
 
 			public IUser UpdateSessionToken( Guid newSessionToken ) {
 				throw new NotImplementedException();
