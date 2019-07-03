@@ -20,6 +20,8 @@ function Profile(data) {
 	Self.Bio = ko.observable();
 	Self.Twitter = ko.observable();
 	Self.Website = ko.observable();
+	Self.Blog = ko.observable();
+	Self.ProfilePicture = ko.observable();
 	Self.Sessions = ko.observableArray([]);
 
 	if (data) {
@@ -42,6 +44,14 @@ function Profile(data) {
 				data.Website = 'http://' + data.Website;
 
 		Self.Website(data.Website);
+
+		if (data.Blog)
+			if (data.Blog.search('http') == -1)
+				data.Blog = 'http://' + data.Blog;
+
+		Self.Blog(data.Blog);
+
+		Self.ProfilePicture(data.ProfilePicture);
 
 		for (var index = 0; index < data.Sessions.length; ++index)
 			Self.Sessions.push(new Session(data.Sessions[index]));

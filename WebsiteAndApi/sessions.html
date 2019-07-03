@@ -11,7 +11,7 @@
 	<!-- #include file="menu.shtml" -->
 
 	<section id="Content">
-        <article>
+        <article style="display: none;">
             <h1>Agenda and Printable Schedule</h1>
             <p>
                 We now have a full agenda ready.
@@ -24,7 +24,7 @@
             </p>
         </article>
 
-		<section data-bind="foreach: Sessions" style="display: none;">
+		<section data-bind="foreach: Sessions">
 			<article>
 				<h1 data-bind="text: Title"></h1>
 				<p data-bind="html: Abstract"></p>
@@ -36,7 +36,7 @@
 			</article>
 		</section>
 
-        <article>
+        <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
                 Want to be featured on this page?

@@ -43,6 +43,8 @@ namespace DevSpace.Api.Controllers {
 			UserData["Bio"] = User.Bio;
 			UserData["Twitter"] = User.Twitter;
 			UserData["Website"] = User.Website;
+			UserData["Blog"] = User.Blog;
+			UserData["ProfilePicture"] = User.ProfilePicture;
 
 			JArray Sessions = new JArray();
 			foreach( ISession Session in SessionList.Where( ses => ses.UserId == User.Id ) ) {

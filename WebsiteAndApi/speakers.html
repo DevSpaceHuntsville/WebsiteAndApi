@@ -22,7 +22,7 @@
             </p>
         </article>
 
-        <article>
+        <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
                 We are pleased to announce our call for speakers for DevSpace 2019.
@@ -107,11 +107,12 @@
             <input type="button" onclick="window.location.href = 'https://sessionize.com/devspaceconf';" value="Submit Your Masterpieces!" />
         </article>
 
-		<section data-bind="foreach: Profiles" style="display: none;">
+		<section data-bind="foreach: Profiles">
 			<article>
 				<h1 data-bind="text: DisplayName"></h1>
+				<img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
 				<p data-bind="html: Bio"></p>
-				<!-- ko if: Twitter || Website -->
+				<!-- ko if: Twitter || Website || Blog -->
 				<p>
 					<!-- ko if: Twitter -->
 					<a target="_blank" data-bind="text: Twitter, attr: { href: TwitterLink }"></a>
@@ -122,9 +123,15 @@
 					<!-- /ko -->
 					<a target="_blank" data-bind="text: Website, attr: { href: Website }"></a>
 					<!-- /ko -->
+					<!-- ko if: Blog -->
+					<!-- ko if: Twitter || Website -->
+					<br />
+					<!-- /ko -->
+					<a target="_blank" data-bind="text: Blog, attr: { href: Blog }"></a>
+					<!-- /ko -->
 				</p>
 				<!-- /ko -->
-				<h1>Sessions</h1>
+				<h1 style="clear: right">Sessions</h1>
 				<p data-bind="foreach: Sessions">
 					<span><a data-bind="text: Title, attr: { href: Link }"></a></span><br />
 				</p>
