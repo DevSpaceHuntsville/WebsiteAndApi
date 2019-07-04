@@ -127,7 +127,19 @@ namespace DevSpace.Api.Controllers {
 					.ToList();
 
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
-				Response.Content = new StringContent( await CreateJsonSessionArray( Sessions.Where( ses => ses.Tags.ToDictionary( tag => tag.Id ).ContainsKey( Id ) ).OrderBy( ses => ses.Title ).ToList() ) ); // new StringContent( await Task.Factory.StartNew( () => JsonConvert.SerializeObject( Sessions.OrderBy( ses => ses.Title ), Formatting.None ) ) );
+				Response.Content = new StringContent( 
+					await CreateJsonSessionArray( 
+						Sessions
+							.Where( ses => 
+								ses
+									.Tags
+									.Concat( new[] { ses.Level } )
+									.ToDictionary( tag => tag.Id )
+									.ContainsKey( Id ) )
+							.OrderBy( ses => ses.Title )
+							.ToList() 
+					)
+				);
 				return Response;
 			} catch {
 				return new HttpResponseMessage( HttpStatusCode.InternalServerError );

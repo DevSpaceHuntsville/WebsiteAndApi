@@ -33,6 +33,7 @@ function Session(data) {
 	Self.Abstract = ko.observable();
 	Self.Room = ko.observable();
 	Self.TimeSlot = ko.observable();
+	Self.Level = ko.observable();
 	Self.Tags = ko.observableArray([]);
 
 	Self.TagList = ko.pureComputed(function () {
@@ -46,9 +47,10 @@ function Session(data) {
 		Self.Id(data.Id);
 		Self.Speaker(new Profile(data.Speaker));
 		Self.Title(data.Title);
-		Self.Abstract('<p>' + data.Abstract.trim().replace('\n', '</p><p>') + '</p>');
+		Self.Abstract('<p>' + data.Abstract.trim().replace(/\r\n/g, '\n').replace(/\n\n/g, '\n').replace(/\n/g, '</p><p>') + '</p>');
 		Self.Room(data.Room);
 		Self.TimeSlot(new TimeSlot(data.TimeSlot));
+		Self.Level(new Tag(data.Level));
 
 		if (data.Tags)
 			for (var index = 0; index < data.Tags.length; ++index)
