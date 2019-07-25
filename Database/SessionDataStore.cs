@@ -86,7 +86,7 @@ namespace DevSpace.Database {
 						using( SqlDataReader dataReader = await tagCommand.ExecuteReaderAsync() ) {
 							while( await dataReader.ReadAsync() ) {
 								ITag tag = new Models.TagModel( dataReader );
-								if( tag.Id > 4 )
+								if( tag.Id < 4 )
 									returnValue = returnValue.UpdateLevel( tag );
 								else
 									returnValue = returnValue.AddTag( tag );
