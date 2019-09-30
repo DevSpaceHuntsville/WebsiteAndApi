@@ -20,7 +20,7 @@ function ViewModel() {
 		for (var lcv = 0; lcv < Self.Sessions().length; ++lcv) {
 			var ses = Self.Sessions()[lcv];
 			if ( (ses.RoomId() === room) && (ses.TimeSlotId() === timeslot) )
-				return ses.Title();
+				return ses.Title().substring(0, ses.Title().lastIndexOf( ' ', 60 ) );
 		}
 		return 'Session';
 	};
