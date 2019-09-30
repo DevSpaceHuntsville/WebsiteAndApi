@@ -11,7 +11,7 @@
 	<!-- #include file="menu.shtml" -->
 
 	<section id="Content">
-        <article style="display: none;">
+        <article>
             <h1>Agenda and Printable Schedule</h1>
             <p>
                 We now have a full agenda ready.
@@ -29,8 +29,8 @@
 				<h1 data-bind="text: Title"></h1>
 				<p data-bind="html: Abstract"></p>
 
-				<h2 data-bind="text: Room" style="display: none;"></h2>
-				<h2 data-bind="text: TimeSlot().DisplayDateTime" style="display: none;"></h2>
+				<h2 data-bind="text: Room"></h2>
+				<h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>
 				<h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
 				<h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
 				<h2>Tags: <!-- ko foreach: Tags --><a data-bind="text: Text, attr: { href: Link }"></a>; <!-- /ko --></h2>
