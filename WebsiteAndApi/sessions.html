@@ -10,8 +10,16 @@
 <body>
 	<!-- #include file="menu.shtml" -->
 
-	<section id="Content">
+    <section id="Content">
         <article>
+            <h1>Call of Speakers coming soon</h1>
+            <p>
+                We're still getting ready for 2020.
+                Why not check out our sessions from previous years to get you excited for things to come?
+            </p>
+        </article>
+
+        <article style="display: none;">
             <h1>Agenda and Printable Schedule</h1>
             <p>
                 We now have a full agenda ready.
@@ -24,18 +32,18 @@
             </p>
         </article>
 
-		<section data-bind="foreach: Sessions">
-			<article>
-				<h1 data-bind="text: Title"></h1>
-				<p data-bind="html: Abstract"></p>
+        <section data-bind="foreach: Sessions" style="display: none;">
+            <article>
+                <h1 data-bind="text: Title"></h1>
+                <p data-bind="html: Abstract"></p>
 
-				<h2 data-bind="text: Room"></h2>
-				<h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>
-				<h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
-				<h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
-				<h2>Tags: <!-- ko foreach: Tags --><a data-bind="text: Text, attr: { href: Link }"></a>; <!-- /ko --></h2>
-			</article>
-		</section>
+                <h2 data-bind="text: Room"></h2>
+                <h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>
+                <h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
+                <h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
+                <h2>Tags: <!-- ko foreach: Tags --><a data-bind="text: Text, attr: { href: Link }"></a>; <!-- /ko --></h2>
+            </article>
+        </section>
 
         <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
@@ -59,8 +67,11 @@
             <p>
                 <a href="/2018/sessions.html">Sessions from 2018</a>
             </p>
+            <p>
+                <a href="/2019/sessions.html">Sessions from 2019</a>
+            </p>
         </article>
-	</section>
+    </section>
 
 	<!-- #include file="leftSidebar.shtml" -->
 	<!-- #include file="rightSidebar.shtml" -->
