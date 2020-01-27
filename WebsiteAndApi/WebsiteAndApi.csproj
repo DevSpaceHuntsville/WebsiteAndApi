@@ -96,6 +96,7 @@
     <Content Include="2016\sessions.html" />
     <Content Include="2017\sessions.html" />
     <Content Include="2018\sessions.html" />
+    <Content Include="2019\sessions.html" />
     <Content Include="conduct.html" />
     <Content Include="blog.html" />
     <Content Include="Files\sponsors.png" />
@@ -205,8 +206,8 @@
     <Content Include="2016\2016sessions.json" />
     <Content Include="2017\2017sessions.json" />
     <Content Include="2018\2018sessions.json" />
-    <None Include="Properties\PublishProfiles\Staging - Web Deploy.pubxml" />
-    <None Include="Properties\PublishProfiles\Production - Web Deploy.pubxml" />
+    <Content Include="2019\2019sessions.json" />
+    <None Include="Properties\PublishProfiles\devspaceconf - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
