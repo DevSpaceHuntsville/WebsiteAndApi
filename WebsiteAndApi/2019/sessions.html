@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+	<!-- #include file="/head.shtml" -->
+    <meta property="og:url" content="https://www.devspaceconf.com/sessions" />
+	<script type="text/javascript" defer>
+		function Session(data) {
+			var Self = this;
+			Self.Speaker = ko.observable();
+			Self.Title = ko.observable();
+			Self.Abstract = ko.observable();
+			Self.Tags = ko.observableArray([]);
+
+			Self.TagList = ko.pureComputed(function () {
+				var TagList = '';
+				for (var index = 0; index < this.Tags().length; ++index)
+					TagList += this.Tags()[index].Text() + '; ';
+				return TagList;
+			}, Self);
+
+			if (data) {
+				Self.Speaker(data.Speaker);
+				Self.Title(data.Title);
+				Self.Abstract('<p>' + data.Abstract.trim().replace('\n', '</p><p>') + '</p>');
+
+				if (data.Tags)
+					for (var index = 0; index < data.Tags.length; ++index)
+						Self.Tags.push(data.Tags[index]);
+			}
+		}
+
+		function ViewModel() {
+			var Self = this;
+			Self.Sessions = ko.observableArray([]);
+
+			var SessionsRequest = new XMLHttpRequest();
+			SessionsRequest.open('GET', '/2019/2019sessions.json', true);
+			SessionsRequest.send();
+
+			SessionsRequest.onreadystatechange = function () {
+				if (SessionsRequest.readyState == SessionsRequest.DONE) {
+					switch (SessionsRequest.status) {
+						case 200:
+							var SessionList = JSON.parse(SessionsRequest.responseText);
+							for (var index = 0; index < SessionList.length; ++index)
+								Self.Sessions.push(new Session(SessionList[index]));
+							break;
+
+						default:
+							break;
+					}
+				}
+			};
+		}
+
+		window.onload = function () {
+			ko.applyBindings(new ViewModel(), document.getElementById('Content'));
+		}
+	</script>
+</head>
+
+<body>
+	<!-- #include file="/menu.shtml" -->
+
+	<section id="Content">
+		<section data-bind="foreach: Sessions">
+			<article>
+				<h1 data-bind="text: Title"></h1>
+				<p data-bind="html: Abstract"></p>
+
+				<h2>Speaker: <span data-bind="text: Speaker"></span></h2>
+				<h2>Tags: <!-- ko foreach: Tags --><span data-bind="text: $data"></span>; <!-- /ko --></h2>
+			</article>
+		</section>
+	</section>
+
+	<!-- #include file="/leftSidebar.shtml" -->
+	<!-- #include file="/rightSidebar.shtml" -->
+</body>
+
+</html>

@@ -10,7 +10,16 @@
 <body>
 	<!-- #include file="menu.shtml" -->
 
-	<section id="Content">
+    <section id="Content">
+        <article>
+            <h1>Call For Speakers Coming Soon</h1>
+            <p>
+                We are currently preparing for our 2020 conferences.
+                We are tentatively planning to open the Call for Speakers in April.
+                Check back to get the most up to date details.
+            </p>
+        </article>
+
         <article style="display: none;">
             <h1>Call For Speakers Now Closed</h1>
             <p>
@@ -25,7 +34,7 @@
         <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
-                We are pleased to announce our call for speakers for DevSpace 2019.
+                We are pleased to announce our call for speakers for DevSpace 2020.
                 Please take a moment to read over this before you submit your masterpieces.
             </p>
             <h2>We're On Sessionize!</h2>
@@ -107,37 +116,37 @@
             <input type="button" onclick="window.location.href = 'https://sessionize.com/devspaceconf';" value="Submit Your Masterpieces!" />
         </article>
 
-		<section data-bind="foreach: Profiles">
-			<article>
-				<h1 data-bind="text: DisplayName"></h1>
-				<img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
-				<p data-bind="html: Bio"></p>
-				<!-- ko if: Twitter || Website || Blog -->
-				<p>
-					<!-- ko if: Twitter -->
-					<a target="_blank" data-bind="text: Twitter, attr: { href: TwitterLink }"></a>
-					<!-- /ko -->
-					<!-- ko if: Website -->
-					<!-- ko if: Twitter -->
-					<br />
-					<!-- /ko -->
-					<a target="_blank" data-bind="text: Website, attr: { href: Website }"></a>
-					<!-- /ko -->
-					<!-- ko if: Blog -->
-					<!-- ko if: Twitter || Website -->
-					<br />
-					<!-- /ko -->
-					<a target="_blank" data-bind="text: Blog, attr: { href: Blog }"></a>
-					<!-- /ko -->
-				</p>
-				<!-- /ko -->
-				<h1 style="clear: right">Sessions</h1>
-				<p data-bind="foreach: Sessions">
-					<span><a data-bind="text: Title, attr: { href: Link }"></a></span><br />
-				</p>
-			</article>
-		</section>
-	</section>
+        <section data-bind="foreach: Profiles" style="display: none;">
+            <article>
+                <h1 data-bind="text: DisplayName"></h1>
+                <img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
+                <p data-bind="html: Bio"></p>
+                <!-- ko if: Twitter || Website || Blog -->
+                <p>
+                    <!-- ko if: Twitter -->
+                    <a target="_blank" data-bind="text: Twitter, attr: { href: TwitterLink }"></a>
+                    <!-- /ko -->
+                    <!-- ko if: Website -->
+                    <!-- ko if: Twitter -->
+                    <br />
+                    <!-- /ko -->
+                    <a target="_blank" data-bind="text: Website, attr: { href: Website }"></a>
+                    <!-- /ko -->
+                    <!-- ko if: Blog -->
+                    <!-- ko if: Twitter || Website -->
+                    <br />
+                    <!-- /ko -->
+                    <a target="_blank" data-bind="text: Blog, attr: { href: Blog }"></a>
+                    <!-- /ko -->
+                </p>
+                <!-- /ko -->
+                <h1 style="clear: right">Sessions</h1>
+                <p data-bind="foreach: Sessions">
+                    <span><a data-bind="text: Title, attr: { href: Link }"></a></span><br />
+                </p>
+            </article>
+        </section>
+    </section>
 
 	<!-- #include file="leftSidebar.shtml" -->
 	<!-- #include file="rightSidebar.shtml" -->

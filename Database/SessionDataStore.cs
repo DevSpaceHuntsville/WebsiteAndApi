@@ -15,7 +15,7 @@ namespace DevSpace.Database {
 
 				// HACK: Currentlyhas hardcoded EventId
 				ISession addedSession = null;
-				using( SqlCommand sessionCommand = new SqlCommand( "INSERT Sessions ( UserId, Title, Abstract, Notes, SessionLength, EventId ) VALUES ( @UserId, @Title, @Abstract, @Notes, @SessionLength, 2019 ); SELECT SCOPE_IDENTITY();", connection ) ) {
+				using( SqlCommand sessionCommand = new SqlCommand( "INSERT Sessions ( UserId, Title, Abstract, Notes, SessionLength, EventId ) VALUES ( @UserId, @Title, @Abstract, @Notes, @SessionLength, 2020 ); SELECT SCOPE_IDENTITY();", connection ) ) {
 					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToAdd.UserId;
 					sessionCommand.Parameters.Add( "Title", SqlDbType.VarChar ).Value = ItemToAdd.Title;
 					sessionCommand.Parameters.Add( "Abstract", SqlDbType.VarChar ).Value = ItemToAdd.Abstract;
@@ -43,7 +43,7 @@ namespace DevSpace.Database {
 				}
 
 				return addedSession
-					.UpdateEventId( 2019 );
+					.UpdateEventId( 2020 );
 			}
 		}
 

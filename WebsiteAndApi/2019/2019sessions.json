@@ -1,0 +1,587 @@
+[
+    {
+        "Title": "Building an Open Source Artificial Pancreas",
+        "Abstract": "Have you ever thought about what open source software or hardware could achieve? What if it could help improve people's lives by solving some of their health problems?\n\nAfter the medical tech industry kept promising a system to help automatically manage insulin for type 1 diabetic people and never delivering, some people got together to find ways to do it with the tech they already had. Over the past few years, a \"closed-loop\" system has been developed to algorithmically regulate people's blood sugars. After reverse engineering bluetooth sensors and 915 MHz insulin pumps, the system became possible. As a diabetic, I also built this system and saw my sugar values stabilize much more than I could ever achieve doing it manually myself. Now I'm working on contributing back to the projects as well.\n\nI want to talk about this system, from a technical side as well as a personal side. I'll talk about OpenAPS (the open artificial pancreas system) and how it works, what problems it solves, and its safety and security concerns. I also want to show how it's helped me, and what this means for my health now and in the future. I ultimately want to show how we, as software developers, can change people's lives through the code we write.",
+        "Speaker": "Sarah Withee",
+        "Tags": [
+            "Hardware",
+            "Keynote",
+            "Technical",
+            "Non-Technical",
+            "Healthcare",
+            "Type 1 Diabetes"
+        ]
+    },
+    {
+        "Title": "How to build highly scalable distributed systems using RabbitMQ",
+        "Abstract": "If you haven't used an ESB to scale out your application or as part of your micro-service strategy, you should. We will review some common architectures and build a practical solution to a common enterprise application problem using RabbitMQ as the ESB.\n\nIn a career that has spans more than 30 years, I've built highly scalable systems that support 100's of thousands of users and over 100 million transactions/day. Recently, adopted RabbitMQ as the ESB supporting a system with over 100k users. Scalability tests have shown that RabbitMQ will allow the system to easily scale and support billions of transactions per day.",
+        "Speaker": "Don DenUyl",
+        "Tags": [
+            "IoT",
+            "Design",
+            "Architecture",
+            "distributed systems"
+        ]
+    },
+    {
+        "Title": "Slurm: Toxic Company Cultures and How to Survive Them",
+        "Abstract": "Believe it or not, a Futurama episode and my experiences have led me to create the SLURM, which I believe will help you navigate toxic waters of a company's culture. In this talk I provide tips for Sensing the environment, Learning the telltale signs of negative and dangerous behaviors, Understanding how to cope and combat disruptive processes, Refactoring the norms and continuously improving, and when it's time to Move on. Let's open up the floor for a serious conversation about what I think is the single most important aspect of any company: culture.",
+        "Speaker": "Dennis Stepp",
+        "Tags": [
+            "Career",
+            "Personal Growth",
+            "Culture",
+            "Motivation"
+        ]
+    },
+    {
+        "Title": "Understanding Alexa",
+        "Abstract": "This session will unpack how Amazon's Alexa works, how you think about building voice user interfaces, and which best practices you should consider as you build skills.",
+        "Speaker": "Jeff Blankenburg",
+        "Tags": [
+            "Voice",
+            "AWS",
+            "Node.js",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Build Smarter Cross-Platform Applications Using Xamarin, Azure Cognitive Services, and ML.NET",
+        "Abstract": "Building \"smarter\" applications is a popular and important topic in the software development community.  In many cases, machine learning is the primary tool used to create applications that improve their delivered value by dynamically adjusting as more relevant data is made available.  In addition to \"smarter\" applications, maximizing code re-use by creating cross-platform applications is another popular and important topic among software development professionals.  With Xamarin, you can deliver native Android, iOS, and Windows applications with a single .NET code base.  What if you needed to deliver a cross-platform \"smart\" application?  Is that possible?\n\nIn this session, we will explore how to leverage Azure Cognitive Services and ML.NET along with Xamarin to create a cross-platform RSS reader that is \"smart\" and improves (get smarter) as it is used.",
+        "Speaker": "Richard Taylor",
+        "Tags": [
+            "Azure",
+            "Machine Learning",
+            "Xamarin"
+        ]
+    },
+    {
+        "Title": "Taming the Rusty Snake",
+        "Abstract": "The Rust programming language produces safe and speedy code, but I would be lying if there wasn't a learning curve associated with it. Sometimes, writing a simple prototype tool in Python can be much simpler. What if I told you that you could write performant Rust code very similar to your simple Python prototype and then incrementally refactor it into a safer version of itself? Come find out how you can build a command-line interface to a simple web service in Rust as quickly as you can in Python and how to make it safer and more maintainable along the way.",
+        "Speaker": "Jonathan Creekmore",
+        "Tags": [
+            "Python",
+            "Rust",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "An Introduction to Kotlin",
+        "Abstract": "Kotlin has been catching on lately as an alternative to Java because of its null safety guarantees, type inference, cross-platform support, and ease of use with Android and Spring. Not to mention the fact that it is fully interoperable with Java. Is this something you and your team should considering spending time to learn?\n\nCome to this session for an overview of Kotlin intended for Java developers (don't worry if you don't know Java, Kotlin is very easy to learn!). We will go over the major language features, syntax, and the Kotlin ecosystem so you'll know enough to make your own decisions by the end.\n\nYou will come away from this session with enough knowledge to decide if this is something you and your team should consider adopting.",
+        "Speaker": "Todd Ginsberg",
+        "Tags": [
+            "kotlin",
+            "Java"
+        ]
+    },
+    {
+        "Title": "RAII all the things",
+        "Abstract": "It is one of the strangest acronyms of all time. Yet, Resource Acquisition Is Initialization (RAII) is a top reason I recommend moving embedded software from traditional C code to C++. A fast paced session of examples of the C++ RAII pattern targeting embedded software and firmware developers. Are you an experienced C developer thinking about C++? Are you a C++ developer simply looking for more ideas on how to use this powerful language feature? Then this session is for you!",
+        "Speaker": "Matthew Eshleman",
+        "Tags": [
+            "IoT",
+            "Architecture",
+            "Patterns",
+            "C++",
+            "Firmware",
+            "Embedded Software"
+        ]
+    },
+    {
+        "Title": "Social Deduction Games for Business and Learning",
+        "Abstract": "You might've played a social deduction game, like Mafia, The Resistance, or Werewolf, and not even known what the genre was called. You probably also didn't realize that they're a valuable tool for building communities, teaching critical thinking, and building social awareness in your organization. This session will go over how you can use these games in your business or user group to teach social skills and bring people together -- all through the power of bluffing and lying! After attending the session, try to attend a game with us, to get a first-hand experience of how it works.",
+        "Speaker": "Charlotte M. Ellett",
+        "Tags": [
+            "Personal Growth",
+            "Business",
+            "Psychology",
+            "Emotional Intelligence",
+            "Learning",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "How My Company Saved Hundreds of Hours Using Docker",
+        "Abstract": "Docker started as a solution to sharing code environments. However, it has transformed into a time-saving and self-documenting cure for building software. In this talk I will describe how Docker has allowed my company to save hundreds of hours since the beginning of the year and how any developer can do the same for their company. It reduced time to setup and use software, to on-ramp new developers to projects, and to manage complex software suites. It allowed us to streamline enormous builds that used take 6+ hours to run. It even allowed us to stop work on a piece of software for months and have it be functional and well-documented when we come back to it. In short, Docker has reduced entire system setups to a single, simple command. It made building and deploying software a minor issue, which has allowed our development teams to focus on the software itself, instead of the surrounding infrastructure. This focus has allowed our development team to build more robust software in less time and could do the same for you.",
+        "Speaker": "Kyle Galloway",
+        "Tags": [
+            "DevOps",
+            "Build",
+            "Best Practicies",
+            "Architecture",
+            "Docker",
+            "Productivity",
+            "Continual Integration"
+        ]
+    },
+    {
+        "Title": "Honey, I Broke the Dog: How My Derps Help My Career",
+        "Abstract": "Testing is a lot like training a dog. How? In this session I share my personal experiences with software testing and pet training, and how the two have influenced one another. ",
+        "Speaker": "DJ Miller",
+        "Tags": [
+            "Testing",
+            "Career",
+            "Personal Growth",
+            "Motivation"
+        ]
+    },
+    {
+        "Title": "How To Have Code Reviews Developers Actually Want",
+        "Abstract": "This phrase can stir up a lot of emotions for people. For some, it?s aggravation because they?re a waste of time, for others, it?s stressful because it feels like you?re getting personally attacked. However, for some, it?s a great learning experience that leads to the team improving. Do you want to be in the latter group? Then this talk is for you!\n\nIn this presentation, I?ll first show you the benefits of code review and the business case for why they should happen. Next, I?ll show some of the most common mistakes that teams make during the review process and how to mitigate them. After talking about the bad, we?ll talk about what to look for in your code review process. Finally, I?ll wrap things up by showing the game plan I use for code reviews.",
+        "Speaker": "Cameron Presley",
+        "Tags": [
+            "Methodology",
+            "Best Practicies",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "What Do Your Test Cases DO for You?",
+        "Abstract": "A few years ago, I found myself wondering, \"What are the actual benefits to test cases?\", \"Why do I often feel like they are just a waste of my time?\", \"What makes a test case valuable, and to whom?\"\n\nHave you ever found yourself asking these questions? In this presentation, we are going to discuss many of the common pitfalls that people find themselves in when writing test cases. From there we'll learn the value of test cases, successful techniques for writing them, and some ways to consider the intended audience of those cases. (Here's a hint: The audience is not always the author.)",
+        "Speaker": "Jameson McGhee",
+        "Tags": [
+            "Testing",
+            "Best Practicies",
+            "Quality Assurance"
+        ]
+    },
+    {
+        "Title": "SQL Server Execution Plan Primer",
+        "Abstract": "Have you ever looked at a SQL Server execution plan and wondered what it all means?  Or do you wonder how SQL Server resolves your query?  The execution plan provides front-line insight into some fundamental decisions that SQL Server makes when a query gets submitted for processing, and comprehending the plan can help you understand why performance may be less than desirable.  We will examine the inputs that SQL Server uses to generate the query plan, and we will consider common operators that appear in plans and signs to watch out for to spot potential performance pitfalls.  This session will help you understand what SQL Server is telling you about your query -- and understand why things sometimes go wrong.",
+        "Speaker": "Allison Benneth",
+        "Tags": [
+            "Database",
+            "Technical",
+            "SQL Server"
+        ]
+    },
+    {
+        "Title": "Write Cleaner JavaScript Today",
+        "Abstract": "JavaScript is being utilized for everything now days.  As Atwood's Law states,  \"Any application that can be written in JavaScript, will eventually be written in JavaScript.\".  This is because JavaScript is a very easy language to pick up and learn.  After all, anyone can open any browser's dev tools and start coding in JavaScript and watch it immediately run.  However, it is also very easy to create a mess with JavaScript.  Neat code can easily turn into spaghetti code that is hard to understand. Worse, it can contain all sorts of hidden bugs until runtime.  Let us take a look at some language features and techniques that can help clean up our code, make it easier to read, and eliminate bugs.  ",
+        "Speaker": "Tyler Jennings",
+        "Tags": [
+            "Clean Code",
+            "javascript",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Building, Deploying, and Monitoring Applications with Azure",
+        "Abstract": "Taking code from the repository to production in a consistent process makes software development easier for everyone downstream. A problem or inconsistency at any step of the software development life-cycle affects everyone, and so automating our environments is the best way to remove human error. Automating Azure, taking code to production becomes consistent, repeatable, observable, and accountable. Come see how application development and operation can be built with Azure.",
+        "Speaker": "Daniel Oliver",
+        "Tags": [
+            "DevOps",
+            "Azure",
+            "Operational Insights",
+            "Cloud"
+        ]
+    },
+    {
+        "Title": "Implementing a RESTful API in .NET Core",
+        "Abstract": "Code samples don't do justice to the process of actually building an API from scratch. In this session, I'll show you how to get a practical API off the ground in .NET Core. You'll see how to design the API. You'll get insight into setting up data access, logging, exception handling, and versioning. You'll learn how to construct effective unit and integration tests.",
+        "Speaker": "Francis Solomon",
+        "Tags": [
+            "Testing",
+            "C#",
+            "Microservices",
+            "Backend",
+            "ASP.NET Core",
+            "API",
+            "REST",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Crossing the Great Divide: What Functional Programming Can Learn from Object Oriented Design",
+        "Abstract": "Functional Programming is the new hotness right now.  With all the talks of higher-level functions, immutability, and general functional goodness, it's easy to get caught up in all of it.  However, whenever we as an industry jump into new domains, it takes a while to learn what to do and what not to do.\n\nHowever, all is not lost.  We have patterns and principles from Object Oriented Design that can help guide us.  OO and FP might seem contradictory in terms of paradigms, but there's actually a lot we can learn from OO.\n\nWe'll take a look at some of these differences, but also look at the similarities.  We'll investigate traditional OO design principles and design patterns, and translate their concepts to FP languages.  At the end of this talk, you'll understand why you've needed these concepts all along in your own FP projects, and know how to apply them at the right times.",
+        "Speaker": "Pat Viafore",
+        "Tags": [
+            "Design",
+            "Functional Programming",
+            "Object Oriented",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "New Foundations: Becoming an Agent of Change in Your Turbulent World",
+        "Abstract": "Application development is in trouble. Despite rapid advances in development tools and technologies, our understanding of our systems is low. Our code is jumbled. Our focus is off. And we understand less, as developers, than any time in the history of computing. The silver lining to this dark cloud is it provides great opportunities for those willing to put in the effort to rise above the pack.\r\n\r\nThis session is a series of explorations in to some of the biggest problems in development today, with an emphasis on what you can do to establish yourself as an agent of change. From Agile and testing to the most important aspects of development, you will learn how to be a leader in your company ... and possibly more.\r\n\r\nSome of what you will learn:\r\n* Why practical methodologies and practices like Agile and TDD fail\r\n* Where to place your focus in development ... the answer might surprise you\r\n* How lack of organization is hurting your efforts and what to do about it\r\n* What you should do for maximum success",
+        "Speaker": "Gregory A. Beamer",
+        "Tags": []
+    },
+    {
+        "Title": "Data Science for Folks Without (or With!) a Ph.D.",
+        "Abstract": "At the risk of overstating the obvious, the world is drowning in data.  From mouse clicks to GPS and everywhere in between, the amount of data we generate is enormous.  And it's not going to get smaller anytime soon.  There is good news.  A life preserver in the form of Python is ready to help you keep your head above water.  Python is a simple, clean and easy to learn general language purpose used by people in a wide variety of fields, not just computer scientists.  Python is also one of the most popular languages for data science.  This talk will survey some of the more prominent parts of the PyData stack including numpy for numerical computing, pandas for data analysis, matplotlib for visualization, and Jupyter notebook, an interactive and collaborative computing environment that is accessed via the browser.  Together, the tools of the PyData stack make data science accessible to everyone.  You don?t need an advanced degree to enter the world of data science.",
+        "Speaker": "Douglas Starnes",
+        "Tags": [
+            "Python",
+            "Data Science"
+        ]
+    },
+    {
+        "Title": "We Need To Talk About Burnout",
+        "Abstract": "Burnout is a state of physical and mental exhaustion that results from excessive stress and constant overwork. It can result in reduced output, cynical or bleak outlook on projects and feeling helpless, hopeless and with no way out. Burnout is also a widespread but rarely spoken-about issue in tech.\n\nIn this frank talk, that will be more of a discussion than an actual presentation, I will discuss my own experience with burnout. What happened, how I recognized the symptoms and was ultimately able to recover. I will also discuss things that employers and mangers can do to identify potential burnout in their employees and ultimately create a workplace that is safe for their employees' mental health.",
+        "Speaker": "Rob Peck",
+        "Tags": [
+            "Mental Health"
+        ]
+    },
+    {
+        "Title": "Not Your Father's JavaScript: Advanced JavaScript Features You Should be Using",
+        "Abstract": "Modern JavaScript came with a plethora of new features, but most people are still not taking advantage of all it has to offer.\r\n\r\nMaybe you are using fat arrows and the class keyword, but do you regularly use the rest and spread operator? \r\n\r\nWhat about destructing? \r\n\r\nMaybe you have heard of proxies, generators, and decorators, but have no idea when you would ever use them? \r\n\r\nIn this session we will cover some of JavaScript's more advanced features and how they can make your life easier, and drastically improve your code.",
+        "Speaker": "Josh Carroll",
+        "Tags": [
+            "javascript",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Embracing SQL",
+        "Abstract": "Chances are your application uses a database to store it's data.  There's also a pretty good chance it's a relational database.  If it's not a complete legacy system you probably are using an ORM as well.  That's all fine and good, and if it works for you great.  But Wait!  There are some places where taking advantage of SQL and the capabilities of your database may actually be a benefit over that ORM or CRUD like stored procedures you currently use.\n\nThis session will focus on SQL Server.  We'll look at various ORM scenarios, and if they would be better served using SQL.    We'll then move on to a common way stored procedures are built, and how we can make them better suited for our application, and still work within the confines of the database.  Lastly, we'll explore the JSON capabilities of SQL Server for both writing data, and more importantly reading and shaping data for our applications.\n\nWhen you leave, you'll have the tools needed to embrace SQL when it's warranted, and not hate doing it.",
+        "Speaker": "Al Zaudtke",
+        "Tags": [
+            "Architecture",
+            "Technical",
+            "SQL Server"
+        ]
+    },
+    {
+        "Title": "Between Trying Too Hard and Not Trying at All: The Middle Path of the Coding 'Roadie'",
+        "Abstract": "We've all heard about the \"Coding Rock Star\", who does anything and everything to be the best they can be. At the other end of the spectrum we have a developer that focuses more on stability instead of advancement. Where Rock Stars go above and beyond to learn everything they can, these developers focus on the code and careers only during work hours. To continue the metaphor, I refer to these developers as \"Coding Groupies\". I believe that both of these paths have issues, and while I accept that others may seek the salary and fame of a Rock Star, or the relative stability of the Groupie, I've decided to try walking the middle and becoming the first \"Coding Roadie?\". In this talk I'll explain and compare these three paths, and tell you why I think that there's a place for Roadies.",
+        "Speaker": "Stacy Mullinax",
+        "Tags": [
+            "Career",
+            "Mental Health",
+            "Community",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "Serverless in Action",
+        "Abstract": "Have you ever needed the ability to develop something simple for a business request but did not want to go through the trouble of creating a full application?  Well that is where Azure Functions comes into play.  Azure Functions provides a serverless computer service that enables you to run code on-demand without having to explicitly provision or manage infrastructure.  Literally within a couple of minutes you can develop a function that can perform critical business need using the development languages you already use.\n\nDuring this session, we will walk through some real-world examples using C# and JavaScript that will allow you to back and start using this great service right away.",
+        "Speaker": "Chad Green",
+        "Tags": [
+            "Azure",
+            ".Net",
+            "Cloud",
+            "Serverless",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Assembly Language for People Who Don't Want to Learn Assembly Language",
+        "Abstract": "Once upon a time, if a developer wanted to write fast code, they needed to know assembly language.  With faster technology and better compliers, this is no longer the case.  This is great for productivity but deprives developers of a deeper knowledge of what compliers do, what assembly language is and how microprocessors work.\n\nWhen people talk about the full stack, they really just talking about the high-level language part of it.  This presentation will look at the \"real\" full stack, everything between the high-level language and physics, mostly assembly language and the microprocessor.\nThis session will explain the basics of assembly language.  Although attendees will learn enough to write a simple program during the session using an online assembler, the object is not to teach developers how to be assembly language developers.  The objective is to help developers better understand what a compiler does, what is compiler optimization, what a microprocessor and how it executes assembly language.",
+        "Speaker": "Wayne Goode",
+        "Tags": [
+            "Assembly Language",
+            "Digital Electronics",
+            "Microprocessors",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Real Agile for Real Software",
+        "Abstract": "As the agile revolution continues, more and more companies are wanting to \"Do Agile\". Most companies don?t even know why, they just see and hear about other companies having successes. They hire a consultant, who is teaching the \"flavor of the day\" agile process and pay lots of money for books, tools and training. Most of the time, with limited success.\n\nIn this talk, I will explain what Agile software development is meant to be all about. I'll tell you a bunch of stories about common mistakes I see companies making as they try to become more agile, and what you can do to avoid or overcome these mistakes. In the end, you should leave with a better understanding of the nature of building software in an agile way and maybe even had a few laughs along the way.",
+        "Speaker": "Lee Brandt",
+        "Tags": [
+            "Agile",
+            "Project Management",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "TDD for embedded software",
+        "Abstract": "Many engineers have heard of Test Driven Development (TDD), but assume this approach to developing software is a luxury suitable only to PC and web software development domains. Having now completed multiple firmware projects using a TDD methodology, Matthew will discuss specific real-world experiences with TDD in the firmware and embedded software domains. With a focus on lessons-learned our goal is to achieve COURAGE when developing, refactoring, and improving our firmware driven products.",
+        "Speaker": "Matthew Eshleman",
+        "Tags": [
+            "TDD",
+            "IoT",
+            "C++",
+            "Continuous Improvement",
+            "Firmware",
+            "Embedded Software",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "The Art of API Design",
+        "Abstract": "Want to build an API? Anyone can do that. Want to build a GREAT API? That?s not so easy.\n\nIn this talk you'll learn the principles and best practices behind API design to help you be successful in rolling out your services right the first time.\n\nTo get the most out of this talk, you should have an understanding of HTTP and the fundamentals of JSON, and know at a basic level what an API is/does.",
+        "Speaker": "Francis Solomon",
+        "Tags": [
+            "Web",
+            "Design",
+            "Microservices",
+            "Patterns",
+            "Backend",
+            "API",
+            "REST"
+        ]
+    },
+    {
+        "Title": "Cross Platform Mobile Application Development using Xamarin and Azure",
+        "Abstract": "In the circles of web development, \"Mobile First\", developing for mobile clients before considering desktop clients, has become an accepted approach to delivering solutions. It is the recognition that many application users are using their mobile device as the primary tool for utilizing software. In some scenarios, the mobile web experience falls short of the user experience expected.  As a result there is a large demand for native mobile applications.\n\nWith combining the features of Xamarin and Azure, software providers can deliver cross platform, globally scalable, and secure native mobile applications for the most popular mobile platforms.  Utilizing existing skills, developers can significantly reduce time to market and capitalize on the growing trend of mobile devices as a primary tool to use software and consume data.\n\nIn this talk, we will explore how Xamarin can be used to leverage your existing skills to deliver fully native mobile applications for the most popular mobile platforms. In addition, we will add Azure Mobile Apps (now VS App Center) to our solution to provide the backend data store for data synchronization, user authentication, and support push notifications.",
+        "Speaker": "Richard Taylor",
+        "Tags": [
+            "Azure",
+            "Mobile",
+            "Xamarin"
+        ]
+    },
+    {
+        "Title": "The Thinking Developers Guide to the Brain",
+        "Abstract": "Your brain is an incredible machine. Housed within a few pounds are more than 100 billion neurons that perform a variety of duties, from keep your vital functions alive, storing memories and helping you solve very complex problems.\r\n\r\nYour brain is also able to lead you astray. You get caught in repetitive patterns based on unfounded beliefs. You are trapped by you biases, enhanced by the echo chambers you participated in. The hard truth is you are wrong more than you are right.\r\n\r\nBut, that's okay. In this session, you will learn more about how the brain works and how to capitalize on its power to improve your life.\r\n\r\nSome of the things you will learn\r\n* Why you should embrace cognitive dissonance\r\n* How to overcome cognitive bias\r\n* Practical steps to solve hard problems\r\n* Why you can't think outside of the box",
+        "Speaker": "Gregory A. Beamer",
+        "Tags": []
+    },
+    {
+        "Title": "Functional JavaScript",
+        "Abstract": "Functional programming is becoming more and more ubiquitous.  Everyday object-oriented languages are now implementing concepts from the functional paradigm.  This is a good thing.  The proliferation of ideas is what makes programming improve.  JavaScript is a language that can easily swing to either end of the programming spectrum.  In this talk we will take a hands-on look at implementing several functional concepts in JavaScript and see how each concept can benefit us.  We will start with simple map/reduce and currying and move to more advanced concepts such as null/error handling and composition that will lead to cleaner, more concise, maintainable code.",
+        "Speaker": "Tyler Jennings",
+        "Tags": [
+            "Functional Programming",
+            "javascript",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "From a Single Server to the Cloud: Modernizing a Large Fan Website",
+        "Abstract": "Before the Internet became the domain of companies like Facebook and Google, it was filled with unique, independent websites often run by a single person. Things like homepages, and forums for fans of anything you can imagine, from Star Trek to trains. Many of these websites are still around, and are surprisingly popular and very heavily trafficked.\n\nThis talk will focus on a single fan site: probably the largest forum on the Internet for train fans. We'll discuss how we went from the initial state of a code base that wasn't even in version control yet and ran on a single server to a modern, scalable cloud-based architecture. We'll discuss how websites small and large, corporate and independent, can benefit from modern web development strategies and architecture. And, best of all, how we saved the owner a significant amount of money in the process.",
+        "Speaker": "Rob Peck",
+        "Tags": [
+            "DevOps",
+            "Architecture",
+            "PHP",
+            "Legacy",
+            "Cloud"
+        ]
+    },
+    {
+        "Title": "Machine Learning for Unity Folks Without (or With!) a Ph.D.",
+        "Abstract": "Even though machine learning is difficult, it can be fun!  It can also enhance the fun that we experience.  Games are a prime example of this.  In their most basic description, games are simulations.  And based on the situation simulated, we have certain expectations.  Machine learning allows games to create or respond to those expectations in a real world (or not) manner.  But it's not just for recreation.  The field of serious games benefits as well.  In this session, using the Unity3D game development platform, we will look at using machine learning libraries such as TensorFlow and Keras to create more realistic, fun and beneficial games for everyone, regardless of their goal.",
+        "Speaker": "Douglas Starnes",
+        "Tags": [
+            "Machine Learning",
+            "Unity"
+        ]
+    },
+    {
+        "Title": "Effective Life-long Learning",
+        "Abstract": "Do you ever feel like the world is changing rapidly and you don't know what to do? The best answer to a rapidly changing world is to foster a habit of life-long learning. Throughout my career, I have experimented with several tools and techniques for learning, retaining, and sharing knowledge with the goal of increasing value for myself and for my employers. Come find out what techniques have worked best for me and how you can adapt them to your own situation.",
+        "Speaker": "Jonathan Creekmore",
+        "Tags": [
+            "Personal Growth",
+            "Learning",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "Managing Alerts and Logs in a distributed cloud environment",
+        "Abstract": "Maximize your system insight by utilizing off the shelf third party and cloud-native solutions for managing logging and alerts on both production and test environments.  Monitoring for system health, debugging defects, and notifying devs realtime  about production issues can be simple with the right tools and foresight.",
+        "Speaker": "Chris Smeal",
+        "Tags": [
+            "DevOps",
+            "AWS",
+            "Logging",
+            "Elk"
+        ]
+    },
+    {
+        "Title": "Don't Talk To Me Ever Again: Asynchronous Communication IRL",
+        "Abstract": "Picture a successful engineer.  Did you lean into the same old tired stereotype of the anti-social, reclusive basement dweller?  I hope not, because most successful engineers are quite the opposite.  To be effective wherever you work, you have to be able to communicate with your peers, your managers, and your customers.  \n\nBut what happens as we make technological advancements?  Telecommuting, remote work, global distributed teams and bigger campuses are only the beginning of your problems.  Face-to-face communication is the best, and we should hold onto that as long as possible, but it doesn't work so well when time or space separates us.  So what do we do?\n\nThis talk will cover why face-to-face is ideal, and where and where it is not effective.  We'll look at what you can do to improve communication, even with people who may be thousands of miles away.  You'll even learn how to be a time traveler and talk to people in the future!  So stop on by, and learn how you can communicate today, so that your legacy endures in the long run.\n",
+        "Speaker": "Pat Viafore",
+        "Tags": [
+            "Career",
+            "Communication",
+            "Remote",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "This Just Isn't Working (on my Machine):  Navigating the Arranged Marriage of Dev and QA",
+        "Abstract": "Take a seat on my couch.\n\nAs a member of this developer and QA relationship, do you ever feel like you aren't on the same page?  Communicate differently? Are there things you would change in your partner?   What do you want out of this relationship?\n\nIf you have pondered any of these questions, come join my session, where we will have gathered the two perspectives from both sides of the code, and all of the emotions in-between.  We will examine these common relationship issues between developers and QA, and the changes we can make to ensure a productive, long lasting relationship.",
+        "Speaker": "Katie Cleveland",
+        "Tags": [
+            "Testing",
+            "Career",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "DevSpace: the Good, the Bad, and the Ugly",
+        "Abstract": "This session is your opportunity to give back. I will spend a few minutes talking about what it took to organize on the conference. Then, I want to go around the room and hear what everyone thought was the good, the bad, and the ugly. What worked and what did not. This is your chance to give feedback straight to the conference.",
+        "Speaker": "Chris Gardner",
+        "Tags": [
+            "Operational Insights",
+            "Career",
+            "Personal Growth",
+            "Leadership",
+            "Life Hacks",
+            "Business",
+            "Big Picture"
+        ]
+    },
+    {
+        "Title": "Enemy State Machines: Developing Reusable Components to Quickly Construct Mutations of Enemies",
+        "Abstract": "Developing enemies for video games can be a daunting task if you've never done it before, even in 2D. Taking the time to create modular behaviors upfront seemingly will slow down your development efforts up front but will be testable, debuggable, and configurable in the latter stages. In this session, we will look at and discuss some tightly coupled enemy behaviors and see how we can refactor them to loosely coupled systems that will help level up your game. We will be using the Unity engine but the same patterns are applicable in any engine or even to business domains.",
+        "Speaker": "Dennis Stepp",
+        "Tags": [
+            "AI",
+            "Functional Programming",
+            "GameDev",
+            "Unity",
+            ".Net"
+        ]
+    },
+    {
+        "Title": "\"Fear is the mind-killer.\" - Banishing the Fears of Test Automation",
+        "Abstract": "I started out as a manual tester who had little to no coding knowledge. I didn't even know that test automation was a thing. Once I became acquainted with the concept, I realized how amazing it would be not spending so much time performing repetitive regression/sanity tests. However, a surprising outcome of becoming acquainted with test automation was that it scared me: There was so much to learn and several hurdles to clear.\n\nMaybe you're like me. Maybe you're struggling with figuring out test automation. Maybe it's something you'd love to get into, but you find yourself putting it off because it seems too overwhelming and you're not sure where to start. In this presentation, I'll take you down my path toward understanding test automation. I will discuss some of the challenges I faced, and share the tools/techniques I found to make some of those challenges easier to overcome. Please join me to hopefully lessen the fear of the unknown involved with getting started with test automation, and help you overcome some of those hurdles to automation success!",
+        "Speaker": "Jameson McGhee",
+        "Tags": [
+            "Testing",
+            "Best Practicies",
+            "Automation",
+            "Quality Assurance"
+        ]
+    },
+    {
+        "Title": "The Hitchhiker's Guide to the Cosmos",
+        "Abstract": "Today's applications are required to be highly responsible and always online.  Cosmos DB was built from the ground up to provide a globally distributed, multi-model database service that enables you to elastically and independently scale throughput and storage across any number of Azure regions worldwide.  Because of its ARS (atoms, records, and sequences) design, Azure Cosmos DB accessing data via SQL, MongoDB, Table, Gremlin, and Cassandra APIs.  All of this with transparent multi-master replication, high availability at 99.999%, and guarantees of less than 10-ms latencies both reads and (indexed) writes.\n\nIn this session, you will learn what you can do with Cosmos DB, the benefits of each of these data models, and how to use everything Cosmos DB has to offer to make your applications rock solid.  Come find out when and how to implement Cosmos DB and which options you should use based upon your needs.",
+        "Speaker": "Chad Green",
+        "Tags": [
+            "Azure",
+            "Database",
+            "Cloud",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Navigating the Dungeons and Dragons of Your Career",
+        "Abstract": "Sitting around a table with a bunch of your friends, conversing on how best to tackle obstacles and handle situations. Are we talking about work or Dungeons and Dragons? In this session, I will share my experiences with my favorite hobby and how it has helped me grow to be a better team player, mentor, and problem solver in my career as a developer. Your hobbies can be more than just a way to de-stress from work; they can be an aid to your professional development. ",
+        "Speaker": "Houston Miller",
+        "Tags": [
+            "Personal Growth",
+            "Conversations",
+            "Non-Technical"
+        ]
+    },
+    {
+        "Title": "Hacking Network APIs",
+        "Abstract": "A foundational component of communication between devices is the TCP/IP network stack. Web browsing, streaming video, secure control, and innumerable other applications are built upon this technology. This 2-part demonstration will use open source tools to focus on the data transfer components UDP and TCP while targeting an IoT device. Part 1 is reverse-engineering the network commands to better understand them and then mimic it (a common attack strategy). Network protocols will be discussed during this process. Armed with our new knowledge and skills, part 2 will take them a step further to discover and analyze malware present on the IoT device. This presentation is light on slides and heavy on demos.",
+        "Speaker": "Dan Nagle",
+        "Tags": [
+            "Cryptography",
+            "IoT",
+            "Raspberry Pi",
+            "Open Source",
+            "Qt",
+            "Hacking",
+            "Networks",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Audio Games for Voice Assistant Devices and More",
+        "Abstract": "Everyone knows of video games, but have you played an audio game? We'll go through the design and technical aspects of creating a game to work with a voice-assistant system like Alexa, as well as what are the practical applications of audio games for both the vision-impaired and sighted players, and the concept of audio AR/VR and using IoT devices for gaming.",
+        "Speaker": "Charlotte M. Ellett",
+        "Tags": [
+            "IoT",
+            "Alexa Voice Service",
+            "GameDev",
+            "augmented reality",
+            "virtual reality",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Learning Functional Programming Through Construction: First Principles",
+        "Abstract": "In the past five years, functional programming has increased dramatically in popularity which has lead to an explosion of resources in learning these concepts. But, between languages (Haskell, Elm, PureScript, F#), libraries (Ramda, fp-ts), and concepts (Monads, Monoids, Functors), it can be overwhelming in determining where to start and how to begin.\n\nIn this talk, I'm going to show you three fundamental concepts of functional programming: pure functions, immutability, and composition by not only explanation but we will walk through building these concepts into your code and applications. As we explore each concept, I'll show you the advantages of following these principles, how they will improve your development experience, and how they will set the stage for more advanced ideas.\n\nIntended for those who have experience with TypeScript or C#, by the end of this presentation, you will understand how pure functions lead to easier to test code, how immutability makes debugging easier, and how the power of compositions allows us to build bigger applications by combining smaller applications.",
+        "Speaker": "Cameron Presley",
+        "Tags": [
+            "Functional Programming",
+            ".Net"
+        ]
+    },
+    {
+        "Title": "A Developer's Guide To Docker",
+        "Abstract": "It works on my machine. We've all heard it. Most of us have said it. It's been impossible to get around it... until now. Not only can Docker-izing your development environment solve that issue, but it can make it drop-dead simple to onboard new developers, keep a team working forward and allow everyone on the team use their desired tools!\n\nI will show you how to get Docker set up to use as the run environment for your projects, how to maintain the docker environment, and even how easy it will be to deploy the whole environment to production in a way that you are actually developing in an environment that isn't just \"like\" production. It IS the production environment!\n\nYou will learn the basics of Docker, how to use it to develop and how to deploy your \"development\" environment as the production environment!",
+        "Speaker": "Lee Brandt",
+        "Tags": [
+            "DevOps",
+            "Docker",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Automate Your Windows Development Environment With Chocolatey",
+        "Abstract": "Chocolatey Nuget is a tool that let's you manage the applications on your Windows machine. All the tools you need to set up a development environment are available through Chocolatey. In this session we will review application package management and Chocolatey in particular. We will look at installing Chocolatey, installing applications, the structure of packages and creating your own packages. We will discuss options for hosting an internal chocolatey repository to better control versions and security in your organization. We will also look at tools that can leverage chocolatey for even more automation including Boxstarter and Microsoft's Desired State Configuration. You will leave this session with a solid understanding of Chocolatey and how it can enhance your Windows development setup and maintenance.",
+        "Speaker": "Alan Stevens",
+        "Tags": [
+            "Windows",
+            "Automation"
+        ]
+    },
+    {
+        "Title": "Enterprise technology adoption",
+        "Abstract": "It's one thing for an individual to learn and user a new language or technology. It's entirely different for the enterprise or a large team. In this talk we will explore what it takes to introduce a new technology to the enterprise. I'll share some recent experiences, mistakes that were made and tips on how to avoid them.",
+        "Speaker": "Don DenUyl",
+        "Tags": [
+            "Methodology",
+            "Leadership",
+            "Culture",
+            "Productivity"
+        ]
+    },
+    {
+        "Title": "Observing Software Systems As A Software Developer",
+        "Abstract": "Observing software performance and failures in production is difficult. As systems scale, diagnosing behavior becomes more and more difficult. Monitoring via helpdesk tickets is helpful, but not the whole picture. Creating human-debuggable software comes from instrumenting software with metrics, distributed tracing, and effective logging.  Being able to observe running software systems brings new data to both the product and engineering team and enables a culture of data driven decision.",
+        "Speaker": "Daniel Oliver",
+        "Tags": [
+            "Azure",
+            "Operational Insights",
+            "Culture",
+            ".Net",
+            "Cloud",
+            "Logging",
+            "Continuous Improvement",
+            "Observability"
+        ]
+    },
+    {
+        "Title": "Identifying and Designing Subsystems",
+        "Abstract": "We know how much time is spent on designing a UI, finding the right Architecture, and fighting/discussing the Tech Stack we're going to use for the Face of the application.  Yet, every web application I've worked on has had more than just a UI, API, and Database as part of the system.  There are subsystems that glue everything together.  These systems deal with queues, data transformations, company integrations, and more. They tend to only be noticed outside the dev team when they fail and still, sometimes you don't realize their need until it smacks you in the face. When the subsystem is an afterthought, we spend a fraction of the time designing them, and inevitably they become a problem down the road.\n\nIn this session, we'll look at identifying these subsystems, and really digging into what their purpose is.  Once that is defined, things like lifetime, business components, tools, and patterns come into play.  I'll show you examples of some not so good things I've seen (and written), and how to make them better.  You'll leave this session knowing how to design your next subsystem without forcing undue problems on yourself in the future.",
+        "Speaker": "Al Zaudtke",
+        "Tags": [
+            "Architecture",
+            "Big Picture",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "Temporal Tables: SQL Server's Built-In Wayback Machine",
+        "Abstract": "SQL Server 2016 later versions come with their own version of a Wayback Machine: temporal tables.  With this new feature, it is easy to store and query the history of changes to data.  We will discuss the fundamentals and creating, storing data in, querying from, and maintaining these tables. We will also take a quick look under the hood to see how they work as well as consider the limitations that are in place.  Find out how temporal tables can benefit your system!",
+        "Speaker": "Allison Benneth",
+        "Tags": [
+            "Database",
+            "Technical",
+            "SQL Server"
+        ]
+    },
+    {
+        "Title": "C Sharply into Game Dev With Unity",
+        "Abstract": "I will be going over how you, yes you, can get started in the wonderful hobby of making video games using the Unity Game Engine and the C# Programming Language.\n\nDuring this talk, I will be demonstrating what building a game looks like in Unity and showing off a unity game in the various stages of development. I will take you through some of the core concepts of game development, programming, and design.\n\nHopefully, at the end of the talk, you will feel confident in being able to google your way through your first game.\nThis talk is for beginners, but it really helps if you have used unity before.",
+        "Speaker": "Amos Garner",
+        "Tags": [
+            "C#",
+            "GameDev",
+            "Unity",
+            "Technical"
+        ]
+    },
+    {
+        "Title": "I wrote a function, am I a functional programmer?",
+        "Abstract": "Functional programming has gained popularity lately. But what is it and why should you care? There are functions in the language that you code in, so is your preferred programming language functional? We'll take a look at Haskell to learn what Functional Programming is all about.",
+        "Speaker": "Roberto Lopez",
+        "Tags": [
+            "Functional Programming"
+        ]
+    }
+]

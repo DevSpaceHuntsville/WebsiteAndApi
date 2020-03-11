@@ -310,6 +310,13 @@ ALTER TABLE Sessions ADD SessionizeId INT NULL;
 
 UPDATE VersionInfo SET DbVersion = '01.00.04.0000';";
 
+				case "01.00.04.0000":
+					return
+@"INSERT Events ( Id, Name, StartDate, EndDate ) VALUES
+( 2020, 'DevSpace 2020', '2020-09-10', '2020-09-11' );
+
+UPDATE VersionInfo SET DbVersion = '01.00.04.0001';";
+
 				default:
 					return string.Empty;
 			}
