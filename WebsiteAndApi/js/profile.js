@@ -116,7 +116,7 @@ function ViewModel() {
 					var SessionList = JSON.parse(SessionsRequest.responseText);
                     for (var index = 0; index < SessionList.length; ++index) {
                         // HACK: Hardcoded EventId
-						if (SessionList[index].EventId == 2019)
+						if (SessionList[index].EventId == 2020)
 							Self.Sessions.push(new Session(SessionList[index]));
 						else
 							Self.PastSessions.push(new Session(SessionList[index]));

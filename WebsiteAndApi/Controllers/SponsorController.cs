@@ -62,7 +62,7 @@ namespace DevSpace.Api.Controllers {
 			try {
 				HttpResponseMessage response = new HttpResponseMessage( HttpStatusCode.OK );
 				// string val = JsonConvert.SerializeObject( ( await _DataStore.GetAll() ).OrderBy( spon => spon.Level.DisplayOrder ) );
-				response.Content = new StringContent( CreateReturnJson( ( await _DataStore.GetAll() ).Where( spon => spon.EventId == 2019 ).OrderBy( spon => spon.Level.DisplayOrder ) ).ToString() );
+				response.Content = new StringContent( CreateReturnJson( ( await _DataStore.GetAll() ).Where( spon => spon.EventId == 2020 ).OrderBy( spon => spon.Level.DisplayOrder ) ).ToString() );
 				return response;
 			} catch( NotImplementedException ) {
 				return new HttpResponseMessage( HttpStatusCode.NotImplemented );
