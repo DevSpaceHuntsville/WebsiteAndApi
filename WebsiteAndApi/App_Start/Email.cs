@@ -10,9 +10,15 @@ namespace DevSpace {
 
 		public Email( string toAddress, string toDisplay = null ) {
 			this.Mail = new MailMessage(
-				new MailAddress( ConfigurationManager.AppSettings["SmtpEmailAddress"], ConfigurationManager.AppSettings["SmtpDisplayName"] ),
+				new MailAddress(
+					ConfigurationManager.AppSettings["SmtpEmailAddress"].IfNullOrWhiteSpace( "info@devspaceconf.com" ),
+					ConfigurationManager.AppSettings["SmtpDisplayName"].IfNullOrWhiteSpace( "DevSpace Technical Conference" )
+				),
 				new MailAddress( toAddress, toDisplay )
 			);
+
+			if( string.IsNullOrWhiteSpace( ConfigurationManager.AppSettings["SmtpServer"] ) )
+				return;
 
 			this.Client = new SmtpClient( ConfigurationManager.AppSettings["SmtpServer"], Convert.ToInt32( ConfigurationManager.AppSettings["SmtpPort"] ) );
 			this.Client.EnableSsl = true;
@@ -57,7 +63,7 @@ namespace DevSpace {
 
 //We thank you for your interest in the DevSpace Technical Conference and look forward to seeing you there.", studentCode.Code );
 
-			Client.Send( Mail );
+			Client?.Send( Mail );
 		}
 	}
 }

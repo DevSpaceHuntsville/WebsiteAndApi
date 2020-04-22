@@ -151,7 +151,17 @@ namespace DevSpace.Api.Controllers {
 		public async Task<HttpResponseMessage> GetSessionFromUser( int Id ) {
 			try {
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
-				Response.Content = new StringContent( await Task.Factory.StartNew( () => JsonConvert.SerializeObject( _DataStore.GetAll().Result.Where( ses => ses.UserId == Id ), Formatting.None ) ) );
+				Response.Content = new StringContent(
+					await Task.Factory.StartNew( () =>
+						JsonConvert.SerializeObject(
+							_DataStore.GetAll()
+								.Result
+								.Where( ses => ses.UserId == Id )
+								.Select( s => null == s.Level ? s.UpdateLevel( JsonConvert.DeserializeObject<Tag>( "{'id':1,'text':'Beginner'}" ) ) : s ),
+							Formatting.None
+						)
+					)
+				);
 				return Response;
 			} catch {
 				return new HttpResponseMessage( HttpStatusCode.InternalServerError );
@@ -159,7 +169,9 @@ namespace DevSpace.Api.Controllers {
 		}
 
 		[Authorize]
-		public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBinder ) )]ISession postedSession ) {
+		//public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBinder ) )]ISession postedSession ) {
+		public async Task<HttpResponseMessage> Post( JObject data ) {
+			ISession postedSession = JsonConvert.DeserializeObject<Session>( data.ToString() );
 			try {
 				IUser CurrentUser = ( Thread.CurrentPrincipal.Identity as DevSpaceIdentity )?.Identity;
 
