@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Linq;
 using System.Net;
 using System.Net.Mail;
 
@@ -42,6 +43,18 @@ namespace DevSpace {
 
 			set {
 				this.Mail.Body = value;
+			}
+		}
+
+		public bool BccInfo {
+			set {
+				if( value ) {
+					if( !Mail.Bcc.Any() ) {
+						Mail.Bcc.Add( new MailAddress( "info@devspaceconf.com", "DevSpace Information" ) );
+					}
+				} else {
+					Mail.Bcc.Clear();
+				}
 			}
 		}
 
