@@ -11,7 +11,7 @@
 	<!-- #include file="menu.shtml" -->
 
     <section id="Content">
-        <article>
+        <article style="display: none;">
             <h1>Call For Speakers Coming Soon</h1>
             <p>
                 We are currently preparing for our 2020 conferences.
@@ -31,17 +31,11 @@
             </p>
         </article>
 
-        <article style="display: none;">
+        <article>
             <h1>Call For Speakers Now Open</h1>
             <p>
                 We are pleased to announce our call for speakers for DevSpace 2020.
                 Please take a moment to read over this before you submit your masterpieces.
-            </p>
-            <h2>We're On Sessionize!</h2>
-            <p>
-                For this year, we decided to give Sessionize a try.
-                All the information on this page is also over there.
-                So, if you want, you can skip all this and just click the unnecessarily large button at the bottom.
             </p>
             <h2>What we are looking for</h2>
             <p>
@@ -113,7 +107,7 @@
             <p>
                 If I still haven't scared you off, just click the unnecessarily large button below.
             </p>
-            <input type="button" onclick="window.location.href = 'https://sessionize.com/devspaceconf';" value="Submit Your Masterpieces!" />
+            <input type="button" onclick="window.location.href = './login.html';" value="Submit Your Masterpieces!" />
         </article>
 
         <section data-bind="foreach: Profiles" style="display: none;">

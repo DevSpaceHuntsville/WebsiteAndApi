@@ -151,7 +151,17 @@ namespace DevSpace.Api.Controllers {
 		public async Task<HttpResponseMessage> GetSessionFromUser( int Id ) {
 			try {
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
-				Response.Content = new StringContent( await Task.Factory.StartNew( () => JsonConvert.SerializeObject( _DataStore.GetAll().Result.Where( ses => ses.UserId == Id ), Formatting.None ) ) );
+				Response.Content = new StringContent(
+					await Task.Factory.StartNew( () =>
+						JsonConvert.SerializeObject(
+							_DataStore.GetAll()
+								.Result
+								.Where( ses => ses.UserId == Id )
+								.Select( s => null == s.Level ? s.UpdateLevel( JsonConvert.DeserializeObject<Tag>( "{'id':1,'text':'Beginner'}" ) ) : s ),
+							Formatting.None
+						)
+					)
+				);
 				return Response;
 			} catch {
 				return new HttpResponseMessage( HttpStatusCode.InternalServerError );
@@ -159,7 +169,9 @@ namespace DevSpace.Api.Controllers {
 		}
 
 		[Authorize]
-		public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBinder ) )]ISession postedSession ) {
+		//public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBinder ) )]ISession postedSession ) {
+		public async Task<HttpResponseMessage> Post( JObject data ) {
+			ISession postedSession = JsonConvert.DeserializeObject<Session>( data.ToString() );
 			try {
 				IUser CurrentUser = ( Thread.CurrentPrincipal.Identity as DevSpaceIdentity )?.Identity;
 
@@ -176,6 +188,8 @@ You may continue to make changes to your session until June 15th.
 
 You should receive an email with the status of your submission on or around June 25th.",
 						postedSession.Title );
+
+					Mail.BccInfo = true;
 					Mail.Send();
 
 					return Response;
@@ -192,6 +206,8 @@ You may continue to make changes to your session until June 15th.
 
 You should receive an email with the status of your submission on or around June 25th.",
 						postedSession.Title );
+
+					Mail.BccInfo = true;
 					Mail.Send();
 
 					return Response;
@@ -219,6 +235,8 @@ You should receive an email with the status of your submission on or around June
 					Mail.Body = string.Format(
 @"This message is to confirm the deletion of your session: {0}",
 						sessionToDelete.Title );
+
+					Mail.BccInfo = true;
 					Mail.Send();
 					return new HttpResponseMessage( HttpStatusCode.NoContent );
 				} else {
