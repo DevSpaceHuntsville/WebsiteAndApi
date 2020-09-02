@@ -44,8 +44,9 @@ function Session(data) {
 		Self.Title(data.Title);
 		Self.Abstract(data.Abstract);
 		Self.Notes(data.Notes);
-        Self.SessionLength(data.SessionLength);
-        Self.EventId(data.EventId);
+		Self.SessionLength(data.SessionLength);
+		Self.Level(new Tag(data.Level));
+		Self.EventId(data.EventId);
 
         if (data.Tags) {
             for (var index = 0; index < data.Tags.length; ++index) {

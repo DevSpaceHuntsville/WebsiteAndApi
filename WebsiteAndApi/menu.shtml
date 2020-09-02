@@ -1,15 +1,15 @@
 ﻿	<header>
-		<h1><a href="https://www.devspaceconf.com/">DevSpace</a></h1>
+		<h1><a href="/">DevSpace</a></h1>
 		<img id="MenuButton" src="/images/menu.png" alt="menu" onclick="toggleMenu();" />
 		<menu id="MainMenu">
 			<ul>
-				<li><a href="/">Home</a></li>
 				<li><a href="/sessions.html">Sessions</a></li>
 				<li><a href="/speakers.html">Speakers</a></li>
 				<li><a href="/sponsors.html">Sponsors</a></li>
 				<li><a href="/tickets.html">Tickets</a></li>
 				<li><a href="/travel.html">Travel</a></li>
-				<li><a href="/conduct.html">About</a></li>
+				<li><a href="/conduct.html">Conduct</a></li>
+				<li><a href="/login.html">Login</a></li>
 			</ul>
 		</menu>
 

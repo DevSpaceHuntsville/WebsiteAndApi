@@ -8,13 +8,13 @@
 	<script type="text/javascript" src="/js/sponsor.js" defer></script>
 	<script type="text/javascript" src="/dynamic/scripts/analytics" defer></script>
 
-    	<meta name="twitter:card" content="summary_large_image" />
-    	<meta name="twitter:site" content="@devspaceconf" />
-    	<meta name="twitter:creator" content="@freestylecoder" />
-    	<meta name="twitter:title" content="DevSpace - North Alabama's Premier Polyglot Technology Conference" />
-    	<meta name="twitter:description" content="DevSpace is an annual developer’s conference that takes place in Huntsville, Alabama. Fueled by extensive space and missile research and a vibrant, emerging start-up culture, Huntsville is a market poised and ready to burst onto the national stage." />
-    	<meta name="twitter:image" content="https://www.devspaceconf.com/images/DevSpace_ForWeb_400wide.png" />
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@devspaceconf" />
+	<meta name="twitter:creator" content="@freestylecoder" />
+	<meta name="twitter:title" content="DevSpace - North Alabama's Premier Polyglot Technology Conference" />
+	<meta name="twitter:description" content="DevSpace is an annual developer’s conference that takes place in Huntsville, Alabama. Fueled by extensive space and missile research and a vibrant, emerging start-up culture, Huntsville is a market poised and ready to burst onto the national stage." />
+	<meta name="twitter:image" content="https://www.devspaceconf.com/images/DevSpace_ForWeb_400wide.png" />
     	
 	<meta property="og:title" content="DevSpace - North Alabama's Premier Polyglot Technology Conference" />
-    	<meta property="og:image" content="https://www.devspaceconf.com/images/DevSpace_ForWeb_400wide.png" />
-    	<meta property="og:description" content="DevSpace is an annual developer’s conference that takes place in Huntsville, Alabama. Fueled by extensive space and missile research and a vibrant, emerging start-up culture, Huntsville is a market poised and ready to burst onto the national stage." />
+	<meta property="og:image" content="https://www.devspaceconf.com/images/DevSpace_ForWeb_400wide.png" />
+	<meta property="og:description" content="DevSpace is an annual developer’s conference that takes place in Huntsville, Alabama. Fueled by extensive space and missile research and a vibrant, emerging start-up culture, Huntsville is a market poised and ready to burst onto the national stage." />
