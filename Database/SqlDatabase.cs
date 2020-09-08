@@ -317,6 +317,28 @@ UPDATE VersionInfo SET DbVersion = '01.00.04.0000';";
 
 UPDATE VersionInfo SET DbVersion = '01.00.04.0001';";
 
+				case "01.00.04.0001":
+					return
+@"ALTER TABLE SponsorLevels ADD DisplayLink BIT NOT NULL CONSTRAINT DEF_Link DEFAULT 1;
+ALTER TABLE SponsorLevels ADD TimeOnScreen INT NOT NULL CONSTRAINT DEF_TOS DEFAULT 0;
+
+ALTER TABLE SponsorLevels DROP CONSTRAINT DEF_Link;
+ALTER TABLE SponsorLevels DROP CONSTRAINT DEF_TOS;
+
+UPDATE VersionInfo SET DbVersion = '01.00.04.0002';";
+
+				case "01.00.04.0002":
+					return
+@"INSERT SponsorLevels ( DisplayOrder, DisplayName, DisplayInEmails, DisplayInSidebar, DisplayLink, TimeOnScreen )
+VALUES 
+	( 12, 'Amazing Sponsors', 0, 1, 1, 60 ),
+	( 13, 'Special Sponsors', 0, 0, 1, 30 ),
+	( 14, 'Image Sponsors', 0, 0, 1, 15 ),
+	( 15, 'Link Sponsors', 0, 0, 1, 0 ),
+	( 16, 'Sponsors', 0, 0, 0, 0 );
+
+UPDATE VersionInfo SET DbVersion = '01.00.04.0003';";
+
 				default:
 					return string.Empty;
 			}

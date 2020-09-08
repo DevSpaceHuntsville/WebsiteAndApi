@@ -15,5 +15,7 @@ namespace DevSpace.Database.Models {
 		public string DisplayName { get; internal set; }
 		public int DisplayOrder { get; internal set; }
 		public int Id { get; internal set; }
+		public bool DisplayLink { get; internal set; }
+		public int TimeOnScreen { get; internal set; }
 	}
 }

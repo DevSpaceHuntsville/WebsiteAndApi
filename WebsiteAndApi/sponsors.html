@@ -52,11 +52,31 @@
 			</p>
 		</article>
 
-		<article id="MainSponsorElement" data-bind="foreach: SponsorLevels">
-			<h1 data-bind="text: DisplayName"></h1>
+		<!--<article id="MainSponsorElement" data-bind="foreach: SponsorLevels">
+			<h1 data-bind="text: DisplayName"></h1>-->
 			<!-- ko foreach: Sponsors -->
-			<p style="text-align: center;">
+			<!--<p style="text-align: center;">
 				<a target="_blank" data-bind="attr: {href: Website}"><img data-bind="attr: { src: LogoLarge, alt: DisplayName }" /></a>
+			</p>-->
+			<!-- /ko -->
+		<!--</article>-->
+
+		<article id="MainSponsorElement" data-bind="foreach: { data: SponsorLevels, as: 'Level' }">
+			<h1 data-bind="text: Level.DisplayName"></h1>
+			<!-- ko foreach: { data: Level.Sponsors, as: 'Spon' } -->
+			<p style="text-align: center;">
+				<!-- ko if: Level.DisplayLargeImage -->
+				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img data-bind="attr: { src: Spon.LogoLarge, alt: Spon.DisplayName }" /></a>
+				<!-- /ko -->
+				<!-- ko if: Level.DisplaySmallImage -->
+				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img data-bind="attr: { src: Spon.LogoSmall, alt: Spon.DisplayName }" /></a>
+				<!-- /ko -->
+				<!-- ko if: Level.DisplayLink -->
+				<a target="_blank" data-bind="attr: {href: Spon.Website}"><span data-bind="text: Spon.DisplayName"></span></a>
+				<!-- /ko -->
+				<!-- ko if: Level.TextOnly -->
+				<span data-bind="text: Spon.DisplayName"></span>
+				<!-- /ko -->
 			</p>
 			<!-- /ko -->
 		</article>

@@ -86,7 +86,8 @@ namespace DevSpace.Database {
 			using( SqlConnection connection = new SqlConnection( Settings.ConnectionString ) ) {
 				connection.Open();
 
-				using( SqlCommand command = new SqlCommand( "SELECT * FROM Users WHERE Id IN ( SELECT DISTINCT UserId FROM Sessions WHERE Accepted = 1 )", connection ) ) {
+				//using( SqlCommand command = new SqlCommand( "SELECT * FROM Users WHERE Id IN ( SELECT DISTINCT UserId FROM Sessions WHERE Accepted = 1 )", connection ) ) {
+				using( SqlCommand command = new SqlCommand( "SELECT * FROM Users WHERE Permissions = 1;", connection ) ) {
 					using( SqlDataReader dataReader = await command.ExecuteReaderAsync() ) {
 						while( await dataReader.ReadAsync() ) {
 							returnList.Add( new Models.UserModel( dataReader ) );

@@ -2,11 +2,21 @@
 	var Self = this;
 	Self.DisplayName = ko.observable();
 	Self.DisplayInSidebar = ko.observable();
+	Self.DisplayLargeImage = ko.observable();
+	Self.DisplaySmallImage = ko.observable();
+	Self.DisplayLink = ko.observable();
+	Self.TextOnly = ko.observable();
+	Self.TimeOnScreen = ko.observable();
 	Self.Sponsors = ko.observableArray();
 
 	if (data) {
 		Self.DisplayName(data.DisplayName);
 		Self.DisplayInSidebar(data.DisplayInSidebar);
+		Self.DisplayLargeImage(data.TimeOnScreen > 15);
+		Self.DisplaySmallImage(data.TimeOnScreen == 15);
+		Self.DisplayLink(data.DisplayLink && (data.TimeOnScreen == 0));
+		Self.TextOnly(!data.DisplayLink && (data.TimeOnScreen == 0));
+		Self.TimeOnScreen(data.TimeOnScreen);
 
 		for (var index = 0; index < data.Sponsors.length; ++index)
 			Self.Sponsors.push(new Sponsor(data.Sponsors[index]));
