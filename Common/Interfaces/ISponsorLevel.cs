@@ -5,5 +5,7 @@
 		string DisplayName { get; }
 		bool DisplayInSidebar { get; }
 		bool DisplayInEmails { get; }
+		bool DisplayLink { get; }
+		int TimeOnScreen { get; }
 	}
 }

@@ -10,5 +10,7 @@ namespace DevSpace.Common {
 		[DataMember]public string DisplayName { get; private set; }
 		[DataMember]public bool DisplayInSidebar { get; private set; }
 		[DataMember]public bool DisplayInEmails { get; private set; }
+		[DataMember]public bool DisplayLink { get; private set; }
+		[DataMember]public int TimeOnScreen { get; private set; }
 	}
 }

@@ -11,7 +11,7 @@
 	<!-- #include file="menu.shtml" -->
 
     <section id="Content">
-        <article>
+        <article style="display: none;">
             <h1>Deatils Coming Soon</h1>
             <p>
                 We've invited our first round of speakers.
@@ -118,7 +118,7 @@
             <input type="button" onclick="window.location.href = './login.html';" value="Submit Your Masterpieces!" />
         </article>
 
-        <section data-bind="foreach: Profiles" style="display: none;">
+        <section data-bind="foreach: Profiles">
             <article>
                 <h1 data-bind="text: DisplayName"></h1>
                 <img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
@@ -142,8 +142,8 @@
                     <!-- /ko -->
                 </p>
                 <!-- /ko -->
-                <h1 style="clear: right">Sessions</h1>
-                <p data-bind="foreach: Sessions">
+                <h1 style="clear: right; display: none;">Sessions</h1>
+                <p data-bind="foreach: Sessions" style="display: none;">
                     <span><a data-bind="text: Title, attr: { href: Link }"></a></span><br />
                 </p>
             </article>

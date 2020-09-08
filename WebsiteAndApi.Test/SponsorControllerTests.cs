@@ -16,6 +16,8 @@ namespace DevSpace.WebsiteAndApi.Test {
 			public string DisplayName { get; set; }
 			public int DisplayOrder { get; set; }
 			public int Id { get; set; }
+			public bool DisplayLink { get; set; }
+			public int TimeOnScreen { get; set; }
 		}
 
 		internal class TestSponsor : ISponsor {

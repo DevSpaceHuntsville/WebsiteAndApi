@@ -29,6 +29,8 @@ namespace DevSpace.Api.Controllers {
 			JObject value = new JObject();
 			value["DisplayName"] = SponsorLevel.DisplayName;
 			value["DisplayInSidebar"] = SponsorLevel.DisplayInSidebar;
+			value["DisplayLink"] = SponsorLevel.DisplayLink;
+			value["TimeOnScreen"] = SponsorLevel.TimeOnScreen;
 
 			JArray array = new JArray();
 			foreach( ISponsor Sponsor in Sponsors )
