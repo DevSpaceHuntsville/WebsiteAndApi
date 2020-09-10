@@ -72,5 +72,17 @@ namespace DevSpace.Api.Controllers {
 				return new HttpResponseMessage( HttpStatusCode.InternalServerError );
 			}
 		}
+
+		[AllowAnonymous]
+		[Route( "api/v1/sponsor/raw" )]
+		public async Task<IEnumerable<ISponsor>> GetSponsors() {
+			try {
+				return ( await _DataStore.GetAll() )
+							.Where( spon => spon.EventId == 2020 )
+							.OrderBy( spon => spon.Id );
+			} catch( NotImplementedException ) {
+				return Enumerable.Empty<ISponsor>();
+			}
+		}
 	}
 }
