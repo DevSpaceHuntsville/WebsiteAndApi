@@ -10,45 +10,80 @@
 	<!-- #include file="menu.shtml" -->
 
 	<section id="Content">
-
 		<article>
-			<h1>A brief message about sponsorships and COVID-19</h1>
+			<h1>Donations for DevSpace 2020</h1>
 			<p>
-				We are still hoping to have our conference on September 10-11 of this year.
-				When we began to plan the event, the pandemic had not started.
-				Furthermore, we were hopeful that we would all be able to return to normal activities by this time.
+				We are running this event as a kind of virtual telethon.
+				You see, we're a small non-profit organization that puts all this together.
+				Most of our funding comes from the conference.
+				However, this year, we couldn't have a conference.
+				We're not going to lie, the bank account is running a little thin.
+				However, we can pull all this thought-provoking and inspirational content together to give away for free.
+				So, we thought we'd take advantage of our non-profit status for once and make this a donation drive.
 			</p>
 			<p>
-				However, there is now much uncertainty and doubt for a reasonable timeline for things at this point.
-				We personally hope that things will be in a state where we can hold out conference as planned.
-				We are also fortunate that no real contracts have been signed yet, so we have to opportunity to step away if the climate isn't right in early September.
+				There are two options to donate through the buttons on the right.
+				If you use the PayPay Giving Fund button (which is the top one,) you must have a PayPal account to send funds.
+				However, donations received through there have no fees and We get 100% of the money you donate.
+				You will also receive a receipt to make your donation tax-deductible.
 			</p>
 			<p>
-				We have a plan for moving forward that allow people to express their support for attending the conference with committing funds.
-				We want to be transparent with our potential sponsors with this information as we move forward.
+				If you use the PayPay Giving Fund button (which is the bottom one,) you can make a direct payment without a PayPal account.
+				This method also has the added bonus of releasing the funds to us quicker, but you won't get an instant receipt and we will get charged all the fees.
+				If you incude an email address on your donation, we'll reach out to you to produce a receipt.
+				If you do not, then you'll need to email us with the transaction Id.
 			</p>
-			<p>
-				For the time being, we are still offering sponsorship and exhibitor opportunities.
-				However, at this time, we will only require a pledge of your potential support.
-				This will allow you to express your interest and lock in a specific sponsorship level without having to commit any funds at this time.
-			</p>
-			<p>
-				Once we have decided to fully proceed, you will be contacted in the order you contacted us to make final arrangements.
-				We believe this is the best method to proceed with the current uncertainty.
-				We appreciate your support during this time.
-			</p>
-		</article>
 
-		<article>
-			<h1>Sponsorship opportunities are available</h1>
 			<p>
-				Ok, well, this is awkward.
-				Sponsorship opportunities are <i>almost</i> available.
-				We still need a few more tweaks to the sponsorship prospectus.
-				However, last year's prospectus is <a href="https://devspacesponsorstorage.blob.core.windows.net/files/2019/devspace-prospectus.pdf">still available</a>.
-				You can take a look at that, as it will mostly stay the same.
-				If you want a head start, feel free to email us at <a href="mailto:info@devspaceconf.com?subject=DevSpace%20Sponsorships">info@devspaceconf.com</a>.
-				I'm a big fan of early worms getting the birds.
+				We're so serious about this, that we have completely revamped the sponsor page for our site.
+				Every person that contributes (that we can manage to track) will get listed in some way on the sponsor page.
+				Once we figure out who you are, we'll get you added to the database.
+				Depending on how much you donate, you'll get the following perks:
+			</p>
+
+			<table style="margin-left: 25px; margin-right: 25px; margin-bottom: 25px; width: 93%">
+				<tr style="border: 1px solid black">
+					<td style="font-weight: bold; padding-right: 25px;">Amazing Sponsor</td>
+					<td>Over $500</td>
+					<td style="font-style: italic; padding-left: 25px;">
+						Large image added to this page<br />
+						Small image added to sidebar on right<br />
+						Small image displayed in rotator on stream for 60 second intervals
+					</td>
+				</tr>
+				<tr style="border: 1px solid black">
+					<td style="font-weight: bold; padding-right: 25px;">Special Sponsor</td>
+					<td>$300 - $499.99</td>
+					<td style="font-style: italic; padding-left: 25px;">
+						Large image added to this page<br/>
+						Small image displayed in rotator on stream for 30 second intervals
+					</td>
+				</tr>
+				<tr style="border: 1px solid black">
+					<td style="font-weight: bold; padding-right: 25px;">Image Sponsor</td>
+					<td>$150 - $299.99</td>
+					<td style="font-style: italic; padding-left: 25px;">
+						Small image added to this page<br/>
+						Small image displayed in rotator on stream for 15 second intervals
+					</td>
+				</tr>
+				<tr style="border: 1px solid black">
+					<td style="font-weight: bold; padding-right: 25px;">Link Sponsor</td>
+					<td>$50 - $149.99</td>
+					<td style="font-style: italic; padding-left: 25px;">Link added to name</td>
+				</tr>
+				<tr style="border: 1px solid black">
+					<td style="font-weight: bold; padding-right: 25px;">Sponsor</td>
+					<td>Under $50</td>
+					<td style="font-style: italic; padding-left: 25px;">Name displayed on page</td>
+				</tr>
+			</table>
+
+			<p>
+				Well, I guess while we're at it, there are a few other places you can use to help us out.
+				We're listed in Humble Bundle, so you can request some of your purchases there go to us.
+				We're also registered with AmazonSmile.
+				I believe you have to look us up with our "legal entity name," which is DevSpace Huntsville.
 			</p>
 		</article>
 
@@ -66,10 +101,10 @@
 			<!-- ko foreach: { data: Level.Sponsors, as: 'Spon' } -->
 			<p style="text-align: center;">
 				<!-- ko if: Level.DisplayLargeImage -->
-				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img data-bind="attr: { src: Spon.LogoLarge, alt: Spon.DisplayName }" /></a>
+				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img width="400" data-bind="attr: { src: Spon.LogoLarge, alt: Spon.DisplayName }" /></a>
 				<!-- /ko -->
 				<!-- ko if: Level.DisplaySmallImage -->
-				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img data-bind="attr: { src: Spon.LogoSmall, alt: Spon.DisplayName }" /></a>
+				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img width="200" data-bind="attr: { src: Spon.LogoSmall, alt: Spon.DisplayName }" /></a>
 				<!-- /ko -->
 				<!-- ko if: Level.DisplayLink -->
 				<a target="_blank" data-bind="attr: {href: Spon.Website}"><span data-bind="text: Spon.DisplayName"></span></a>
