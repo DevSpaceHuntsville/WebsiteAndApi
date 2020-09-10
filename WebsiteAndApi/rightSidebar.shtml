@@ -1,7 +1,16 @@
 ﻿<section id="RightSidebar" class="Sidebar">
 	<article>
-		<h1>Your Logo Here!</h1>
-		<p>Visit the <a href="sponsors.html">Sponsors page</a> to learn how you can help DevSpace happen.</p>
+		<h1>Donate</h1>
+		<h3>PayPal Giving Fund</h3>
+		<p>Requires a PayPal account, but you'll instantly get a tax receipt and we don't get charged fees on the donation.</p>
+		<p style="text-align: center;">
+			<a href="https://www.paypal.com/us/fundraiser/charity/1410695" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" alt="Donate through PayPal Giving Fund" /></a>
+		</p>
+		<h3>PayPal Direct</h3>
+		<p>No PayPal account required, but you'll have to contact us for a tax receipt.</p>
+		<p style="text-align: center;">
+			<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=KQKZRCPS7JHCN&source=url" target="_blank"><img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" alt="Donate through PayPal Giving Fund" /></a>
+		</p>
 	</article>
 
 	<article data-bind="foreach: SponsorLevels">
@@ -9,7 +18,7 @@
 		<h1 data-bind="text: DisplayName"></h1>
 		<!-- ko foreach: Sponsors -->
 		<p style="text-align: center;">
-			<a target="_blank" data-bind="attr: {href: Website}"><img data-bind="attr: { src: LogoSmall, alt: DisplayName }" /></a>
+			<a target="_blank" data-bind="attr: {href: Website}"><img width="200" data-bind="attr: { src: LogoSmall, alt: DisplayName }" /></a>
 		</p>
 		<!-- /ko -->
 		<!-- /ko -->
