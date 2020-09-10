@@ -75,13 +75,21 @@ namespace DevSpace.Api.Controllers {
 
 		[AllowAnonymous]
 		[Route( "api/v1/sponsor/raw" )]
-		public async Task<IEnumerable<ISponsor>> GetSponsors() {
+		public async Task<HttpResponseMessage> GetSponsors() {
 			try {
-				return ( await _DataStore.GetAll() )
-							.Where( spon => spon.EventId == 2020 )
-							.OrderBy( spon => spon.Id );
+				JArray results = new JArray(
+					( await _DataStore.GetAll() )
+						.Where( spon => spon.EventId == 2020 )
+						.OrderBy( spon => spon.Id )
+						.Select( s => JObject.Parse( JsonConvert.SerializeObject( s ) ) )
+				);
+				HttpResponseMessage response = new HttpResponseMessage( HttpStatusCode.OK );
+				response.Content = new StringContent( results.ToString() );
+				return response;
 			} catch( NotImplementedException ) {
-				return Enumerable.Empty<ISponsor>();
+				return new HttpResponseMessage( HttpStatusCode.NotImplemented );
+			} catch {
+				return new HttpResponseMessage( HttpStatusCode.InternalServerError );
 			}
 		}
 	}
