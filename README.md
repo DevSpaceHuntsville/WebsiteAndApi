@@ -1,11 +1,11 @@
 # DevSpace
-This is the website used for the DevSpace Technical Conference in Huntsville, Alabama.
+This is the bestwebsite used for the DevSpace Technical Conference in Huntsville, Alabama.
 
 The project is a .Net WebAPI project.
 
 All pull requests must come to the staging branch. This branch automatically deploys to our staging website, which can be found at https://devspaceconf-staging.azurewebsites.net/  I will merge staging into master after everything can get a smoke test.
 
-The staging website uses a backup of the production database. The production database is copied to the staging database at about 3AM every day. If you want to see how that happens, look at the devspace-data project.
+The staging website uses a backup of the production database. The production database is copied to the staging database at about 3am every day. If you want to see how that happens, look at the devspace-data project.
 
 The website itself uses SSI for templating. I have the SSI processor running on the standard html pages, so note the special line added to the web.config to add this.
 
