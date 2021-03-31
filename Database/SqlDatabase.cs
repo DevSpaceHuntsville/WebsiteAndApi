@@ -339,6 +339,21 @@ VALUES
 
 UPDATE VersionInfo SET DbVersion = '01.00.04.0003';";
 
+				case "01.00.04.0003":
+					return
+@"CREATE TABLE Content(
+	Id			INT				IDENTITY(1,1)	NOT NULL,
+	Title		NVARCHAR(60)					NOT NULL,
+	Body		NVARCHAR(MAX)					NOT NULL,
+	PublishDate	SMALLDATETIME					NOT NULL,
+	ExpireDate	SMALLDATETIME					NOT NULL,
+
+	CONSTRAINT Content_PK PRIMARY KEY NONCLUSTERED ( Id ),
+	INDEX Content_CI CLUSTERED ( PublishDate DESC, ExpireDate, Id )
+);
+
+UPDATE VersionInfo SET DbVersion = '01.00.04.0004';";
+
 				default:
 					return string.Empty;
 			}

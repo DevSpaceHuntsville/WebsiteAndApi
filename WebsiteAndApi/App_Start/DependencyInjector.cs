@@ -34,6 +34,9 @@ namespace DevSpace {
 
 				case nameof( SessionController ):
 					return new SessionController( new Database.SessionDataStore() );
+
+				case nameof( ContentController ):
+					return new ContentController( new Database.ContentDataStore() );
 			}
 
 			return null;

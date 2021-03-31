@@ -4,6 +4,7 @@
 <head>
 	<!-- #include file="head.shtml" -->
 	<meta property="og:url" content="https://www.devspaceconf.com/" />
+	<script type="text/javascript" src="/js/content.js" defer></script>
 </head>
 
 <body>
@@ -19,14 +20,22 @@
 			<h2>
 				September 11th, 2020
 				<!--September 10th &amp; 11th, 2020<br />
-	Von Braun Center-->
+			Von Braun Center-->
 			</h2>
 			<h3>
 				Live on Twitch
 				<!--700 Monroe Street<br />
-				Huntsville, AL 35801-->
+			Huntsville, AL 35801-->
 			</h3>
 		</div>
+
+		<section data-bind="foreach: Content">
+			<article>
+				<h1 data-bind="text: Title"></h1>
+				<p data-bind="html: Body"></p>
+				<h6 data-bind="text: PublishDate"></h6>
+			</article>
+		</section>
 
 		<article>
 			<h1>What is DevSpace</h1>
@@ -104,90 +113,90 @@
 
 		</article>
 		<!--<article>
-			<h1>Call for Sponsors and Speakers Open</h1>
-			<p>
-				Ok, I say our Call for Sponsors and Call for Speakers are open, but there is a catch.
-				Please read the comments on the <a href="sponsors.html">sponsors page</a> and the <a href="speakers.html">speakers page</a> for more information.
-			</p>
-			<p>
-				Yes, it's COVID-19 related.
-			</p>
-		</article>
+		<h1>Call for Sponsors and Speakers Open</h1>
+		<p>
+			Ok, I say our Call for Sponsors and Call for Speakers are open, but there is a catch.
+			Please read the comments on the <a href="sponsors.html">sponsors page</a> and the <a href="speakers.html">speakers page</a> for more information.
+		</p>
+		<p>
+			Yes, it's COVID-19 related.
+		</p>
+	</article>
 
-		<article style="display: none;">
-			<h1>Call for Sponsors and Speakers Coming Soon</h1>
-			<p>
-				Our call for sponsors will officially open soon.
-				Basically, we just need a little time to update the sponsorship information to the new dates.
-				If you'd like a head start, go to <a href="sponsors.html">the sponsors page</a> and look at the information from last year.
-				I promise you, it will probably be mostly the same.
-			</p>
-			<p>
-				While our exact dates for the Call for Speakers have not been decided, they will come soon.
-				We usually would open the Call for Speakers during the month of May.
-				With the conference moving up a month, we will surely have our Call for Speakers earlier that that.
-				We don't want to commit to it being "the month of April" just yet, as there are a few backend changes we need to complete first.
-			</p>
-		</article>
+	<article style="display: none;">
+		<h1>Call for Sponsors and Speakers Coming Soon</h1>
+		<p>
+			Our call for sponsors will officially open soon.
+			Basically, we just need a little time to update the sponsorship information to the new dates.
+			If you'd like a head start, go to <a href="sponsors.html">the sponsors page</a> and look at the information from last year.
+			I promise you, it will probably be mostly the same.
+		</p>
+		<p>
+			While our exact dates for the Call for Speakers have not been decided, they will come soon.
+			We usually would open the Call for Speakers during the month of May.
+			With the conference moving up a month, we will surely have our Call for Speakers earlier that that.
+			We don't want to commit to it being "the month of April" just yet, as there are a few backend changes we need to complete first.
+		</p>
+	</article>
 
-		<article>
-			<h1>Dates for 2020 Announced</h1>
-			<p>
-				This year, the DevSpace Technical Conference will take place on September 10th and 11th.
-				We will continue to be in the South Hall Ballrooms of the Von Braun Center.
-				We have moved the dates from our traditional Friday and Saturday to Thursday and Friday.
-				This was not a decision we took lightly.
-			</p>
-			<p>
-				We posted an informal poll in several locations, such as on our Twitter account and various Slack groups.
-				The split between people who enjoyed Friday and Saturday was dead split with people we did not want to attend a conference on a weekend.
-				The biggest rationale for this was the belief that weekends should be for family.
-				While we have plans to include a family track in the future, we currently do not have the budget to include that track.
-				As such, we have decided to try a Thursday and Friday conference.
-			</p>
-			<p>
-				We have also moved earlier into the year, opting for a September conference over our traditional October timing.
-				Our primary reasoning for this came down to scheduling with the Von Braun Center.
-				It can be difficult to find times that are available at the VBC.
-				While we loved our mid-October time frame, we realize that we usually fell on top of fall break for all the local school systems.
-				We had heard from many people that they usually make plans with thier families for vacations during this time.
-			</p>
-			<p>
-				For those curious, we were given the option to have September 11th and 12th, and decided on the 10th and 11th as a combination of the two factors mentioned above.
-				Besides, September 12th the start start of college football season.
-				We were tired of competing against that, anyway.
-			</p>
-		</article>
+	<article>
+		<h1>Dates for 2020 Announced</h1>
+		<p>
+			This year, the DevSpace Technical Conference will take place on September 10th and 11th.
+			We will continue to be in the South Hall Ballrooms of the Von Braun Center.
+			We have moved the dates from our traditional Friday and Saturday to Thursday and Friday.
+			This was not a decision we took lightly.
+		</p>
+		<p>
+			We posted an informal poll in several locations, such as on our Twitter account and various Slack groups.
+			The split between people who enjoyed Friday and Saturday was dead split with people we did not want to attend a conference on a weekend.
+			The biggest rationale for this was the belief that weekends should be for family.
+			While we have plans to include a family track in the future, we currently do not have the budget to include that track.
+			As such, we have decided to try a Thursday and Friday conference.
+		</p>
+		<p>
+			We have also moved earlier into the year, opting for a September conference over our traditional October timing.
+			Our primary reasoning for this came down to scheduling with the Von Braun Center.
+			It can be difficult to find times that are available at the VBC.
+			While we loved our mid-October time frame, we realize that we usually fell on top of fall break for all the local school systems.
+			We had heard from many people that they usually make plans with thier families for vacations during this time.
+		</p>
+		<p>
+			For those curious, we were given the option to have September 11th and 12th, and decided on the 10th and 11th as a combination of the two factors mentioned above.
+			Besides, September 12th the start start of college football season.
+			We were tired of competing against that, anyway.
+		</p>
+	</article>
 
-		<article>
-			<h1>Ticket Prices</h1>
-			<p>
-				The ticket prices will remain the same as last year.
-				The pricing structure will be as follows:
-			</p>
-			<table style="margin-left: 25px;">
-				<tr>
-					<td style="font-weight: bold; padding-right: 25px;">Super Early Bird Tickets</td>
-					<td>$100</td>
-					<td style="font-style: italic; padding-left: 25px;">Available until the keynote is offically announced</td>
-				</tr>
-				<tr>
-					<td style="font-weight: bold; padding-right: 25px;">Early Bird Tickets</td>
-					<td>$125</td>
-					<td style="font-style: italic; padding-left: 25px;">Available until the speakers are officially announced</td>
-				</tr>
-				<tr>
-					<td style="font-weight: bold; padding-right: 25px;">Standard Tickets</td>
-					<td>$150</td>
-					<td style="font-style: italic; padding-left: 25px;">Available until August 20th</td>
-				</tr>
-				<tr>
-					<td style="font-weight: bold; padding-right: 25px;">Late Tickets</td>
-					<td>$200</td>
-					<td style="font-style: italic; padding-left: 25px;">Available until September 11th</td>
-				</tr>
-			</table>
-		</article>-->
+	<article>
+		<h1>Ticket Prices</h1>
+		<p>
+			The ticket prices will remain the same as last year.
+			The pricing structure will be as follows:
+		</p>
+		<table style="margin-left: 25px;">
+			<tr>
+				<td style="font-weight: bold; padding-right: 25px;">Super Early Bird Tickets</td>
+				<td>$100</td>
+				<td style="font-style: italic; padding-left: 25px;">Available until the keynote is offically announced</td>
+			</tr>
+			<tr>
+				<td style="font-weight: bold; padding-right: 25px;">Early Bird Tickets</td>
+				<td>$125</td>
+				<td style="font-style: italic; padding-left: 25px;">Available until the speakers are officially announced</td>
+			</tr>
+			<tr>
+				<td style="font-weight: bold; padding-right: 25px;">Standard Tickets</td>
+				<td>$150</td>
+				<td style="font-style: italic; padding-left: 25px;">Available until August 20th</td>
+			</tr>
+			<tr>
+				<td style="font-weight: bold; padding-right: 25px;">Late Tickets</td>
+				<td>$200</td>
+				<td style="font-style: italic; padding-left: 25px;">Available until September 11th</td>
+			</tr>
+		</table>
+	</article>-->
 	</section>
 
 	<!-- #include file="leftSidebar.shtml" -->

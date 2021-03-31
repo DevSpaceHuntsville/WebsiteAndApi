@@ -104,6 +104,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthTokenDataStore.cs" />
+    <Compile Include="ContentDataStore.cs" />
+    <Compile Include="Models\ArticleModel.cs" />
     <Compile Include="Models\AuthTokenModel.cs" />
     <Compile Include="Models\RoomModel.cs" />
     <Compile Include="Models\SessionModel.cs" />

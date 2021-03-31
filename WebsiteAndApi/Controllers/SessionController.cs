@@ -169,7 +169,7 @@ namespace DevSpace.Api.Controllers {
 		}
 
 		[Authorize]
-		//public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBinder ) )]ISession postedSession ) {
+		//public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBin der ) )]ISession postedSession ) {
 		public async Task<HttpResponseMessage> Post( JObject data ) {
 			ISession postedSession = JsonConvert.DeserializeObject<Session>( data.ToString() );
 			try {
