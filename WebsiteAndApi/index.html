@@ -32,8 +32,8 @@
 		<section data-bind="foreach: Content">
 			<article>
 				<h1 data-bind="text: Title"></h1>
-				<p data-bind="html: Body"></p>
-				<h6 data-bind="text: PublishDate"></h6>
+				<div class="Markdown" data-bind="html: Body"></div>
+				<h6>Date Published: <span data-bind="text: PublishDate"></span></h6>
 			</article>
 		</section>
 

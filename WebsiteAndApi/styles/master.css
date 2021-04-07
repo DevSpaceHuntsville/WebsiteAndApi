@@ -19,6 +19,13 @@ h3 {
 	line-height: 20px;
 }
 
+h6 {
+	font-size: small;
+	font-weight: 400;
+	margin: 10px;
+	line-height: 12px;
+}
+
 p {
 	margin-bottom: 20px;
 }
@@ -168,6 +175,18 @@ article p {
 		text-align: center;
 		font-size: xx-large;
 	}
+
+.Markdown {
+
+}
+
+.Markdown strong {
+	font-weight: bold;
+}
+
+.Markdown em {
+	font-style: italic;
+}
 
 @media only screen and (max-width: 1200px) {
 	#Content {

@@ -5,11 +5,19 @@
 	Self.PublishDate = ko.observable();
 	Self.ExpireDate = ko.observable();
 
+	function formatDate(dateString) {
+		const months = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
+		var newDate = new Date(dateString);
+		return newDate.getDate() + ' ' + months[newDate.getMonth()] + ' ' + newDate.getFullYear();
+	}
+
 	if (data) {
+		var converter = new showdown.Converter();
+
 		Self.Title(data.Title);
-		Self.Body(data.Body);
-		Self.PublishDate(data.PublishDate);
-		Self.ExpireDate(data.ExpireDate);
+		Self.Body( converter.makeHtml(data.Body) );
+		Self.PublishDate( formatDate( data.PublishDate ) );
+		Self.ExpireDate( formatDate( data.ExpireDate ) );
 	}
 }
 

@@ -5,6 +5,7 @@
 	<link href="/styles/sidebars.css" rel="stylesheet" type="text/css" />
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" defer></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" defer></script>
 	<script type="text/javascript" src="/js/sponsor.js" defer></script>
 	<script type="text/javascript" src="/dynamic/scripts/analytics" defer></script>
 
