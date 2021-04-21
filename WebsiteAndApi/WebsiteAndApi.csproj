@@ -166,6 +166,7 @@
     <Content Include="styles\master.css" />
     <Content Include="styles\menu.css" />
     <Content Include="styles\reset.css" />
+    <Content Include="styles\showdown.css" />
     <Content Include="styles\sidebars.css" />
     <Content Include="tickets.html" />
     <Content Include="travel.html" />

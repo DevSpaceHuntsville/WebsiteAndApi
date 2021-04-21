@@ -17,12 +17,41 @@
 			<input type="text" data-bind="value: Profile().DisplayName" />
 			<h2>Email Address</h2>
 			<input type="text" readonly="readonly" data-bind="value: Profile().EmailAddress" />
+			<h2>Profile Picture</h2>
+			<input type="text" data-bind="value: Profile().ProfilePicture" />
 			<h2>Twitter</h2>
 			<input type="text" data-bind="value: Profile().Twitter" />
 			<h2>Website</h2>
 			<input type="text" data-bind="value: Profile().Website" />
+			<h2>Blog</h2>
+			<input type="text" data-bind="value: Profile().Blog" />
 			<h2>Bio</h2>
-			<textarea data-bind="value: Profile().Bio"></textarea>
+			<textarea data-bind="textInput: Profile().Bio"></textarea>
+			<h2>Bio Preview</h2>
+			<!-- Bio Preview (If you change here, change in speakers.html -->
+			<h1 data-bind="text: Profile().DisplayName"></h1>
+			<img data-bind="attr: { src: Profile().ProfilePicture }" width="200" height="200" style="float: right" />
+			<p data-bind="html: Profile().TransformedBio"></p>
+			<!-- ko if: Profile().Twitter || Profile().Website || Profile().Blog -->
+			<p>
+				<!-- ko if: Profile().Twitter -->
+				<a target="_blank" data-bind="text: Profile().Twitter, attr: { href: Profile().TwitterLink }"></a>
+				<!-- /ko -->
+				<!-- ko if: Profile().Website -->
+				<!-- ko if: Profile().Twitter -->
+				<br />
+				<!-- /ko -->
+				<a target="_blank" data-bind="text: Profile().Website, attr: { href: Profile().Website }"></a>
+				<!-- /ko -->
+				<!-- ko if: Profile().Blog -->
+				<!-- ko if: Profile().Twitter || Profile().Website -->
+				<br />
+				<!-- /ko -->
+				<a target="_blank" data-bind="text: Profile().Blog, attr: { href: Profile().Blog }"></a>
+				<!-- /ko -->
+			</p>
+			<!-- /ko -->
+			<!-- End Bio Preview -->
 			<input type="button" data-bind="click: SaveProfile" value="Save Profile" />
 			<input type="button" data-bind="click: ShowCredentials" value="Update Credentials" />
 			<input type="button" data-bind="click: function () { ShowSession(null) }" value="New Session" />

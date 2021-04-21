@@ -15,6 +15,8 @@ function Profile(data) {
 	Self.Bio = ko.observable();
 	Self.Twitter = ko.observable();
 	Self.Website = ko.observable();
+	Self.Blog = ko.observable();
+	Self.ProfilePicture = ko.observable();
 
 	if (data) {
 		Self.Id(data.Id);
@@ -23,7 +25,25 @@ function Profile(data) {
 		Self.Bio(data.Bio);
 		Self.Twitter(data.Twitter);
 		Self.Website(data.Website);
+		Self.Blog(data.Blog);
+		Self.ProfilePicture(data.ProfilePicture);
 	}
+
+	Self.TwitterLink = ko.pureComputed(function () {
+		var Raw = Self.Twitter();
+
+		if (Raw)
+			return 'https://twitter.com/' + Raw.substring(1);
+		else
+			return null;
+	});
+
+	Self.TransformedBio = ko.pureComputed(function () {
+		if (Self.Bio()) {
+			var converter = new showdown.Converter();
+			return converter.makeHtml(Self.Bio());
+		}
+	});
 }
 
 function Session(data) {
