@@ -176,18 +176,6 @@ article p {
 		font-size: xx-large;
 	}
 
-.Markdown {
-
-}
-
-.Markdown strong {
-	font-weight: bold;
-}
-
-.Markdown em {
-	font-style: italic;
-}
-
 @media only screen and (max-width: 1200px) {
 	#Content {
 		padding: 0;

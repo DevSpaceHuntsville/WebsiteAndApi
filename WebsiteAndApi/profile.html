@@ -28,7 +28,7 @@
 			<h2>Bio</h2>
 			<textarea data-bind="textInput: Profile().Bio"></textarea>
 			<h2>Bio Preview</h2>
-			<!-- Bio Preview (If you change here, change in speakers.html -->
+			<!-- Bio Preview (If you change here, change in speakers.html) -->
 			<h1 data-bind="text: Profile().DisplayName"></h1>
 			<img data-bind="attr: { src: Profile().ProfilePicture }" width="200" height="200" style="float: right" />
 			<p data-bind="html: Profile().TransformedBio"></p>
@@ -51,6 +51,7 @@
 				<!-- /ko -->
 			</p>
 			<!-- /ko -->
+			<hr />
 			<!-- End Bio Preview -->
 			<input type="button" data-bind="click: SaveProfile" value="Save Profile" />
 			<input type="button" data-bind="click: ShowCredentials" value="Update Credentials" />
@@ -81,7 +82,16 @@
 			<h2>Title</h2>
 			<input type="text" data-bind="value: SelectedSession().Title" />
 			<h2>Abstract (visible to attendees)</h2>
-			<textarea data-bind="value: SelectedSession().Abstract"></textarea>
+			<textarea data-bind="textInput: SelectedSession().Abstract"></textarea>
+			<h2>Abstract Preview</h2>
+			<!-- Abstract Preview (If you change here, change in sessions.html) -->
+			<h1 data-bind="text: SelectedSession().Title"></h1>
+			<p data-bind="html: SelectedSession().TransformedAbstract"></p>
+			<h2>Speaker: <a data-bind="text: Profile().DisplayName"></a></h2>
+			<h2 data-bind="with: SelectedSession().Level()">Level: <a data-bind="text: Text"></a></h2>
+			<h2>Tags: <!-- ko foreach: SelectedSession().Tags() --><a data-bind="text: Text"></a>; <!-- /ko --></h2>
+			<hr />
+			<!-- End Abstract Preview -->
 			<h2>Notes to Reviewer (not visible to attendees)</h2>
 			<textarea data-bind="value: SelectedSession().Notes"></textarea>
 			<h2>Session Length</h2>
@@ -89,8 +99,8 @@
 				<option value="60">60 Minutes</option>
 				<option value="30">30 Minutes</option>
 			</select>
-            <h2>Level</h2>
-            <select data-bind="options: Levels, optionsText: 'Text', value: SelectedSession().Level"></select>
+			<h2>Level</h2>
+			<select data-bind="options: Levels, optionsText: 'Text', value: SelectedSession().Level"></select>
 			<h2>Selected Tags (Click to Remove)</h2>
 			<ul data-bind="foreach: SelectedSession().Tags">
 				<li data-bind="text: Text, click: $root.AddOrRemoveTagToSession" />

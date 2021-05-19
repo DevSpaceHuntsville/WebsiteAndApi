@@ -78,6 +78,14 @@ function Session(data) {
             }
         }
 	}
+
+
+	Self.TransformedAbstract = ko.pureComputed(function () {
+		if (Self.Abstract()) {
+			var converter = new showdown.Converter();
+			return converter.makeHtml(Self.Abstract());
+		}
+	});
 }
 
 function Tag(data) {
