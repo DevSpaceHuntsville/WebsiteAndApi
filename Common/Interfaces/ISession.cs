@@ -9,6 +9,7 @@ namespace DevSpace.Common {
 		string Notes { get; }
 		int SessionLength { get; }
 		ITag Level { get; }
+		ITag Category { get; }
 		bool? Accepted { get; }
 		ImmutableList<ITag> Tags { get; }
 		ITimeSlot TimeSlot { get; }
@@ -24,6 +25,7 @@ namespace DevSpace.Common {
 		ISession UpdateAccepted( bool? value );
 		ISession UpdateSessionLength( int value );
 		ISession UpdateLevel( ITag value );
+		ISession UpdateCategory( ITag value );
 		ISession AddTag( ITag value );
 		ISession RemoveTag( ITag value );
 		ISession UpdateTimeSlot( ITimeSlot value );

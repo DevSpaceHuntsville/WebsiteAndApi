@@ -89,6 +89,7 @@
 			<p data-bind="html: SelectedSession().TransformedAbstract"></p>
 			<h2>Speaker: <a data-bind="text: Profile().DisplayName"></a></h2>
 			<h2 data-bind="with: SelectedSession().Level()">Level: <a data-bind="text: Text"></a></h2>
+			<h2 data-bind="with: SelectedSession().Category()">Category: <a data-bind="text: Text"></a></h2>
 			<h2>Tags: <!-- ko foreach: SelectedSession().Tags() --><a data-bind="text: Text"></a>; <!-- /ko --></h2>
 			<hr />
 			<!-- End Abstract Preview -->
@@ -101,6 +102,8 @@
 			</select>
 			<h2>Level</h2>
 			<select data-bind="options: Levels, optionsText: 'Text', value: SelectedSession().Level"></select>
+			<h2>Category</h2>
+			<select data-bind="options: Categories, optionsText: 'Text', value: SelectedSession().Category"></select>
 			<h2>Selected Tags (Click to Remove)</h2>
 			<ul data-bind="foreach: SelectedSession().Tags">
 				<li data-bind="text: Text, click: $root.AddOrRemoveTagToSession" />

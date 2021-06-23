@@ -31,6 +31,16 @@ namespace DevSpace.Common {
 			}
 		}
 
+		[DataMember( Name = "Category" )] private Tag _category;
+		public ITag Category {
+			get {
+				return _category;
+			}
+			private set {
+				_category = new Tag( value );
+			}
+		}
+
 		[DataMember( Name = "Tags" )]private List<Tag> _tags;
 		public ImmutableList<ITag> Tags {
 			get {
@@ -111,6 +121,12 @@ namespace DevSpace.Common {
 			return newSession;
 		}
 
+		public ISession UpdateCategory( ITag value ) {
+			Session newSession = this.Clone();
+			newSession.Category = value;
+			return newSession;
+		}
+
 		public ISession AddTag( ITag value ) {
 			Session newSession = this.Clone();
 			newSession._tags.Add( new Tag( value ) );
@@ -156,6 +172,7 @@ namespace DevSpace.Common {
 				Abstract = string.Copy( this.Abstract ),
 				SessionLength = this.SessionLength,
 				Level = this.Level,
+				Category = this.Category,
 				Accepted = this.Accepted,
 				EventId = this.EventId,
 				SessionizeId = this.SessionizeId

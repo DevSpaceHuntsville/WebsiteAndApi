@@ -11,20 +11,14 @@
 	<!-- #include file="menu.shtml" -->
 
     <section id="Content">
-        <article style="display: none;">
-            <h1>Deatils Coming Soon</h1>
-            <p>
-                We've invited our first round of speakers.
-                We'll post them here as they confirm.
-            </p>
-        </article>
-
-        <article style="display: none;">
+        <article>
             <h1>Call For Speakers Coming Soon</h1>
             <p>
-                We are currently preparing for our 2020 conferences.
-                We are tentatively planning to open the Call for Speakers in April.
-                Check back to get the most up to date details.
+                We are currently preparing for our 2021 conferences.
+                The Call for Speakers should open soon.
+                And, I mean, VERY soon.
+                Like, hoping in the next few days soon.
+                You get the idea.
             </p>
         </article>
 
@@ -42,7 +36,7 @@
         <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
-                We are pleased to announce our call for speakers for DevSpace 2020.
+                We are pleased to announce our call for speakers for DevSpace 2021.
                 Please take a moment to read over this before you submit your masterpieces.
             </p>
             <h2>What we are looking for</h2>
@@ -118,7 +112,7 @@
             <input type="button" onclick="window.location.href = './login.html';" value="Submit Your Masterpieces!" />
         </article>
 
-        <section data-bind="foreach: Profiles">
+        <section data-bind="foreach: Profiles" style="display: none;">
             <article>
                 <h1 data-bind="text: DisplayName"></h1>
                 <img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />

@@ -180,7 +180,9 @@
     <Compile Include="App_Start\Email.cs" />
     <Compile Include="App_Start\JsonBinder.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\LevelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ScriptsController.cs" />
     <Compile Include="Controllers\SessionController.cs" />

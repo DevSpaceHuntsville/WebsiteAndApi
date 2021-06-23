@@ -10,16 +10,21 @@ using DevSpace.Common;
 namespace DevSpace.Database {
 	public class SessionDataStore : IDataStore<ISession> {
 		public async Task<ISession> Add( ISession ItemToAdd ) {
+			if( null == ItemToAdd.Level )
+				return null;
+
 			using( SqlConnection connection = new SqlConnection( Settings.ConnectionString ) ) {
 				connection.Open();
 
 				// HACK: Currentlyhas hardcoded EventId
 				ISession addedSession = null;
-				using( SqlCommand sessionCommand = new SqlCommand( "INSERT Sessions ( UserId, Title, Abstract, Notes, SessionLength, EventId ) VALUES ( @UserId, @Title, @Abstract, @Notes, @SessionLength, 2020 ); SELECT SCOPE_IDENTITY();", connection ) ) {
+				using( SqlCommand sessionCommand = new SqlCommand( "INSERT Sessions ( UserId, Title, Abstract, Notes, SessionLength, LevelId, CategoryId, EventId ) VALUES ( @UserId, @Title, @Abstract, @Notes, @SessionLength, @LevelId, @CategoryId, 2021 ); SELECT SCOPE_IDENTITY();", connection ) ) {
 					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToAdd.UserId;
 					sessionCommand.Parameters.Add( "Title", SqlDbType.VarChar ).Value = ItemToAdd.Title;
 					sessionCommand.Parameters.Add( "Abstract", SqlDbType.VarChar ).Value = ItemToAdd.Abstract;
 					sessionCommand.Parameters.Add( "SessionLength", SqlDbType.Int ).Value = ItemToAdd.SessionLength;
+					sessionCommand.Parameters.Add( "LevelId", SqlDbType.Int ).Value = ItemToAdd.Level.Id;
+					sessionCommand.Parameters.Add( "CategoryId", SqlDbType.Int ).Value = ItemToAdd.Category.Id;
 
 					if( string.IsNullOrWhiteSpace( ItemToAdd.Notes ) )
 						sessionCommand.Parameters.Add( "Notes", SqlDbType.VarChar ).Value = DBNull.Value;
@@ -29,13 +34,11 @@ namespace DevSpace.Database {
 					addedSession = ItemToAdd.UpdateId( Convert.ToInt32( await sessionCommand.ExecuteScalarAsync() ) );
 				}
 
-				// TODO: Make sure there is a level tag (mostly for copy)
-
 				if( 0 < addedSession.Tags.Count ) {
 					using( SqlCommand tagCommand = new SqlCommand( "INSERT SessionTags ( SessionId, TagId ) VALUES ( @SessionId, @TagId );", connection ) ) {
 						tagCommand.Parameters.Add( "SessionId", SqlDbType.Int ).Value = addedSession.Id;
 						SqlParameter tagIdParameter = tagCommand.Parameters.Add( "TagId", SqlDbType.Int );
-						foreach( ITag tag in ItemToAdd.Tags.Add( addedSession.Level ) ) {
+						foreach( ITag tag in ItemToAdd.Tags ) {
 							tagIdParameter.Value = tag.Id;
 							await tagCommand.ExecuteNonQueryAsync();
 						}
@@ -43,7 +46,7 @@ namespace DevSpace.Database {
 				}
 
 				return addedSession
-					.UpdateEventId( 2020 );
+					.UpdateEventId( 2021 );
 			}
 		}
 
@@ -86,15 +89,18 @@ namespace DevSpace.Database {
 						using( SqlDataReader dataReader = await tagCommand.ExecuteReaderAsync() ) {
 							while( await dataReader.ReadAsync() ) {
 								ITag tag = new Models.TagModel( dataReader );
-								if( tag.Id < 4 )
-									returnValue = returnValue.UpdateLevel( tag );
-								else
-									returnValue = returnValue.AddTag( tag );
+								returnValue = returnValue.AddTag( tag );
 							}
 						}
 					}
 				}
 			}
+
+			LevelDataStore levels = new LevelDataStore();
+			returnValue = returnValue.UpdateLevel( await levels.Get( ( returnValue as Models.SessionModel ).LevelId ) );
+
+			CategoryDataStore categories = new CategoryDataStore();
+			returnValue = returnValue.UpdateCategory( await categories.Get( ( returnValue as Models.SessionModel ).CategoryId ) );
 
 			TimeSlotDataStore timeSlots = new TimeSlotDataStore();
 			returnValue = returnValue.UpdateTimeSlot( await timeSlots.Get( ( returnValue as Models.SessionModel ).TimeSlotId ) );
@@ -105,7 +111,19 @@ namespace DevSpace.Database {
 
 		public async Task<IList<ISession>> Get( string Field, object Value ) {
 			List<ISession> returnList = new List<ISession>();
-			List<ISession> sessionList = new List<ISession>();
+			List<Models.SessionModel> sessionList = new List<Models.SessionModel>();
+
+			LevelDataStore levels = new LevelDataStore();
+			IList<ITag> levelsList = await levels.GetAll();
+
+			CategoryDataStore categories = new CategoryDataStore();
+			IList<ITag> categoriesList = await categories.GetAll();
+
+			TimeSlotDataStore timeSlots = new TimeSlotDataStore();
+			IList<ITimeSlot> timeSlotList = await timeSlots.GetAll();
+
+			RoomDataStore rooms = new RoomDataStore();
+			IList<IRoom> roomList = await rooms.GetAll();
 
 			using( SqlConnection connection = new SqlConnection( Settings.ConnectionString ) ) {
 				connection.Open();
@@ -130,14 +148,15 @@ namespace DevSpace.Database {
 				}
 
 				ISession sessionWithTags = null;
-				foreach( ISession session in sessionList ) {
-					sessionWithTags = session;
+				foreach( Models.SessionModel session in sessionList ) {
+					sessionWithTags = session
+						.UpdateLevel( levelsList.FirstOrDefault( l => l.Id == session.LevelId ) )
+						.UpdateCategory( categoriesList.FirstOrDefault( l => l.Id == session.CategoryId ) )
+						.UpdateTimeSlot( timeSlotList.FirstOrDefault( ts => ts.Id == session.TimeSlotId ) )
+						.UpdateRoom( roomList.FirstOrDefault( r => r.Id == session.RoomId ) );
 
 					foreach( Tuple<int, ITag> Tag in TagData.Where( data => data.Item1 == session.Id ) ) {
-						if( Tag.Item2.Id < 4 )
-							sessionWithTags = sessionWithTags.UpdateLevel( Tag.Item2 );
-						else
-							sessionWithTags = sessionWithTags.AddTag( Tag.Item2 );
+						sessionWithTags = sessionWithTags.AddTag( Tag.Item2 );
 					}
 
 					returnList.Add( sessionWithTags );
@@ -150,6 +169,12 @@ namespace DevSpace.Database {
 		public async Task<IList<ISession>> GetAll() {
 			List<ISession> returnList = new List<ISession>();
 			List<Models.SessionModel> sessionList = new List<Models.SessionModel>();
+
+			LevelDataStore levels = new LevelDataStore();
+			IList<ITag> levelsList = await levels.GetAll();
+
+			CategoryDataStore categories = new CategoryDataStore();
+			IList<ITag> categoriesList = await categories.GetAll();
 
 			TimeSlotDataStore timeSlots = new TimeSlotDataStore();
 			IList<ITimeSlot> timeSlotList = await timeSlots.GetAll();
@@ -180,14 +205,13 @@ namespace DevSpace.Database {
 				ISession sessionWithTags = null;
 				foreach( Models.SessionModel session in sessionList ) {
 					sessionWithTags = session
+						.UpdateLevel( levelsList.FirstOrDefault( l => l.Id == session.LevelId ) )
+						.UpdateCategory( categoriesList.FirstOrDefault( l => l.Id == session.CategoryId ) )
 						.UpdateTimeSlot( timeSlotList.FirstOrDefault( ts => ts.Id == session.TimeSlotId ) )
 						.UpdateRoom( roomList.FirstOrDefault( r => r.Id == session.RoomId ) );
 
 					foreach( Tuple<int, ITag> Tag in TagData.Where( data => data.Item1 == session.Id ) ) {
-						if( Tag.Item2.Id < 4 )
-							sessionWithTags = sessionWithTags.UpdateLevel( Tag.Item2 );
-						else
-							sessionWithTags = sessionWithTags.AddTag( Tag.Item2 );
+						sessionWithTags = sessionWithTags.AddTag( Tag.Item2 );
 					}
 
 					returnList.Add( sessionWithTags );
@@ -198,15 +222,20 @@ namespace DevSpace.Database {
 		}
 
 		public async Task<ISession> Update( ISession ItemToUpdate ) {
+			if( null == ItemToUpdate.Level )
+				return null;
+
 			using( SqlConnection connection = new SqlConnection( Settings.ConnectionString ) ) {
 				connection.Open();
 
-				using( SqlCommand sessionCommand = new SqlCommand( "UPDATE Sessions SET UserId = @UserId, Title = @Title, Abstract = @Abstract, Notes = @Notes, SessionLength = @SessionLength WHERE Id = @Id; DELETE FROM SessionTags WHERE SessionId = @Id;", connection ) ) {
+				using( SqlCommand sessionCommand = new SqlCommand( "UPDATE Sessions SET UserId = @UserId, Title = @Title, Abstract = @Abstract, Notes = @Notes, SessionLength = @SessionLength, LevelId = @LevelId, CategoryId = @CategoryId WHERE Id = @Id; DELETE FROM SessionTags WHERE SessionId = @Id;", connection ) ) {
 					sessionCommand.Parameters.Add( "Id", SqlDbType.Int ).Value = ItemToUpdate.Id;
 					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToUpdate.UserId;
 					sessionCommand.Parameters.Add( "Title", SqlDbType.VarChar ).Value = ItemToUpdate.Title;
 					sessionCommand.Parameters.Add( "Abstract", SqlDbType.VarChar ).Value = ItemToUpdate.Abstract;
 					sessionCommand.Parameters.Add( "SessionLength", SqlDbType.Int ).Value = ItemToUpdate.SessionLength;
+					sessionCommand.Parameters.Add( "LevelId", SqlDbType.Int ).Value = ItemToUpdate.Level.Id;
+					sessionCommand.Parameters.Add( "CategoryId", SqlDbType.Int ).Value = ItemToUpdate.Category.Id;
 
 					if( string.IsNullOrWhiteSpace( ItemToUpdate.Notes ) )
 						sessionCommand.Parameters.Add( "Notes", SqlDbType.VarChar ).Value = DBNull.Value;
@@ -220,7 +249,7 @@ namespace DevSpace.Database {
 					using( SqlCommand tagCommand = new SqlCommand( "INSERT SessionTags ( SessionId, TagId ) VALUES ( @SessionId, @TagId );", connection ) ) {
 						tagCommand.Parameters.Add( "SessionId", SqlDbType.Int ).Value = ItemToUpdate.Id;
 						SqlParameter tagIdParameter = tagCommand.Parameters.Add( "TagId", SqlDbType.Int );
-						foreach( ITag tag in ItemToUpdate.Tags.Add( ItemToUpdate.Level ) ) {
+						foreach( ITag tag in ItemToUpdate.Tags ) {
 							tagIdParameter.Value = tag.Id;
 							await tagCommand.ExecuteNonQueryAsync();
 						}
