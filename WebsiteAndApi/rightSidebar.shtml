@@ -1,5 +1,13 @@
 ﻿<section id="RightSidebar" class="Sidebar">
 	<article>
+		<h1>Sponsor</h1>
+		<p>
+			Sponsorships and Exhibitor oppertunities for our 2021 conference are now available.
+			See the <a href="/sponsors.html" target="_blank">sponsors page</a> for more details.
+		</p>
+	</article>
+
+	<article>
 		<h1>Donate</h1>
 		<h3>PayPal Giving Fund</h3>
 		<p>Requires a PayPal account, but you'll instantly get a tax receipt and we don't get charged fees on the donation.</p>
@@ -13,7 +21,7 @@
 		</p>
 	</article>
 
-	<article data-bind="foreach: SponsorLevels">
+	<article data-bind="foreach: SponsorLevels, visible: SponsorLevels.length">
 		<!-- ko if: DisplayInSidebar -->
 		<h1 data-bind="text: DisplayName"></h1>
 		<!-- ko foreach: Sponsors -->

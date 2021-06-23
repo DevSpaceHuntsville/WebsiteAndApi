@@ -11,16 +11,14 @@
 
 	<section id="Content">
 		<article>
-			<h1>Donations for DevSpace 2020</h1>
+			<h1>Sponsorships and Exhibitor Spaces Available</h1>
 			<p>
-				We are running this event as a kind of virtual telethon.
-				You see, we're a small non-profit organization that puts all this together.
-				Most of our funding comes from the conference.
-				However, this year, we couldn't have a conference.
-				We're not going to lie, the bank account is running a little thin.
-				However, we can pull all this thought-provoking and inspirational content together to give away for free.
-				So, we thought we'd take advantage of our non-profit status for once and make this a donation drive.
+				We are currently accepting sponsorships and exhibitor spaces for our 2021 conference.
+				You can find all the details in our <a href="https://devspacesponsorstorage.blob.core.windows.net/files/2021/devspace-prospectus.pdf" target="_blank">Sponsorship Prospectus</a>.
 			</p>
+		</article>
+		<article>
+			<h1>Donations to DevSpace</h1>
 			<p>
 				There are two options to donate through the buttons on the right.
 				If you use the PayPay Giving Fund button (which is the top one,) you must have a PayPal account to send funds.
@@ -28,7 +26,7 @@
 				You will also receive a receipt to make your donation tax-deductible.
 			</p>
 			<p>
-				If you use the PayPay Giving Fund button (which is the bottom one,) you can make a direct payment without a PayPal account.
+				If you use the PayPay Direct button (which is the bottom one,) you can make a direct payment without a PayPal account.
 				This method also has the added bonus of releasing the funds to us quicker, but you won't get an instant receipt and we will get charged all the fees.
 				If you incude an email address on your donation, we'll reach out to you to produce a receipt.
 				If you do not, then you'll need to email us with the transaction Id.
@@ -96,7 +94,7 @@
 			<!-- /ko -->
 		<!--</article>-->
 
-		<article id="MainSponsorElement" data-bind="foreach: { data: SponsorLevels, as: 'Level' }">
+		<article id="MainSponsorElement" data-bind="foreach: { data: SponsorLevels, as: 'Level' }, visible: SponsorLevels.length">
 			<h1 data-bind="text: Level.DisplayName"></h1>
 			<!-- ko foreach: { data: Level.Sponsors, as: 'Spon' } -->
 			<p style="text-align: center;">

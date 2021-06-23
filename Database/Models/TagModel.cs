@@ -6,6 +6,11 @@ namespace DevSpace.Database.Models {
 	public class TagModel : ITag {
 		private TagModel() {}
 
+		internal TagModel( ITag tag ) {
+			this.Id = tag.Id;
+			this.Text = tag.Text;
+		}
+
 		internal TagModel( SqlDataReader dataReader ) {
 			for( int lcv = 0; lcv < dataReader.FieldCount; ++lcv ) {
 				GetType().GetProperty( dataReader.GetName( lcv ), BindingFlags.Instance | BindingFlags.Public )?.SetValue( this, dataReader.GetValue( lcv ) );

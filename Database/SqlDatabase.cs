@@ -339,6 +339,92 @@ VALUES
 
 UPDATE VersionInfo SET DbVersion = '01.00.04.0003';";
 
+				case "01.00.04.0003":
+					return
+@"CREATE TABLE Content(
+	Id			INT				IDENTITY(1,1)	NOT NULL,
+	Title		NVARCHAR(60)					NOT NULL,
+	Body		NVARCHAR(MAX)					NOT NULL,
+	PublishDate	SMALLDATETIME					NOT NULL,
+	ExpireDate	SMALLDATETIME					NOT NULL,
+
+	CONSTRAINT Content_PK PRIMARY KEY NONCLUSTERED ( Id ),
+	INDEX Content_CI CLUSTERED ( PublishDate DESC, ExpireDate, Id )
+);
+
+UPDATE VersionInfo SET DbVersion = '01.00.04.0004';";
+
+				case "01.00.04.0004":
+					return
+@"CREATE TABLE Levels (
+	Id		INTEGER			IDENTITY(1,1)	NOT NULL,
+	Text	VARCHAR(14)						NOT NULL,
+
+	CONSTRAINT Levels_PK PRIMARY KEY CLUSTERED ( Id )
+);
+
+INSERT Levels ( Text )
+	SELECT Text
+	FROM Tags
+	WHERE Id < 4
+	ORDER BY Id ASC;
+
+ALTER TABLE Sessions ADD LevelId INT NULL;
+ALTER TABLE Sessions ADD CONSTRAINT Sessions_Levels_FK FOREIGN KEY ( LevelId ) REFERENCES Levels ( Id )
+	ON UPDATE CASCADE ON DELETE NO ACTION;
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0000';";
+
+				case "01.00.05.0000":
+					return
+@"MERGE Sessions AS TARGET
+USING (
+	SELECT SessionId, MIN( TagId ) AS TagId FROM SessionTags WHERE TagId < 4 GROUP BY SessionId
+) AS SOURCE (SessionId, TagID)
+ON ( TARGET.Id = SOURCE.SessionId )
+WHEN MATCHED THEN
+	UPDATE SET LevelId = SOURCE.TagId;
+
+UPDATE Sessions SET LevelId = 1 WHERE LevelId IS NULL;
+
+ALTER TABLE Sessions ALTER COLUMN LevelId INT NOT NULL;
+
+DELETE SessionTags WHERE TagId < 4;
+DELETE Tags WHERE Id < 4;
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0001';";
+
+				case "01.00.05.0001":
+					return
+@"CREATE TABLE Categories (
+	Id		INTEGER			IDENTITY(0,1)	NOT NULL,
+	Text	VARCHAR(59)						NOT NULL,
+
+	CONSTRAINT Categories_PK PRIMARY KEY CLUSTERED ( Id )
+);
+
+ALTER TABLE Sessions ADD CategoryId INT NULL;
+ALTER TABLE Sessions ADD CONSTRAINT Sessions_Categories_FK FOREIGN KEY ( CategoryId ) REFERENCES Categories ( Id )
+	ON UPDATE CASCADE ON DELETE NO ACTION;
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0002';";
+
+				case "01.00.05.0002":
+					return
+@"INSERT Categories ( Text ) VALUES ( 'Historical' );
+UPDATE Sessions SET CategoryId = 0;
+
+ALTER TABLE Sessions ALTER COLUMN CategoryId INT NOT NULL;
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0003';";
+
+				case "01.00.05.0003":
+					return
+@"INSERT Events ( Id, Name, StartDate, EndDate ) VALUES
+( 2021, 'DevSpace 2021', '2021-09-09', '2021-09-10' );
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0004';";
+
 				default:
 					return string.Empty;
 			}

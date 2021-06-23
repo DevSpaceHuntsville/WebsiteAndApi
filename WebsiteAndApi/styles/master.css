@@ -19,6 +19,13 @@ h3 {
 	line-height: 20px;
 }
 
+h6 {
+	font-size: small;
+	font-weight: 400;
+	margin: 10px;
+	line-height: 12px;
+}
+
 p {
 	margin-bottom: 20px;
 }

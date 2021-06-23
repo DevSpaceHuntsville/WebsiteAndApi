@@ -107,7 +107,7 @@ namespace DevSpace.Database {
 				StringBuilder sqlQuery = new StringBuilder( "UPDATE Users SET DisplayName = @DisplayName, EmailAddress = @EmailAddress, Bio = @Bio, Permissions = @Permissions, " );
 				if( !string.IsNullOrWhiteSpace( ItemToUpdate.PasswordHash ) )
 					sqlQuery.Append( "PasswordHash = @PasswordHash, " );
-				sqlQuery.Append( "Twitter = @Twitter, Website = @Website WHERE Id = @Id" );
+				sqlQuery.Append( "Twitter = @Twitter, Website = @Website, Blog = @Blog, ProfilePicture = @ProfilePicture WHERE Id = @Id" );
 
 				using( SqlCommand command = new SqlCommand( sqlQuery.ToString(), connection ) ) {
 					command.Parameters.Add( "Id", SqlDbType.Int ).Value = ItemToUpdate.Id;
@@ -134,6 +134,16 @@ namespace DevSpace.Database {
 						command.Parameters.Add( "Website", SqlDbType.VarChar ).Value = DBNull.Value;
 					else
 						command.Parameters.Add( "Website", SqlDbType.VarChar ).Value = ItemToUpdate.Website;
+
+					if( string.IsNullOrWhiteSpace( ItemToUpdate.Blog ) )
+						command.Parameters.Add( "Blog", SqlDbType.VarChar ).Value = DBNull.Value;
+					else
+						command.Parameters.Add( "Blog", SqlDbType.VarChar ).Value = ItemToUpdate.Blog;
+
+					if( string.IsNullOrWhiteSpace( ItemToUpdate.ProfilePicture ) )
+						command.Parameters.Add( "ProfilePicture", SqlDbType.VarChar ).Value = DBNull.Value;
+					else
+						command.Parameters.Add( "ProfilePicture", SqlDbType.VarChar ).Value = ItemToUpdate.ProfilePicture;
 
 					await command.ExecuteNonQueryAsync();
 				}

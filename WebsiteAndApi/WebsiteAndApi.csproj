@@ -148,6 +148,7 @@
     <Content Include="images\Resubmit.png" />
     <Content Include="images\Trash.png" />
     <Content Include="index.html" />
+    <Content Include="js\content.js" />
     <Content Include="js\login.js" />
     <Content Include="js\profile.js" />
     <Content Include="js\schedule.js" />
@@ -165,6 +166,7 @@
     <Content Include="styles\master.css" />
     <Content Include="styles\menu.css" />
     <Content Include="styles\reset.css" />
+    <Content Include="styles\showdown.css" />
     <Content Include="styles\sidebars.css" />
     <Content Include="tickets.html" />
     <Content Include="travel.html" />
@@ -178,6 +180,9 @@
     <Compile Include="App_Start\Email.cs" />
     <Compile Include="App_Start\JsonBinder.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\LevelController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ScriptsController.cs" />
     <Compile Include="Controllers\SessionController.cs" />

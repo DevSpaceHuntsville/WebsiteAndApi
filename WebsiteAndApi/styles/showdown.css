@@ -1,0 +1,53 @@
+﻿.Markdown {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+.Markdown strong {
+	font-weight: bold;
+}
+
+.Markdown em {
+	font-style: italic;
+}
+
+.Markdown h1, .Markdown h2, .Markdown h3, .Markdown h4, .Markdown h5, .Markdown h6 {
+	color: #000000;
+	margin: 0;
+	padding: 0;
+	font-size: initial;
+	font-variant: small-caps;
+	background-color: #FFFFFF;
+}
+
+.Markdown h1 {
+	font-weight: 900;
+}
+
+.Markdown h2 {
+	font-weight: 800;
+}
+
+.Markdown h3 {
+	font-weight: 700;
+}
+
+.Markdown h4 {
+	font-weight: 600;
+}
+
+.Markdown h5 {
+	font-weight: 500;
+}
+
+.Markdown h6 {
+	font-weight: 400;
+}
+
+.Markdown ul {
+	list-style: initial;
+}

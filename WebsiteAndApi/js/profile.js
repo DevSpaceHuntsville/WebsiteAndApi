@@ -15,6 +15,8 @@ function Profile(data) {
 	Self.Bio = ko.observable();
 	Self.Twitter = ko.observable();
 	Self.Website = ko.observable();
+	Self.Blog = ko.observable();
+	Self.ProfilePicture = ko.observable();
 
 	if (data) {
 		Self.Id(data.Id);
@@ -23,7 +25,25 @@ function Profile(data) {
 		Self.Bio(data.Bio);
 		Self.Twitter(data.Twitter);
 		Self.Website(data.Website);
+		Self.Blog(data.Blog);
+		Self.ProfilePicture(data.ProfilePicture);
 	}
+
+	Self.TwitterLink = ko.pureComputed(function () {
+		var Raw = Self.Twitter();
+
+		if (Raw)
+			return 'https://twitter.com/' + Raw.substring(1);
+		else
+			return null;
+	});
+
+	Self.TransformedBio = ko.pureComputed(function () {
+		if (Self.Bio()) {
+			var converter = new showdown.Converter();
+			return converter.makeHtml(Self.Bio());
+		}
+	});
 }
 
 function Session(data) {
@@ -34,7 +54,8 @@ function Session(data) {
 	Self.Abstract = ko.observable();
 	Self.Notes = ko.observable();
     Self.SessionLength = ko.observable();
-    Self.Level = ko.observable();
+	Self.Level = ko.observable();
+	Self.Category = ko.observable();
 	Self.Tags = ko.observableArray([]);
     Self.EventId = ko.observable();
 
@@ -46,6 +67,7 @@ function Session(data) {
 		Self.Notes(data.Notes);
 		Self.SessionLength(data.SessionLength);
 		Self.Level(new Tag(data.Level));
+		Self.Category(new Tag(data.Category));
 		Self.EventId(data.EventId);
 
         if (data.Tags) {
@@ -58,6 +80,14 @@ function Session(data) {
             }
         }
 	}
+
+
+	Self.TransformedAbstract = ko.pureComputed(function () {
+		if (Self.Abstract()) {
+			var converter = new showdown.Converter();
+			return converter.makeHtml(Self.Abstract());
+		}
+	});
 }
 
 function Tag(data) {
@@ -71,7 +101,9 @@ function ViewModel() {
 	Self.Profile = ko.observable(new Profile());
 	Self.Sessions = ko.observableArray([]);
     Self.PastSessions = ko.observableArray([]);
-    Self.Levels = ko.observableArray([]);
+	Self.Levels = ko.observableArray([]);
+	Self.Categories = ko.observableArray([]);
+	Self.HistoricalCategory = ko.observable();
 	Self.Tags = ko.observableArray([]);
 	Self.SelectedSession = ko.observable(new Session());
 	Self.Verify = ko.observable();
@@ -117,7 +149,7 @@ function ViewModel() {
 					var SessionList = JSON.parse(SessionsRequest.responseText);
                     for (var index = 0; index < SessionList.length; ++index) {
                         // HACK: Hardcoded EventId
-						if (SessionList[index].EventId == 2020)
+						if (SessionList[index].EventId == 2021)
 							Self.Sessions.push(new Session(SessionList[index]));
 						else
 							Self.PastSessions.push(new Session(SessionList[index]));
@@ -144,17 +176,65 @@ function ViewModel() {
 				case 200:
 					var TagList = JSON.parse(TagsRequest.responseText);
                     for (var index = 0; index < TagList.length; ++index) {
-                        if ( TagList[index].Id < 4 ) {
-                            Self.Levels.push(new Tag(TagList[index]));
-                        } else {
-                            Self.Tags.push(new Tag(TagList[index]));
-                        }
+                        Self.Tags.push(new Tag(TagList[index]));
                     }
 					break;
 	
 				case 401:
 					// Login failed
 	
+				default:
+					break;
+			}
+		}
+	};
+
+	var LevelsRequest = new XMLHttpRequest();
+	LevelsRequest.withCredentials = true;
+	LevelsRequest.open('GET', '/api/v1/level', true);
+	LevelsRequest.send();
+
+	LevelsRequest.onreadystatechange = function () {
+		if (LevelsRequest.readyState == LevelsRequest.DONE) {
+			switch (LevelsRequest.status) {
+				case 200:
+					var LevelList = JSON.parse(LevelsRequest.responseText);
+					for (var index = 0; index < LevelList.length; ++index) {
+						Self.Levels.push(new Tag(LevelList[index]));
+					}
+					break;
+
+				case 401:
+				// Login failed
+
+				default:
+					break;
+			}
+		}
+	};
+
+	var CategoriesRequest = new XMLHttpRequest();
+	CategoriesRequest.withCredentials = true;
+	CategoriesRequest.open('GET', '/api/v1/category', true);
+	CategoriesRequest.send();
+
+	CategoriesRequest.onreadystatechange = function () {
+		if (CategoriesRequest.readyState == CategoriesRequest.DONE) {
+			switch (CategoriesRequest.status) {
+				case 200:
+					var CategoryList = JSON.parse(CategoriesRequest.responseText);
+					for (var index = 0; index < CategoryList.length; ++index) {
+						var t = new Tag(CategoryList[index]);
+						if (0 == t.Id())
+							Self.HistoricalCategory(t);
+						else
+							Self.Categories.push(t);
+					}
+					break;
+
+				case 401:
+				// Login failed
+
 				default:
 					break;
 			}

@@ -18,8 +18,9 @@
 		Self.TextOnly(!data.DisplayLink && (data.TimeOnScreen == 0));
 		Self.TimeOnScreen(data.TimeOnScreen);
 
-		for (var index = 0; index < data.Sponsors.length; ++index)
-			Self.Sponsors.push(new Sponsor(data.Sponsors[index]));
+		if( 0 != data.length )
+			for (var index = 0; index < data.Sponsors.length; ++index)
+				Self.Sponsors.push(new Sponsor(data.Sponsors[index]));
 	}
 }
 

@@ -35,6 +35,11 @@ namespace DevSpace.Api.Controllers {
 			level["Text"] = session.Level.Text;
 			SessionData["Level"] = level;
 
+			JObject category = new JObject();
+			category["Id"] = session.Category.Id;
+			category["Text"] = session.Category.Text;
+			SessionData["Category"] = category;
+
 			SessionData["RoomId"] = session.Room?.Id;
 			SessionData["TimeSlotId"] = session.TimeSlot?.Id;
 
@@ -88,7 +93,7 @@ namespace DevSpace.Api.Controllers {
 			try {
 				IList<ISession> Sessions = ( await _DataStore.GetAll() )
 					.Where( ses => ses.Accepted ?? false )
-					.Where( ses => ses.EventId == 2020 )
+					.Where( ses => ses.EventId == 2021 )
 					.OrderBy( ses => ses.Title )
 					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
 					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
@@ -119,7 +124,7 @@ namespace DevSpace.Api.Controllers {
 			try {
 				IList<ISession> Sessions = ( await _DataStore.GetAll() )
 					.Where( ses => ses.Accepted ?? false )
-					.Where( ses => ses.EventId == 2020 )
+					.Where( ses => ses.EventId == 2021 )
 					.OrderBy( ses => ses.Title )
 //					.Where( ses => ( ses.TimeSlot?.EndTime.Year ?? DateTime.MaxValue.Year ) > 2016 )
 					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
@@ -169,7 +174,7 @@ namespace DevSpace.Api.Controllers {
 		}
 
 		[Authorize]
-		//public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBinder ) )]ISession postedSession ) {
+		//public async Task<HttpResponseMessage> Post( [ModelBinder( typeof( JsonSessionBin der ) )]ISession postedSession ) {
 		public async Task<HttpResponseMessage> Post( JObject data ) {
 			ISession postedSession = JsonConvert.DeserializeObject<Session>( data.ToString() );
 			try {
