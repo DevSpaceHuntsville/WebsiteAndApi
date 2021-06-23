@@ -93,7 +93,9 @@ namespace DevSpace.Database {
 			}
 		}
 
-		public Task<IList<IArticle>> Get( string Field, object Value ) =>
+		public async Task<IList<IArticle>> Get( string Field, object Value ) {
+			await Task.Delay( 1 );
 			throw new NotImplementedException();
+		}
 	}
 }
