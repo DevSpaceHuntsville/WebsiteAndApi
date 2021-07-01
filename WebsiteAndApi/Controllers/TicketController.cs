@@ -36,7 +36,7 @@ namespace DevSpace.Api.Controllers {
 			EventBriteOrgId = Environment.GetEnvironmentVariable( "EVENTBRITEORGID", EnvironmentVariableTarget.Machine );
 			EventBriteApiKey = Environment.GetEnvironmentVariable( "EVENTBRITEAPIKEY", EnvironmentVariableTarget.Machine );
 			EventBriteEventId = Environment.GetEnvironmentVariable( "EVENTBRITEEVENTID", EnvironmentVariableTarget.Machine );
-			EventBriteTicketId = "285229515";// Environment.GetEnvironmentVariable( "EVENTBRITETICKETID", EnvironmentVariableTarget.Machine );
+			EventBriteTicketId = Environment.GetEnvironmentVariable( "EVENTBRITETICKETID", EnvironmentVariableTarget.Machine );
 #else
 			EventBriteOrgId = ConfigurationManager.AppSettings["EventBriteOrgId"];
 			EventBriteApiKey = ConfigurationManager.AppSettings["EventBriteApiKey"];
