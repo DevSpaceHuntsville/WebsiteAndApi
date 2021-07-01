@@ -25,14 +25,38 @@ namespace DevSpace.Api.Controllers {
 	}
 
 	public class TicketController : ApiController {
-		private class AccessCode {
-			public string code { get; set; }
-			public string[] ticket_ids { get; set; }
-			public int quantity_available { get; set; }
-		}
+		private static readonly HttpClient EventBriteApi;
 
-		private class EventBriteApiObject {
-			public AccessCode access_code { get; set; }
+		private static readonly string EventBriteOrgId; 
+		private static readonly string EventBriteApiKey;
+		private static readonly string EventBriteEventId;
+		private static readonly string EventBriteTicketId; 
+		static TicketController() {
+#if DEBUG
+			EventBriteOrgId = Environment.GetEnvironmentVariable( "EVENTBRITEORGID", EnvironmentVariableTarget.Machine );
+			EventBriteApiKey = Environment.GetEnvironmentVariable( "EVENTBRITEAPIKEY", EnvironmentVariableTarget.Machine );
+			EventBriteEventId = Environment.GetEnvironmentVariable( "EVENTBRITEEVENTID", EnvironmentVariableTarget.Machine );
+			EventBriteTicketId = "285229515";// Environment.GetEnvironmentVariable( "EVENTBRITETICKETID", EnvironmentVariableTarget.Machine );
+#else
+			EventBriteOrgId = ConfigurationManager.AppSettings["EventBriteOrgId"];
+			EventBriteApiKey = ConfigurationManager.AppSettings["EventBriteApiKey"];
+			EventBriteEventId = ConfigurationManager.AppSettings["EventBriteEventId"];
+			EventBriteTicketId = ConfigurationManager.AppSettings["EventBriteTicketId"];
+#endif
+
+			EventBriteApi = new HttpClient();
+			EventBriteApi.BaseAddress = new Uri( $"https://www.eventbriteapi.com/v3/organizations/{EventBriteOrgId}/discounts/" );
+
+			EventBriteApi.DefaultRequestHeaders.Accept.Clear();
+			EventBriteApi.DefaultRequestHeaders.Accept.Add(
+				new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue( "application/json" )
+			);
+
+			EventBriteApi.DefaultRequestHeaders.Authorization =
+				new System.Net.Http.Headers.AuthenticationHeaderValue(
+					"Bearer",
+					EventBriteApiKey
+				);
 		}
 
 		private IDataStore<IStudentCode> _DataStore;
@@ -75,39 +99,26 @@ namespace DevSpace.Api.Controllers {
 			while( 1 == ( await _DataStore.Get( "Code", NewStudentCode.Code ) ).Count )
 				NewStudentCode.Code = BitConverter.ToString( Guid.NewGuid().ToByteArray() ).Replace( "-", "" ).Substring( 0, 16 );
 
-			// Call EventBrite to create code
-#if DEBUG
-			string EventBriteApiKey = Environment.GetEnvironmentVariable( "EVENTBRITEAPIKEY", EnvironmentVariableTarget.Machine );
-			string EventBriteEventId = Environment.GetEnvironmentVariable( "EVENTBRITEEVENTID", EnvironmentVariableTarget.Machine );
-			string EventBriteTicketId = Environment.GetEnvironmentVariable( "EVENTBRITETICKETID", EnvironmentVariableTarget.Machine );
-#else
-			string EventBriteApiKey = ConfigurationManager.AppSettings["EventBriteApiKey"];
-			string EventBriteEventId = ConfigurationManager.AppSettings["EventBriteEventId"];
-			string EventBriteTicketId = ConfigurationManager.AppSettings["EventBriteTicketId"];
-#endif
-			EventBriteApiObject JsonObject = new EventBriteApiObject {
-				access_code = new AccessCode {
-					code = NewStudentCode.Code,
-					ticket_ids = new string[] { EventBriteTicketId },
-					quantity_available = 1
-				}
+			Newtonsoft.Json.Linq.JObject input = new Newtonsoft.Json.Linq.JObject {
+				["discount"] = new Newtonsoft.Json.Linq.JObject {
+						["type"] = "access",
+						["code"] = NewStudentCode.Code,
+						["event_id"] = EventBriteEventId,
+						["ticket_class_ids"] = new Newtonsoft.Json.Linq.JArray( new[] { EventBriteTicketId } ),
+						["quantity_available"] = 1
+					}
 			};
 
-			string Uri = string.Format( "https://www.eventbriteapi.com/v3/events/{0}/access_codes/", EventBriteEventId );
-
-			HttpWebRequest EventBriteRequest = HttpWebRequest.Create( Uri ) as HttpWebRequest;
-			EventBriteRequest.Headers.Add( "Authorization", string.Format( "Bearer {0}", EventBriteApiKey ) );
-			EventBriteRequest.ContentType = "application/json";
-			EventBriteRequest.Accept = "application/json";
-			EventBriteRequest.Method = "POST";
-
-			byte[] RequestBytes = Encoding.UTF8.GetBytes( JsonConvert.SerializeObject( JsonObject, Formatting.None ) );
-			EventBriteRequest.ContentLength = RequestBytes.Length;
-			using( Stream RequestStream = EventBriteRequest.GetRequestStream() )
-				RequestStream.Write( RequestBytes, 0, RequestBytes.Length );
-
 			try {
-				using( HttpWebResponse EventBriteResponse = await EventBriteRequest.GetResponseAsync() as HttpWebResponse );
+				HttpResponseMessage EventBriteResponse = await EventBriteApi.PostAsync(
+					string.Empty,
+					new StringContent(
+						input.ToString(),
+						Encoding.UTF8,
+						"application/json"
+					)
+				);
+				EventBriteResponse.Dispose();
 			} catch( WebException ) {
 				return new HttpResponseMessage( HttpStatusCode.BadGateway );
 			} catch( Exception ) {
