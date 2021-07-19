@@ -3,7 +3,7 @@
 	ErrorMessage.innerText = msg;
 	ErrorMessage.style.display = '';
 
-	setTimeout( 'ErrorMessage.style.display = "none";', 5000 );
+	setTimeout('ErrorMessage.style.display = "none";', 5000);
 }
 
 function Login() {
@@ -110,10 +110,32 @@ function GetToken() {
 
 function Register() {
 	if (VerifyPassword()) {
+		var name = document.getElementById('Name').value;
+		var email = document.getElementById('Email').value;
+		var password = document.getElementById('Password').value;
+
+		if (null == name || !name.trim()) {
+			var ErrorMessage = document.getElementById('ErrorMessage');
+			ErrorMessage.innerText = "Registration Failed. Display Name is Required.";
+			ErrorMessage.style.display = '';
+
+			document.getElementById('Name').focus();
+			return;
+		}
+
+		if (null == email || !email.trim()) {
+			var ErrorMessage = document.getElementById('ErrorMessage');
+			ErrorMessage.innerText = "Registration Failed. Email is Required.";
+			ErrorMessage.style.display = '';
+
+			document.getElementById('Email').focus();
+			return;
+		}
+
 		var RequestJson = {
-			DisplayName: document.getElementById('Name').value,
-			EmailAddress: document.getElementById('Email').value,
-			PasswordHash: document.getElementById('Password').value
+			DisplayName: name,
+			EmailAddress: email,
+			PasswordHash: password
 		};
 
 		var Request = new XMLHttpRequest();
