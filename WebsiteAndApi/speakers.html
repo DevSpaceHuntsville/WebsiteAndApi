@@ -33,7 +33,7 @@
             </p>
         </article>
 
-        <article>
+        <article style="display: none;">
             <h1>Update to 2021 Call For Speakers</h1>
             <p>
                 As we mentioned on the home page, we are in the process of transistioning the event to a virtual event.
@@ -51,7 +51,7 @@
             </p>
         </article>
 
-        <article>
+        <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
                 We are pleased to announce our call for speakers for DevSpace 2021.
@@ -135,7 +135,7 @@
             <input type="button" onclick="window.location.href = './login.html';" value="Submit Your Masterpieces!" />
         </article>
 
-        <section data-bind="foreach: Profiles" style="display: none;">
+        <section data-bind="foreach: Profiles">
             <article>
                 <h1 data-bind="text: DisplayName"></h1>
                 <img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
