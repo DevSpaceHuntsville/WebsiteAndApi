@@ -88,7 +88,7 @@ function ViewModel() {
 			SessionsRequest.open('GET', '/api/v1/session', true);
 	else
 		SessionsRequest.open('GET', '/api/v1/session', true);
-	//SessionsRequest.send();
+	SessionsRequest.send();
 
 	SessionsRequest.onreadystatechange = function () {
 		if (SessionsRequest.readyState == SessionsRequest.DONE) {

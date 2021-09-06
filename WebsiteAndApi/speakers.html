@@ -138,7 +138,7 @@
         <section data-bind="foreach: Profiles">
             <article>
                 <h1 data-bind="text: DisplayName"></h1>
-                <img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
+                <!-- ko if: ProfilePicture --><img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" /><!-- /ko -->
                 <p data-bind="html: Bio"></p>
                 <!-- ko if: Twitter || Website || Blog -->
                 <p>
