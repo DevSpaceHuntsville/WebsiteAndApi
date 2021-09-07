@@ -21,7 +21,7 @@
 		</p>
 	</article>
 
-	<article data-bind="foreach: SponsorLevels, visible: SponsorLevels.length">
+	<article data-bind="foreach: SponsorLevels">
 		<!-- ko if: DisplayInSidebar -->
 		<h1 data-bind="text: DisplayName"></h1>
 		<!-- ko foreach: Sponsors -->

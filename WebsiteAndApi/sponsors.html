@@ -94,7 +94,7 @@
 			<!-- /ko -->
 		<!--</article>-->
 
-		<article id="MainSponsorElement" data-bind="foreach: { data: SponsorLevels, as: 'Level' }, visible: SponsorLevels.length">
+		<article id="MainSponsorElement" data-bind="foreach: { data: SponsorLevels, as: 'Level' }">
 			<h1 data-bind="text: Level.DisplayName"></h1>
 			<!-- ko foreach: { data: Level.Sponsors, as: 'Spon' } -->
 			<p style="text-align: center;">
