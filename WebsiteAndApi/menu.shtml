@@ -1,8 +1,18 @@
 ﻿	<header>
 		<h1><a href="/">DevSpace</a></h1>
-		<img id="MenuButton" src="/images/menu.png" alt="menu" onclick="toggleMenu();" />
-		<menu id="MainMenu">
+		<button class="menu-button"
+		 id="MenuButton" type="button" onclick="toggleMenu();" aria-label="toggle menu">
+			<span class="material-icons">menu</span>
+		</button>
+		<nav id="MainMenu" title="main navigation" aria-describedby="MenuButton">
+			<div class="close">
+				<button class="menu-button"
+					onclick="toggleMenu();" type="button" onclick="toggleMenu();" aria-label="close menu">
+					 <span class="material-icons">close</span>
+			 </button>
+			</div>
 			<ul>
+				<li><a href="/index.html">Home</a></li>
 				<li><a href="/sessions.html">Sessions</a></li>
 				<li><a href="/speakers.html">Speakers</a></li>
 				<li><a href="/sponsors.html">Sponsors</a></li>
@@ -11,17 +21,37 @@
 				<li><a href="/conduct.html">Conduct</a></li>
 				<li><a href="/login.html">Login</a></li>
 			</ul>
-		</menu>
+		</nav>
+	</header>
 
 		<script type="text/javascript" defer>
+			let menu;
+			let closeButton;
+			(() => {
+				menu = document.getElementById('MainMenu');
+				Array.from(menu.querySelectorAll('a')).forEach(a => {
+					a.addEventListener('click', () => { menu.classList.remove('open'); });
+					a.addEventListener('keydown', event => { 
+						if (event.key !== 'Enter') { return; }
+						menu.classList.remove('open'); 
+					});
+				});
+				menu.addEventListener('animationend', () => {
+					console.log('animation end');
+					if (menu.classList.contains('closing')) {
+						menu.classList.remove('open');
+						menu.classList.remove('closing');
+					}
+				});
+			})();
+
 			function toggleMenu() {
-				var menu = document.getElementById('MainMenu');
-				var styleAttribute = menu.getAttribute('style');
-				if (styleAttribute == 'display: block;') {
-					menu.setAttribute('style', 'display: none;' );
+				var classes = menu.classList;
+				if (classes.contains('open')) {
+					console.log('closing');
+					menu.classList.add('closing');
 				} else {
-					menu.setAttribute('style', 'display: block;');
+					menu.classList.add('open');
 				}
 			}
 		</script>
-	</header>

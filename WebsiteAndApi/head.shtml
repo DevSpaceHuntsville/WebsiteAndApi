@@ -1,9 +1,11 @@
-﻿	<title>DevSpace Technical Conference</title>
+﻿<title>DevSpace Technical Conference</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="/styles/reset.css" rel="stylesheet" type="text/css" />
 	<link href="/styles/master.css" rel="stylesheet" type="text/css" />
 	<link href="/styles/menu.css" rel="stylesheet" type="text/css" />
 	<link href="/styles/sidebars.css" rel="stylesheet" type="text/css" />
 	<link href="/styles/showdown.css" rel="stylesheet" type="text/css" />
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.0/knockout-min.js" defer></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js" defer></script>

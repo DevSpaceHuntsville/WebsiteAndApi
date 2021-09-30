@@ -7,31 +7,71 @@ html, body {
 	padding: 0;
 	margin: 0;
 	font-family: Helvetica, Arial, sans-serif;
-	font-size: 16px;
+	font-weight: lighter;
+	width: 100vw;
 }
 
 body {
 	--font-family: Helvetica, Arial, sans-serif;
-	--primary: #3852A4;
+	--primary: #485997;
+	--accent: #206b7e;
 	--primary-contract: white;
 	--primary-hover: #526bbd;
 	--background: white;
 	--border-color: #d4deff;
 	--disabled-border: #c6c6c6;
+	--links: var(--primary);
+	--links-hover: var(--accent);
+	--shadow: 0 0 3px rgba(0, 0, 0, .16);
+	--overlay: rgba(255, 255, 255, .5);
 }
 
-h1, h2, h3 {
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;  /* Preferred icon size */
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+h1 {
+	color: var(--accent);
+}
+
+h2, h3 {
 	color: var(--primary);
 }
 
 p { line-height: 1.5; }
 
 a:link, a:visited {
-	color: var(--primary);
+	color: var(--links);
 	text-decoration: none;
 	font-weight: bold;
 }
 a:hover, a:focus {
+	text-decoration: underline;
+	color: var(--links-hover);
+}
+
+p a:link, a:visited {
 	text-decoration: underline;
 }
 
@@ -72,3 +112,5 @@ textarea:not(:disabled):hover, textarea:not(:disabled):focus,
 select:not(:disabled):hover, select:not(:disabled):focus {
 	border-color: var(--primary);
 }
+
+img { max-width: 100%; }
