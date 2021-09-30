@@ -110,7 +110,8 @@ function ViewModel() {
 
 	var ProfileRequest = new XMLHttpRequest();
 	ProfileRequest.withCredentials = true;
-	ProfileRequest.open('GET', '/api/v1/user/' + sessionStorage.getItem('Id'), true);
+	ProfileRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/user/' + sessionStorage.getItem('Id'), true); //	Staging
+	// ProfileRequest.open('GET', '/api/v1/user/' + sessionStorage.getItem('Id'), true);
 	ProfileRequest.send();
 
 	ProfileRequest.onreadystatechange = function () {

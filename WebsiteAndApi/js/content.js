@@ -33,9 +33,11 @@ function ContentViewModel() {
 
 	var ContentRequest = new XMLHttpRequest();
 	if (qd && qd.id)
-		ContentRequest.open('GET', '/api/v1/content/' + qd.id, true);
+		ContentRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/content/' + qd.id, true); // Staging
+		// ContentRequest.open('GET', '/api/v1/content/' + qd.id, true);
 	else
-		ContentRequest.open('GET', '/api/v1/content', true);
+		ContentRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/content', true);	//	Staging
+		// ContentRequest.open('GET', '/api/v1/content', true);
 	ContentRequest.send();
 
 	ContentRequest.onreadystatechange = function () {

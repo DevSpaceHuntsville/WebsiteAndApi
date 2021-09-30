@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-	<!-- #include file="head.shtml" -->
+	<!--# include file="head.shtml" -->
     <meta property="og:url" content="https://www.devspaceconf.com/speakers" />
 	<script type="text/javascript" src="/js/speakers.js" defer></script>
 </head>
 
 <body>
-	<!-- #include file="menu.shtml" -->
+	<!--# include file="menu.shtml" -->
 
     <section id="Content">
         <article style="display: none;">
@@ -135,7 +135,7 @@
             <input type="button" onclick="window.location.href = './login.html';" value="Submit Your Masterpieces!" />
         </article>
 
-        <section data-bind="foreach: Profiles" style="display: none;">
+        <section data-bind="foreach: Profiles">
             <article>
                 <h1 data-bind="text: DisplayName"></h1>
                 <img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" />
@@ -167,8 +167,8 @@
         </section>
     </section>
 
-	<!-- #include file="leftSidebar.shtml" -->
-	<!-- #include file="rightSidebar.shtml" -->
+	<!--# include file="leftSidebar.shtml" -->
+	<!--# include file="rightSidebar.shtml" -->
 </body>
 
 </html>

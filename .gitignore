@@ -238,3 +238,7 @@ _Pvt_Extensions
 # Config files with sensitive content
 Web.Production.config
 Web.Staging.config
+
+# Mac Files
+.DS_Store
+*.DS_Store
