@@ -9,6 +9,10 @@ header h1 {
   margin: 0;
   padding: 0;
 }
+
+header img {
+  width: 125px;
+}
 /* GLOBAL HEADER STYLES */
 header nav a { 
   display: block;
@@ -76,6 +80,23 @@ header nav.closing {
   align-items: center;
 }
 
-
+@media (min-width: 900px) {
+  header nav {
+    display: block;
+    position: relative;
+  }
+  .menu-button {
+    display: none;
+  }
+  header nav ul {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+  }
+  header ul li,
+  header ul li:last-of-type {
+    border: none; 
+  }
+}
 
 /* header { background: var(--primary); } */

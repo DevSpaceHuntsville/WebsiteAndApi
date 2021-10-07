@@ -14,9 +14,13 @@ html, body {
 body {
 	--font-family: Helvetica, Arial, sans-serif;
 	--primary: #485997;
-	--accent: #206b7e;
-	--primary-contract: white;
+	--primary-contrast: white;
 	--primary-hover: #526bbd;
+
+	--accent: #206b7e;
+	--accent-contrast: white; 
+  --accent-hover: #004a5c;
+
 	--background: white;
 	--border-color: #d4deff;
 	--disabled-border: #c6c6c6;
@@ -114,3 +118,41 @@ select:not(:disabled):hover, select:not(:disabled):focus {
 }
 
 img { max-width: 100%; }
+
+.container {
+	margin: 0 2rem;
+}
+
+.call-to-action {
+	border-style: solid;
+	border-width: 1px;
+	border-image: linear-gradient(45deg, #233061, #3aa7c2) 1;
+	margin-bottom: 1rem;
+	padding: 2rem;
+}
+.call-to-action h2 {
+	margin-top: 0;
+}
+.call-to-action .action {
+	display: inline-block;
+	background: var(--accent);
+	color: var(--accent-contrast);
+	padding: 2ex 4ch;
+	text-decoration: none;
+}
+.call-to-action .action:hover,
+.call-to-action .action:focus {
+	background: var(--accent-hover);
+}
+
+.actions {
+	text-align: center;
+}
+
+@media (min-width: 900px) {
+	.container {
+		display: grid;
+		grid-column-gap: 3rem;
+		grid-template-columns: 5fr 2fr;
+	}
+}
