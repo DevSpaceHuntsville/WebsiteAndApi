@@ -1,38 +1,76 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
+	<title>Login | DevSpace Technical Conference</title>
 	<!--# include file="head.shtml" -->
-    <meta property="og:url" content="https://www.devspaceconf.com/login.html" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<meta property="og:url" content="https://www.devspaceconf.com/login.html" />
+	<link href="/styles/login.css" rel="stylesheet" type="text/css" />
 	<script type="text/javascript" src="/js/login.js" defer></script>
 </head>
 
 <body>
 	<!--# include file="menu.shtml" -->
+	<div class="container" id="Content">
+		<main>
+			<h1>Login</h1>
+			<form id="authForm" onsubmit="login(event)">
 
-	<section id="Content">
-		<h4 id="ErrorMessage" style="display: none;"></h4>
-		<article id="Login">
-			<h1 class="LoginField">Login</h1>
-			<h1 class="RegistrationField">Register</h1>
-			<h2 class="RegistrationField">Display Name</h2>
-			<input type="text" id="Name" class="RegistrationField" tabindex="1" />
-			<h2>Email Address</h2>
-			<input type="text" id="Email" tabindex="2" />
-			<h2><a onclick="GetToken();" tabindex="9" style="float: right; cursor: pointer;">Forgot</a>Password</h2>
-			<input type="password" id="Password" onkeypress="ActionOnEnter( event, Login );" tabindex="3" />
-			<h2 class="RegistrationField">Verify Password</h2>
-			<input type="password" id="Verify" onblur="VerifyPassword();" onkeypress="ActionOnEnter( event, Register );" class="RegistrationField" tabindex="4" />
-			<input type="button" onclick="Login();" value="Login" class="LoginField" tabindex="5" />
-			<input type="button" onclick="Register();" value="Register" class="RegistrationField" tabindex="6" />
-			<h3>- OR -</h3>
-			<input type="button" onclick="ShowRegister();" value="Register" class="LoginField" tabindex="7" />
-			<input type="button" onclick="ShowLogin();" value="Cancel" class="RegistrationField" tabindex="8" />
-		</article>
-	</section>
+				<h2 class="login-only">Login with Email and Password</h2>
+				<h2 class="register-only hidden">Create Account</h2>
 
-	<!--# include file="leftSidebar.shtml" -->
-	<!--# include file="rightSidebar.shtml" -->
+				<label class="register-only hidden">
+					Display Name
+					<input name="displayName" type="text" id="displayName" autocomplete="username" />
+				</label>
+
+				<label>
+					Email Address
+					<input name="email" type="email" id="accountEmail" autocomplete="email" required />
+				</label>
+
+
+				<label class="password">
+					Password
+					<div>
+						<input name="password" type="password" id="password" required />
+						<button id="passwordToggle" type="button" onclick="togglePassword()">
+							<i class="material-icons">visibility</i>
+							<i class="material-icons hidden">visibility_off</i>
+						</button>
+					</div>
+				</label>
+				<button class="forgot-password login-only" type="button" onclick="getToken();">Forgot Password</button>
+				
+				<div class="error hidden" role="alert" id="error"></div>
+
+				<input class="login-only" type="submit" value="Submit" />
+				<input class="register-only hidden" type="submit"value="Submit" />
+
+				
+
+				<h2>- OR -</h2>
+				<div class="login-only">
+					<p>Don't have an account yet?</p>
+					<button type="button" onclick="showRegister();">Register</button>
+				</div>
+
+				<div class="register-only hidden">
+					<p>Already have an account?</p>
+					<button type="button" onclick="showLogin();">Login</button>
+				</div>
+
+
+			</form>
+		</main>
+		<aside>
+			<!--# include file="leftSidebar.shtml" -->
+			<!--# include file="rightSidebar.shtml" -->
+		</aside>
+	</div>
+
 </body>
 
 </html>

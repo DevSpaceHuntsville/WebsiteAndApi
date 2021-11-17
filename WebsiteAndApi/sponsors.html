@@ -1,122 +1,143 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
+	<title>Sponsors | DevSpace Technical Conference</title>
 	<!--# include file="head.shtml" -->
-    <meta property="og:url" content="https://www.devspaceconf.com/sponsors.html" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta property="og:url" content="https://www.devspaceconf.com/sponsors.html" />
 </head>
 
 <body>
 	<!--# include file="menu.shtml" -->
 
-	<section id="Content">
-		<article>
-			<h1>Sponsorships and Exhibitor Spaces Available</h1>
-			<p>
-				We are currently accepting sponsorships and exhibitor spaces for our 2021 conference.
-				You can find all the details in our <a href="https://devspacesponsorstorage.blob.core.windows.net/files/2021/devspace-prospectus.pdf" target="_blank">Sponsorship Prospectus</a>.
-			</p>
-		</article>
-		<article>
-			<h1>Donations to DevSpace</h1>
-			<p>
-				There are two options to donate through the buttons on the right.
-				If you use the PayPay Giving Fund button (which is the top one,) you must have a PayPal account to send funds.
-				However, donations received through there have no fees and We get 100% of the money you donate.
-				You will also receive a receipt to make your donation tax-deductible.
-			</p>
-			<p>
-				If you use the PayPay Direct button (which is the bottom one,) you can make a direct payment without a PayPal account.
-				This method also has the added bonus of releasing the funds to us quicker, but you won't get an instant receipt and we will get charged all the fees.
-				If you incude an email address on your donation, we'll reach out to you to produce a receipt.
-				If you do not, then you'll need to email us with the transaction Id.
-			</p>
+	<div class='container' id="Content">
+		<main>
+			<h1>Sponsors</h1>
+			<section>
+				<h2>Sponsorships and Exhibitor Spaces Available</h2>
+				<p>
+					We are currently accepting sponsorships and exhibitor spaces for our 2021 conference.
+					You can find all the details in our <a
+						href="https://devspacesponsorstorage.blob.core.windows.net/files/2021/devspace-prospectus.pdf"
+						target="_blank">Sponsorship Prospectus</a>.
+				</p>
+			</section>
 
-			<p>
-				We're so serious about this, that we have completely revamped the sponsor page for our site.
-				Every person that contributes (that we can manage to track) will get listed in some way on the sponsor page.
-				Once we figure out who you are, we'll get you added to the database.
-				Depending on how much you donate, you'll get the following perks:
-			</p>
+			<article>
+				<h2>Donations to DevSpace</h2>
+				<p>
+					There are two options to donate through the buttons on the right.
+					If you use the PayPay Giving Fund button (which is the top one,) you must have a PayPal account to send funds.
+					However, donations received through there have no fees and We get 100% of the money you donate.
+					You will also receive a receipt to make your donation tax-deductible.
+				</p>
+				<p>
+					If you use the PayPay Direct button (which is the bottom one,) you can make a direct payment without a PayPal
+					account.
+					This method also has the added bonus of releasing the funds to us quicker, but you won't get an instant receipt
+					and we will get charged all the fees.
+					If you include an email address on your donation, we'll reach out to you to produce a receipt.
+					If you do not, then you'll need to email us with the transaction Id.
+				</p>
+	
+				<p>
+					We're so serious about this, that we have completely revamped the sponsor page for our site.
+					Every person that contributes (that we can manage to track) will get listed in some way on the sponsor page.
+					Once we figure out who you are, we'll get you added to the database.
+					Depending on how much you donate, you'll get the following perks:
+				</p>
+	
+				<table>
+					<tr>
+						<th>Amazing Sponsor</th>
+						<td>Over $500</td>
+						<td>
+							Large image added to this page<br />
+							Small image added to sidebar on right<br />
+							Small image displayed in rotator on stream for 60 second intervals
+						</td>
+					</tr>
+					<tr>
+						<th>Special Sponsor</th>
+						<td>$300 - $499.99</td>
+						<td>
+							Large image added to this page<br />
+							Small image displayed in rotator on stream for 30 second intervals
+						</td>
+					</tr>
+					<tr>
+						<th>Image Sponsor</th>
+						<td>$150 - $299.99</td>
+						<td>
+							Small image added to this page<br />
+							Small image displayed in rotator on stream for 15 second intervals
+						</td>
+					</tr>
+					<tr>
+						<th>Link Sponsor</th>
+						<td>$50 - $149.99</td>
+						<td>Link added to name</td>
+					</tr>
+					<tr>
+						<th>Sponsor</th>
+						<td>Under $50</td>
+						<td>Name displayed on page</td>
+					</tr>
+				</table>
+				<p>
+					Well, I guess while we're at it, there are a few other places you can use to help us out.
+					We're listed in Humble Bundle, so you can request some of your purchases there go to us.
+					We're also registered with AmazonSmile.
+					I believe you have to look us up with our "legal entity name," which is DevSpace Huntsville.
+				</p>
+			</article>
+	
+			<article id="MainSponsorElement" data-bind="foreach: SponsorLevels">
+				<h2 data-bind="text: DisplayName"></h2>
+				<ul class="sponsors">
+					<!-- ko foreach: Sponsors -->
+					<li>
+						<a target="_blank" rel="noopener" data-bind="attr: {href: Website}">
+							<img data-bind="attr: { src: LogoLarge, alt: DisplayName }" width="400" />
+						</a>
+					</li>
+					<!-- /ko -->
+				</ul>
+			</article>
 
-			<table style="margin-left: 25px; margin-right: 25px; margin-bottom: 25px; width: 93%">
-				<tr style="border: 1px solid black">
-					<td style="font-weight: bold; padding-right: 25px;">Amazing Sponsor</td>
-					<td>Over $500</td>
-					<td style="font-style: italic; padding-left: 25px;">
-						Large image added to this page<br />
-						Small image added to sidebar on right<br />
-						Small image displayed in rotator on stream for 60 second intervals
-					</td>
-				</tr>
-				<tr style="border: 1px solid black">
-					<td style="font-weight: bold; padding-right: 25px;">Special Sponsor</td>
-					<td>$300 - $499.99</td>
-					<td style="font-style: italic; padding-left: 25px;">
-						Large image added to this page<br/>
-						Small image displayed in rotator on stream for 30 second intervals
-					</td>
-				</tr>
-				<tr style="border: 1px solid black">
-					<td style="font-weight: bold; padding-right: 25px;">Image Sponsor</td>
-					<td>$150 - $299.99</td>
-					<td style="font-style: italic; padding-left: 25px;">
-						Small image added to this page<br/>
-						Small image displayed in rotator on stream for 15 second intervals
-					</td>
-				</tr>
-				<tr style="border: 1px solid black">
-					<td style="font-weight: bold; padding-right: 25px;">Link Sponsor</td>
-					<td>$50 - $149.99</td>
-					<td style="font-style: italic; padding-left: 25px;">Link added to name</td>
-				</tr>
-				<tr style="border: 1px solid black">
-					<td style="font-weight: bold; padding-right: 25px;">Sponsor</td>
-					<td>Under $50</td>
-					<td style="font-style: italic; padding-left: 25px;">Name displayed on page</td>
-				</tr>
-			</table>
-
-			<p>
-				Well, I guess while we're at it, there are a few other places you can use to help us out.
-				We're listed in Humble Bundle, so you can request some of your purchases there go to us.
-				We're also registered with AmazonSmile.
-				I believe you have to look us up with our "legal entity name," which is DevSpace Huntsville.
-			</p>
-		</article>
-
-		<!--<article id="MainSponsorElement" data-bind="foreach: SponsorLevels">
-			<h1 data-bind="text: DisplayName"></h1>-->
-			<!-- ko foreach: Sponsors -->
-			<!--<p style="text-align: center;">
-				<a target="_blank" data-bind="attr: {href: Website}"><img data-bind="attr: { src: LogoLarge, alt: DisplayName }" /></a>
-			</p>-->
-			<!-- /ko -->
-		<!--</article>-->
-
-		<article id="MainSponsorElement" data-bind="foreach: { data: SponsorLevels, as: 'Level' }, visible: SponsorLevels.length">
-			<h1 data-bind="text: Level.DisplayName"></h1>
-			<!-- ko foreach: { data: Level.Sponsors, as: 'Spon' } -->
-			<p style="text-align: center;">
-				<!-- ko if: Level.DisplayLargeImage -->
-				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img width="400" data-bind="attr: { src: Spon.LogoLarge, alt: Spon.DisplayName }" /></a>
+			<article id="MainSponsorElement"
+				data-bind="foreach: { data: SponsorLevels, as: 'Level' }, visible: SponsorLevels.length">
+				<h1 data-bind="text: Level.DisplayName"></h1>
+				<!-- ko foreach: { data: Level.Sponsors, as: 'Spon' } -->
+				<p style="text-align: center;">
+					<!-- ko if: Level.DisplayLargeImage -->
+					<a target="_blank" data-bind="attr: {href: Spon.Website}"><img width="400"
+							data-bind="attr: { src: Spon.LogoLarge, alt: Spon.DisplayName }" alt=""/></a>
+					<!-- /ko -->
+					<!-- ko if: Level.DisplaySmallImage -->
+					<a target="_blank" data-bind="attr: {href: Spon.Website}"><img width="200"
+							data-bind="attr: { src: Spon.LogoSmall, alt: Spon.DisplayName }" alt=""/></a>
+					<!-- /ko -->
+					<!-- ko if: Level.DisplayLink -->
+					<a target="_blank" data-bind="attr: {href: Spon.Website}"><span data-bind="text: Spon.DisplayName"></span></a>
+					<!-- /ko -->
+					<!-- ko if: Level.TextOnly -->
+					<span data-bind="text: Spon.DisplayName"></span>
+					<!-- /ko -->
+				</p>
 				<!-- /ko -->
-				<!-- ko if: Level.DisplaySmallImage -->
-				<a target="_blank" data-bind="attr: {href: Spon.Website}"><img width="200" data-bind="attr: { src: Spon.LogoSmall, alt: Spon.DisplayName }" /></a>
-				<!-- /ko -->
-				<!-- ko if: Level.DisplayLink -->
-				<a target="_blank" data-bind="attr: {href: Spon.Website}"><span data-bind="text: Spon.DisplayName"></span></a>
-				<!-- /ko -->
-				<!-- ko if: Level.TextOnly -->
-				<span data-bind="text: Spon.DisplayName"></span>
-				<!-- /ko -->
-			</p>
-			<!-- /ko -->
-		</article>
-	</section>
+			</article>
 
-	<!--# include file="leftSidebar.shtml" -->
-	<!--# include file="rightSidebar.shtml" -->
+		</main>
+
+		<aside>
+			<!--# include file="leftSidebar.shtml" -->
+			<!--# include file="rightSidebar.shtml" -->
+		</aside>
+
+	</div>
 </body>
 
 </html>

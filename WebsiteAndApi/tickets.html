@@ -1,120 +1,140 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
+	<title>Tickets | DevSpace Technical Conference</title>
 	<!--# include file="head.shtml" -->
-    <meta property="og:url" content="https://www.devspaceconf.com/tickets.html" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+	<meta property="og:url" content="https://www.devspaceconf.com/tickets.html" />
 	<script type="text/javascript" src="js/tickets.js" defer></script>
 </head>
 
 <body>
 	<!--# include file="menu.shtml" -->
 
-	<section id="Content">
-		<article>
-			<h1>No Tickets Are Necessary</h1>
-			<p>
-				DevSpace will be a free event that is hosted on Twitch.
-				As such, tickets are not necessary.
-			</p>
-			<p>
-				If you'd like the support the event (and be AWESOME,) you can find details on how to make tex-deductable donations to us on the <a href="./sponsors.html">Sponsors Page</a>.
-			</p>
-		</article>
-	</section>
-
-	<section id="ContentOld" style="display: none;">
-		<article>
-			<h1>A brief message about tickets and COVID-19</h1>
-			<p>
-				We plan on having our conference on September 9-10 of this year.
-				However, as you know, we are still on the tail end of a pandemic.
-				He are hoping the levels of vaccinated adults will be high enough by early September.
-			</p>
-			<p>
-				To ensure the safely of all our guests, we ask that only fully vaccinated people attend.
-				We will provide some content free on our Twitch channel.
-			</p>
-			<p>
-				As for the precautions taking place during the event, we will assess the situation as we get closer to the event.
-				We assure you that we take the safety off all of our guests as a top priority.
-			</p>
-		</article>
-		<article>
-			<h1>Tickets will be available on EventBrite soon</h1>
-			<p>
-				DevSpace uses EventBrite for our tickets and PayPal as our payment processor.
-				This gives you security you can trust.
-			</p>
-			<p>
-				To access our EventBrite page for 2021, just press the stupidly large button below.
-			</p>
-			<input type="button" onclick="window.location.href = 'https://devspace.eventbrite.com/';" value="Get Tickets From EventBrite" />
-		</article>
-		<article>
-			<h1>Ticket Types</h1>
-			<p>
-				There is no difference between the various ticket types.
-				Each ticket will give you admittance to the conference, lunches, snacks, and swag.
-				If our budget allows, we may also provide breakfast.
-				You can get more details on that in the FAQ on the EventBrite page.
-			</p>
-			<p>
-				We will soon be offering a limited number of Super Early Bird Tickets.
-				These tickets are going for the super affordable price of $100.
-				These will be available until they either sell out or we start announcing some details.
-			</p>
-			<p>
-				Once the Super Early bird tickets are gone, we will start selling Early Bird Tickets.
-				These tickets are going for the not quite super affordable but still very affordable price of $125.
-				These will be available until they either sell out or we announce all the details.
-			</p>
-			<p>
-				Once the Early Bird tickets are gone, we will have standard tickets.
-				They are so standard, I didn't even upper case the word ticket.
-				These tickets are going for the not quite very affordable but still affordable price of $150.
-			</p>
-			<p>
-				Finally, once we get too close to the event, we will have late tickets.
-				Late tickets are the same as standard tickets, but cost more.
-				This is because I have to make projections on ticket sales that may or may not happen in the last 3 weeks.
-				These tickets are going for the still affordable but annoyingly increased price of $200.
-			</p>
-			<p>
-				There will also be a limited number of Student Tickets.
-				These tickets are going for the unbelievable price of $25.
-				The catch is that you have to have a valid .edu email account to get one.
-				Oh, and the fact that there are only 25 of them.
-			</p>
-		</article>
-		<article>
-			<h1>Student Tickets</h1>
-			<p>
-				Student tickets will be available soon.
-				To receive an access code for a student ticket, you will enter your email address in a field that will be available below.
-				We will verify the email address and send you the access code.
-				Further instructions will be in the email.
-			</p>
-			<p style="display: none;">
-				Student tickets are available.
-				We're having probems with our automted form this year.
-				Send an email to <a href="mailto:info@devspaceconf.com">info@devspaceconf.com</a>, and we'll get you set up as fast as we can.
-			</p>
-			<p style="display: none;">
-				To receive an access code for a student ticket, enter your email address in the field below.
-				We will verify the email address and send you the access code.
-				Further instructions will be in the email.
-			</p>
-			<form id="StudentCodeForm" data-bind="submit: GetCode">
-				<input type="email" data-bind="value: Email" />
-				<span data-bind="html:showSpinner"><input type="submit" value="Get Student Access Code" /></span>
-				<p data-bind="text: StatusMessage"></p>
-			</form>
-		</article>
-	</section>
-
-	<!--# include file="leftSidebar.shtml" -->
-	<!--# include file="rightSidebar.shtml" -->
+	<div class="container" id="Content">
+		<main>
+			<h1>Tickets</h1>
+			<section>
+				<h2>No Tickets Are Necessary</h2>
+				<p>
+					DevSpace will be a free event that is hosted on Twitch.
+					As such, tickets are not necessary.
+				</p>
+				<div class="call-to-action">
+					<h2>Support the event</h2>
+					<p>
+						If you'd like the support the event (and be AWESOME,) you can find details on how to make tax-deductible
+						donations to us on the <a href="./sponsors.html">Sponsors Page</a>.
+					</p>
+					<div class="actions">
+						<a class="button action" href="./sponsors.html">Sponsor DevSpace</a>
+					</div>
+				</div>
+			</section>
+			<section id="ContentOld">
+				<section>
+					<h2>A brief message about tickets and COVID-19</h2>
+					<p>
+						We plan on having our conference on September 9-10 of this year.
+						However, as you know, we are still on the tail end of a pandemic.
+						He are hoping the levels of vaccinated adults will be high enough by early September.
+					</p>
+					<p>
+						To ensure the safely of all our guests, we ask that only fully vaccinated people attend.
+						We will provide some content free on our Twitch channel.
+					</p>
+					<p>
+						As for the precautions taking place during the event, we will assess the situation as we get closer to the
+						event.
+						We assure you that we take the safety off all of our guests as a top priority.
+					</p>
+				</section>
+				<section class="call-to-action">
+					<h2>Tickets will be available on EventBrite soon</h2>
+					<p>
+						DevSpace uses EventBrite for our tickets and PayPal as our payment processor.
+						This gives you security you can trust.
+					</p>
+					<p>
+						To access our EventBrite page for 2021, just press the stupidly large button below.
+					</p>
+					<div class="actions">
+						<a class="action" href="https://devspace.eventbrite.com/" rel="noopener" target="_blank">Get Ticket From EventBrite</a>
+					</div>
+				</section>
+				<section>
+					<h2>Ticket Types</h2>
+					<p>
+						There is no difference between the various ticket types.
+						Each ticket will give you admittance to the conference, lunches, snacks, and swag.
+						If our budget allows, we may also provide breakfast.
+						You can get more details on that in the FAQ on the EventBrite page.
+					</p>
+					<p>
+						We will soon be offering a limited number of Super Early Bird Tickets.
+						These tickets are going for the super affordable price of $100.
+						These will be available until they either sell out or we start announcing some details.
+					</p>
+					<p>
+						Once the Super Early bird tickets are gone, we will start selling Early Bird Tickets.
+						These tickets are going for the not quite super affordable but still very affordable price of $125.
+						These will be available until they either sell out or we announce all the details.
+					</p>
+					<p>
+						Once the Early Bird tickets are gone, we will have standard tickets.
+						They are so standard, I didn't even upper case the word ticket.
+						These tickets are going for the not quite very affordable but still affordable price of $150.
+					</p>
+					<p>
+						Finally, once we get too close to the event, we will have late tickets.
+						Late tickets are the same as standard tickets, but cost more.
+						This is because I have to make projections on ticket sales that may or may not happen in the last 3 weeks.
+						These tickets are going for the still affordable but annoyingly increased price of $200.
+					</p>
+					<p>
+						There will also be a limited number of Student Tickets.
+						These tickets are going for the unbelievable price of $25.
+						The catch is that you have to have a valid .edu email account to get one.
+						Oh, and the fact that there are only 25 of them.
+					</p>
+				</section>
+				<section>
+					<h2>Student Tickets</h2>
+					<p>
+						Student tickets will be available soon.
+						To receive an access code for a student ticket, you will enter your email address in a field that will be
+						available below.
+						We will verify the email address and send you the access code.
+						Further instructions will be in the email.
+					</p>
+					<p style="display: none;">
+						Student tickets are available.
+						We're having problems with our automated form this year.
+						Send an email to <a href="mailto:info@devspaceconf.com">info@devspaceconf.com</a>, and we'll get you set up
+						as
+						fast as we can.
+					</p>
+					<p style="display: none;">
+						To receive an access code for a student ticket, enter your email address in the field below.
+						We will verify the email address and send you the access code.
+						Further instructions will be in the email.
+					</p>
+					<form id="StudentCodeForm" data-bind="submit: GetCode">
+						<label for="studentCodeEmail">Email</label>
+						<input id="studentCodeEmail" type="email" data-bind="value: Email" autocomplete="email" name="email" required/>
+						<span data-bind="html:showSpinner"><input type="submit" value="Get Student Access Code" /></span>
+						<p role="alert" data-bind="text: StatusMessage"></p>
+					</form>
+				</section>
+			</section>
+		</main>
+		<aside>		
+			<!--# include file="leftSidebar.shtml" -->
+			<!--# include file="rightSidebar.shtml" -->
+		</aside>
+	</div>
 </body>
 
 </html>

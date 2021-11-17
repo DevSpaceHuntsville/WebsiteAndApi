@@ -1,5 +1,7 @@
 ﻿	<header>
-		<h1><a href="/"><img id="Logo" src="images/DevSpace_ForWeb_400wide.png" alt="DevSpace Logo" height="81" width="125" /></a></h1>
+		<h1>
+			<a href="/">DevSpace</a>
+		</h1>
 		<button class="menu-button"
 		 id="MenuButton" type="button" onclick="toggleMenu();" aria-label="toggle menu">
 			<span class="material-icons">menu</span>

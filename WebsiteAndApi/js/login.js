@@ -1,48 +1,47 @@
-﻿function ShowMessage(msg) {
-	var ErrorMessage = document.getElementById('ErrorMessage');
-	ErrorMessage.innerText = msg;
-	ErrorMessage.style.display = '';
-
-	setTimeout('ErrorMessage.style.display = "none";', 5000);
+﻿function showMessage(msg) {
+	const messageContainer = document.getElementById('error');
+	messageContainer.innerText = msg;
+	messageContainer.classList.remove('hidden');
+	setTimeout(() => messageContainer.classList.add('hidden'), 10000);
 }
 
-function Login() {
+function login(event) {
+	event.preventDefault();
+	document.body.style.cursor = 'wait';
+
 	var Request = new XMLHttpRequest();
 	Request.withCredentials = true;
 	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login', true);	//	Staging
 	// Request.open('GET', '/api/v1/Login', true);
 	Request.setRequestHeader('Accept', 'text/plain');
-	Request.setRequestHeader('Authorization', 'Basic ' + btoa(document.getElementById('Email').value + ':' + document.getElementById('Password').value));
+	const email = document.getElementById('accountEmail');
+	const password = document.getElementById('password');
+	Request.setRequestHeader('Authorization', 'Basic ' + btoa(email.value + ':' + password.value));
 	Request.send();
 
 	Request.onreadystatechange = function () {
 		if (Request.readyState == Request.DONE) {
-			document.body.style.cursor = '';
 			switch (Request.status) {
 				case 200:
 					sessionStorage.setItem('Id', Request.responseText);
 					window.location = '/profile.html';
 					break;
-
 				case 401:
-					ShowMessage('Bad Email or Password');
+					showMessage('Invalid Email or Password');
 					break;
-
 				default:
-					ShowMessage('Unknown Error');
+					showMessage('Something went wrong, please try again later');
 					break;
 			}
 		}
 	};
-
-	document.body.style.cursor = 'wait';
+	document.body.style.cursor = '';
 }
 
 var Forced = false;
 function Force() {
-	if (Forced)
-		return;
-
+	if (Forced) { return; }
+	document.body.style.cursor = 'wait';
 	Forced = true;
 
 	var Token = window.location.search.substring(7);
@@ -63,175 +62,132 @@ function Force() {
 					sessionStorage.setItem('Id', Request.responseText);
 					window.location = '/profile.html';
 					break;
-
 				default:
-					var ErrorMessage = document.getElementById('ErrorMessage');
-					ErrorMessage.innerText = "Invalid Token";
-					ErrorMessage.style.display = '';
-					break;
+					showMessage("Invalid Token");
 			}
+			document.body.style.cursor = '';
 		}
 	};
-
-	document.body.style.cursor = 'wait';
 }
 
-function GetToken() {
-	if ('' == document.getElementById('Email').value.trim()) {
+function getToken() {
+	document.body.style.cursor = 'wait';
+	const email = document.getElementById('accountEmail').value;
+	if (!email || !email.trim()) {
 		alert('You must enter an email address.');
+		document.body.style.cursor = '';
 		return;
 	}
 
 	var Request = new XMLHttpRequest();
 	Request.withCredentials = true;
-	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login/?Email=' + document.getElementById('Email').value, true);	//	Staging
+	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login/?Email=' + email, true);	//	Staging
 	// Request.open('GET', '/api/v1/Login/?Email=' + document.getElementById('Email').value, true);
 	Request.setRequestHeader('Accept', 'text/plain');
 	Request.send();
 
 	Request.onreadystatechange = function () {
-		if (Request.readyState == Request.DONE) {
-			document.body.style.cursor = '';
-			switch (Request.status) {
-				case 200:
-					var ErrorMessage = document.getElementById('ErrorMessage');
-					ErrorMessage.innerText = Request.responseText.replace('\"', '').replace('\"', '');
-					ErrorMessage.style.display = '';
-					break;
-
-				default:
-					var ErrorMessage = document.getElementById('ErrorMessage');
-					ErrorMessage.innerText = "Error Processing Request";
-					ErrorMessage.style.display = '';
-					break;
-			}
+		if (Request.readyState !== Request.DONE) { return; }
+		document.body.style.cursor = '';
+		switch (Request.status) {
+			case 200:
+				const message = Request.responseText.replace('\"', '').replace('\"', '');
+				showMessage(message);
+				break;
+			default:
+				showMessage('Error Processing Request');
+				break;
 		}
 	};
+	document.body.style.cursor = '';
+}
 
+function register(event) {
+	event.preventDefault();
 	document.body.style.cursor = 'wait';
-}
 
-function Register() {
-	if (VerifyPassword()) {
-		var name = document.getElementById('Name').value;
-		var email = document.getElementById('Email').value;
-		var password = document.getElementById('Password').value;
+	const name = document.getElementById('displayName').value;
+	const email = document.getElementById('accountEmail').value;
+	const password = document.getElementById('password').value;
 
-		if (null == name || !name.trim()) {
-			var ErrorMessage = document.getElementById('ErrorMessage');
-			ErrorMessage.innerText = "Registration Failed. Display Name is Required.";
-			ErrorMessage.style.display = '';
-
-			document.getElementById('Name').focus();
-			return;
-		}
-
-		if (null == email || !email.trim()) {
-			var ErrorMessage = document.getElementById('ErrorMessage');
-			ErrorMessage.innerText = "Registration Failed. Email is Required.";
-			ErrorMessage.style.display = '';
-
-			document.getElementById('Email').focus();
-			return;
-		}
-
-		var RequestJson = {
-			DisplayName: name,
-			EmailAddress: email,
-			PasswordHash: password
-		};
-
-		var Request = new XMLHttpRequest();
-		Request.withCredentials = true;
-		Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login', true);	//	Staging
-		// Request.open('POST', '/api/v1/user', true);
-		Request.setRequestHeader('Content-Type', 'application/json')
-		Request.send(JSON.stringify(RequestJson));
-
-		Request.onreadystatechange = function () {
-			if (Request.readyState == Request.DONE) {
-				document.body.style.cursor = '';
-				switch (Request.status) {
-					case 201:
-						Login();
-						break;
-
-					case 401:
-						var ErrorMessage = document.getElementById('ErrorMessage');
-						ErrorMessage.innerText = "Registration Failed. Email Already Registered.";
-						ErrorMessage.style.display = '';
-						break;
-
-					default:
-						var ErrorMessage = document.getElementById('ErrorMessage');
-						ErrorMessage.innerText = "Unknown Error";
-						ErrorMessage.style.display = '';
-						break;
-				}
-			}
-		};
-
-		document.body.style.cursor = 'wait';
+	if (!name || !name.trim()) {
+		showMessage('Please provide a display name');
+		document.body.style.cursor = '';
+		return;
 	}
+	if (!email || !email.trim()) {
+		showMessage('Please provide a valid email address');
+		document.body.style.cursor = '';
+		return;
+	}
+	if (!password || !password.trim()) {
+		showMessage('Please provide a password');
+		document.body.style.cursor = '';
+		return;
+	}
+
+	var RequestJson = {
+		DisplayName: name,
+		EmailAddress: email,
+		PasswordHash: password
+	};
+
+	var Request = new XMLHttpRequest();
+	Request.withCredentials = true;
+	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login', true);	//	Staging
+	// Request.open('POST', '/api/v1/user', true);
+	Request.setRequestHeader('Content-Type', 'application/json');
+	Request.send(JSON.stringify(RequestJson));
+
+	Request.onreadystatechange = function () {
+		if (Request.readyState !== Request.DONE) { return; }
+		switch (Request.status) {
+			case 201:
+				Login(event);
+				break;
+			case 401:
+				showMessage('Could not create an account. An account with this email already exists');
+				break;
+			default:
+				showMessage('An unknown error has occurred, please try again');
+		}
+		document.body.style.cursor = '';
+	};
+
 }
 
-function VerifyPassword() {
-	var Verify = document.getElementById('Verify');
-	var Password = document.getElementById('Password');
+function showRegister() {
+	const loginFields = Array.from(document.querySelectorAll('.login-only'));
+	const registerFields = Array.from(document.querySelectorAll('.register-only'));
+	const form = document.getElementById('authForm');
+	const displayName = document.getElementById('displayName');
 
-	if (Password.value && (document.getElementById('Password').value == Verify.value)) {
-		document.getElementById('ErrorMessage').style.display = 'none';
-		Verify.style.borderColor = '#000000';
-		return true;
+
+	loginFields.forEach(f => { f.classList.add('hidden'); });
+	registerFields.forEach(f => f.classList.remove('hidden'));
+	form.setAttribute('onsubmit', 'register(event)');
+	displayName.setAttribute('required', '');
+}
+
+function showLogin() {
+	const loginFields = Array.from(document.querySelectorAll('.login-only'));
+	const registerFields = Array.from(document.querySelectorAll('.register-only'));
+	const form = document.getElementById('authForm');
+	const displayName = document.getElementById('displayName');
+
+	loginFields.forEach(f => { f.classList.remove('hidden'); });
+	registerFields.forEach(f => f.classList.add('hidden'));
+	form.setAttribute('onsubmit', 'login(event)');
+	displayName.removeAttribute('required');
+}
+
+function togglePassword() {
+	const icons = Array.from(document.getElementById('passwordToggle').children);
+	icons.forEach(i => i.classList.toggle('hidden'));
+	const passwordInput = document.getElementById('password');
+	if (passwordInput.type === 'password') {
+		passwordInput.setAttribute('type', 'text');
 	} else {
-		document.getElementById('ErrorMessage').style.display = '';
-		document.getElementById('ErrorMessage').innerText = 'Password and Verification did not match';
-		Verify.style.borderColor = '#FF0000';
-		return false;
+		passwordInput.setAttribute('type', 'password');
 	}
 }
-
-function ShowRegister() {
-	var LoginFields = document.getElementsByClassName('LoginField');
-	var RegistrationFields = document.getElementsByClassName('RegistrationField');
-
-	var index;
-	for (index = 0; index < LoginFields.length; ++index) {
-		LoginFields[index].style.display = 'none';
-	}
-
-	for (index = 0; index < RegistrationFields.length; ++index) {
-		RegistrationFields[index].style.display = '';
-	}
-
-	document.getElementById('Name').focus();
-}
-
-function ShowLogin() {
-	if (window.location.search.toUpperCase().indexOf("FORCE") > -1) {
-		Force();
-	}
-
-	var LoginFields = document.getElementsByClassName('LoginField');
-	var RegistrationFields = document.getElementsByClassName('RegistrationField');
-
-	var index;
-	for (index = 0; index < LoginFields.length; ++index) {
-		LoginFields[index].style.display = '';
-	}
-
-	for (index = 0; index < RegistrationFields.length; ++index) {
-		RegistrationFields[index].style.display = 'none';
-	}
-
-	document.getElementById('Email').focus();
-}
-
-function ActionOnEnter(e, f) {
-	if (e.char == '\n') {
-		f();
-	}
-}
-
-ShowLogin();
-//window.onload = ShowLogin;
