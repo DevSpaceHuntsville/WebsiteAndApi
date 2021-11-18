@@ -1,0 +1,16 @@
+input.twitter { margin-bottom: 0; }
+.twitter-container {
+  display: flex;
+}
+.twitter-container div {
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  background: var(--neutral);
+  border-radius: 4px 0 0 4px;
+  font-weight: bold;
+}
+
+.twitter-container input {
+  border-radius: 0 4px 4px 0;
+}

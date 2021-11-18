@@ -127,6 +127,8 @@ button:not(:disabled):hover, button:not(:disabled):focus,
 	cursor: pointer;
 }
 
+/** Forms Stuff **/
+
 input, textarea, select {
 	display: block;
 	width: 100%;
@@ -157,6 +159,23 @@ input[type="submit"] {
 input[type="submit"]:hover,
 input[type="submit"]:focus {
 	background: var(--primary-hover);
+}
+fieldset {
+	border: none;
+	margin-inline: 0;
+	padding-block: 0;
+	padding-inline: 0;
+	margin: 2rem 0;
+}
+legend {
+	color: var(--accent);
+	font-weight: bold;
+	font-size: 1.0625rem;
+	margin-bottom: 1rem;
+}
+.hint {
+	text-align: right;
+	font-style: italic;
 }
 
 img { max-width: 100%; }
