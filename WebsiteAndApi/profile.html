@@ -16,105 +16,145 @@
 				<h1>Profile</h1>
 				<div role="alert" class="error hidden" id="ErrorMessage"></div>
 				<form id="Profile">
-					
-					<label for="displayName">Display Name</label>
-					<input required id="displayName" type="text" data-bind="value: Profile().DisplayName" />
 
-					<label for="profileEmailAddress">Email Address</label>
-					<input type="email" id="profileEmailAddress" readonly  data-bind="value: Profile().EmailAddress" />
+					<label for="displayName">Display Name</label>
+					<input class="has-errors" required id="displayName" type="text" autocomplete="username"
+						data-bind="value: Profile().DisplayName" aria-errormessage="displayNameError" />
+					<div class="error" id="displayNameError" role="alert">
+						Display Name is a required field
+					</div>
+
+					<label for="profileEmailAddress" autocomplete="email">Email Address</label>
+					<input type="email" id="profileEmailAddress" readonly data-bind="value: Profile().EmailAddress" />
 
 					<label for="ProfilePicture">Profile Picture</label>
-					<input type="url" id="ProfilePicture" data-bind="value: Profile().ProfilePicture" />
+					<input type="url" id="ProfilePicture" aria-describedby="profilePictureHint" placeholder="https://"
+						data-bind="value: Profile().ProfilePicture" pattern="https{0,1}:\/\/\S.*?(\.png|.svg|.jpeg)"
+						class="has-hint has-errors" aria-errormessage="profilePictureError" />
+					<div class="error" id="profilePictureError" role="alert">Please provide a valid url starting with http or
+						https that point to a picture file (.png, .svg, or .jpeg)</div>
+					<div class="hint" id="profilePictureHint">URL to a hosted image</div>
 
 					<fieldset>
 						<legend>Web Presence</legend>
 
 						<label for="twitter">Twitter</label>
 						<div class="twitter-container">
-							<div><span>@</span></div>
-							<input placeholder="handle" maxlength="15" class="twitter" type="text" id="twitter" data-bind="value: Profile().Twitter" />
+							<div class="arobase"><span>@</span></div>
+							<input placeholder="handle" maxlength="15" class="twitter" type="text" id="twitter"
+								data-bind="value: Profile().Twitter" pattern="/^[^@].+$/" aria-errormessage="twitterError" />
+							<div class="error" id="twitterError" role="alert">Please do not include the @ at the beginning of the
+								handle.</div>
+							<div class="hint" id="twitterHint">Include twitter handle <strong>without</strong> the "@"</div>
 						</div>
-						<div class="hint" id="twitterHint">Include twitter handle <strong>without</strong> the "@".</div>
-	
-						<label for="website">Website</label>						
-						<input id="website" type="url" data-bind="value: Profile().Website" />
-						
+
+						<label for="website">Website</label>
+						<input id="website" type="url" data-bind="value: Profile().Website" aria-errormessage="websiteError"
+							placeholder="https://" />
+						<div class="error" id="websiteError" role="alert">Please provide a valid url starting with http or https
+						</div>
+
 						<label for="blog">Blog</label>
-						<input id="blog" type="url" data-bind="value: Profile().Blog" />
+						<input id="blog" type="url" data-bind="value: Profile().Blog" placeholder="https://"
+							aria-errormessage="blogError" />
+						<div class="error" id="blogError" role="alert">Please provide a valid url starting with http or https</div>
 
 					</fieldset>
 
 					<label for="bio">Bio</label>
-					<textarea aria-describedby="bioHint" rows="10" maxlength="5000" id="bio" data-bind="textInput: Profile().Bio"></textarea>
+					<textarea aria-describedby="bioHint" rows="10" maxlength="5000" id="bio"
+						data-bind="textInput: Profile().Bio"></textarea>
 					<div id="bioHint" class="hint">0 / 5000</div>
 
-					<h2>Speaker Profile Preview</h2>
-					<!-- Bio Preview (If you change here, change in speakers.html) -->
-					<h1 data-bind="text: Profile().DisplayName"></h1>
-					<img data-bind="attr: { src: Profile().ProfilePicture }" width="200" height="200" style="float: right" />
-					<p data-bind="html: Profile().TransformedBio"></p>
-					<!-- ko if: Profile().Twitter || Profile().Website || Profile().Blog -->
-					<p>
-						<!-- ko if: Profile().Twitter -->
-						<a target="_blank" data-bind="text: Profile().Twitter, attr: { href: Profile().TwitterLink }"></a>
-						<!-- /ko -->
-						<!-- ko if: Profile().Website -->
-						<!-- ko if: Profile().Twitter -->
-						<br />
-						<!-- /ko -->
-						<a target="_blank" data-bind="text: Profile().Website, attr: { href: Profile().Website }"></a>
-						<!-- /ko -->
-						<!-- ko if: Profile().Blog -->
-						<!-- ko if: Profile().Twitter || Profile().Website -->
-						<br />
-						<!-- /ko -->
-						<a target="_blank" data-bind="text: Profile().Blog, attr: { href: Profile().Blog }"></a>
-						<!-- /ko -->
-					</p>
-					<!-- /ko -->
-					<hr />
-					<!-- End Bio Preview -->
-					<input type="button" data-bind="click: SaveProfile" value="Save Profile" />
-					<input type="button" data-bind="click: ShowCredentials" value="Update Credentials" />
-					<input type="button" data-bind="click: function () { ShowSession(null) }" value="New Session" />
-					<h1>Sessions</h1>
-					<table>
-						<tbody id="SessionList" data-bind="foreach: Sessions">
-							<tr>
-								<td class="Title" data-bind="text: Title"></td>
-								<td><img src="/images/Edit.png" alt="Edit" data-bind="click: $root.ShowSession" /></td>
-								<td><img src="/images/Trash.png" alt="Delete" data-bind="click: $root.DeleteSession" /></td>
-							</tr>
-						</tbody>
-					</table>
-					<h1>Past Sessions</h1>
-					<table>
-						<tbody id="SessionList" data-bind="foreach: PastSessions">
-							<tr>
-								<td class="Title" data-bind="text: EventId"></td>
-								<td class="Title" data-bind="text: Title"></td>
-								<td><img src="/images/Resubmit.png" alt="Resubmit" data-bind="click: $root.ResubmitSession" /></td>
-							</tr>
-						</tbody>
-					</table>
+					<button type="submit" data-bind="click: SaveProfile" value="Save Profile">Save Profile</button>
+
 				</form>
+				<h2>Speaker Profile Preview</h2>
+				<!-- Bio Preview (If you change here, change in speakers.html) -->
+				<h1 data-bind="text: Profile().DisplayName"></h1>
+				<img data-bind="attr: { src: Profile().ProfilePicture }" width="200" height="200" style="float: right" />
+				<p data-bind="html: Profile().TransformedBio"></p>
+				<!-- ko if: Profile().Twitter || Profile().Website || Profile().Blog -->
+				<p>
+					<!-- ko if: Profile().Twitter -->
+					<a target="_blank" data-bind="text: Profile().Twitter, attr: { href: Profile().TwitterLink }"></a>
+					<!-- /ko -->
+					<!-- ko if: Profile().Website -->
+					<!-- ko if: Profile().Twitter -->
+					<br />
+					<!-- /ko -->
+					<a target="_blank" data-bind="text: Profile().Website, attr: { href: Profile().Website }"></a>
+					<!-- /ko -->
+					<!-- ko if: Profile().Blog -->
+					<!-- ko if: Profile().Twitter || Profile().Website -->
+					<br />
+					<!-- /ko -->
+					<a target="_blank" data-bind="text: Profile().Blog, attr: { href: Profile().Blog }"></a>
+					<!-- /ko -->
+				</p>
+				<!-- /ko -->
+				<hr />
+				<!-- End Bio Preview -->
+
+				<input type="button" data-bind="click: ShowCredentials" value="Update Credentials" />
+				<input type="button" data-bind="click: function () { ShowSession(null) }" value="New Session" />
+				<h1>Sessions</h1>
+				<table>
+					<tbody id="SessionList" data-bind="foreach: Sessions">
+						<tr>
+							<td class="Title" data-bind="text: Title"></td>
+							<td><img src="/images/Edit.png" alt="Edit" data-bind="click: $root.ShowSession" /></td>
+							<td><img src="/images/Trash.png" alt="Delete" data-bind="click: $root.DeleteSession" /></td>
+						</tr>
+					</tbody>
+				</table>
+				<h1>Past Sessions</h1>
+				<table>
+					<tbody id="SessionList" data-bind="foreach: PastSessions">
+						<tr>
+							<td class="Title" data-bind="text: EventId"></td>
+							<td class="Title" data-bind="text: Title"></td>
+							<td><img src="/images/Resubmit.png" alt="Resubmit" data-bind="click: $root.ResubmitSession" /></td>
+						</tr>
+					</tbody>
+				</table>
 
 
 				<article id="Session" style="display: none;">
 					<h1>Session</h1>
-					<h2>Title</h2>
-					<input type="text" data-bind="value: SelectedSession().Title" />
-					<h2>Abstract (visible to attendees)</h2>
-					<textarea data-bind="textInput: SelectedSession().Abstract"></textarea>
-					<h2>Abstract Preview</h2>
-					<!-- Abstract Preview (If you change here, change in sessions.html) -->
-					<h1 data-bind="text: SelectedSession().Title"></h1>
-					<p data-bind="html: SelectedSession().TransformedAbstract"></p>
-					<h2>Speaker: <a data-bind="text: Profile().DisplayName"></a></h2>
-					<h2 data-bind="with: SelectedSession().Level()">Level: <a data-bind="text: Text"></a></h2>
-					<h2 data-bind="with: SelectedSession().Category()">Category: <a data-bind="text: Text"></a></h2>
-					<h2>Tags: <!-- ko foreach: SelectedSession().Tags() --><a data-bind="text: Text"></a>; <!-- /ko --></h2>
-					<hr />
+					<form>
+						<div class="preview-container">
+							<div class="input">
+								<label for="sessionTitle">Title</label>
+								<input type="text" id="sessionTitle" data-bind="value: SelectedSession().Title" maxlength="250" />
+	
+								<label for="sessionAbstract">Abstract</label>
+								<textarea rows="15" id="sessionAbstract" data-bind="textInput: SelectedSession().Abstract" aria-describedby="sessionAbstractHint"></textarea>
+								<div class="hint" id="sessionAbstractHint">visible to attendees</div>
+							</div>
+							<div class="output">
+								<h2>Abstract Preview</h2>
+								<!-- Abstract Preview (If you change here, change in sessions.html) -->
+								<h1 data-bind="text: SelectedSession().Title"></h1>
+								<p data-bind="html: SelectedSession().TransformedAbstract"></p>
+								<dl>
+									<!-- TODO: Make links not links just look like links -->
+									<dt>Speaker</dt>
+									<dd><a data-bind="text: Profile().DisplayName"></a></dd>
+									<dt>Level</dt>
+									<dd><a data-bind="text: Text"></a></dd>
+									<dt>Category</dt>
+									<dd><a data-bind="text: Text"></a></dd>
+									<dt>Tags</dt>
+									<!-- ko foreach: SelectedSession().Tags() -->
+										<dd><a data-bind="text: Text"></a></dd>;
+									<!-- /ko -->
+								</dl>
+								<!-- End Abstract Preview -->
+							</div>
+						</div>
+					</form>
+
 					<!-- End Abstract Preview -->
 					<h2>Notes to Reviewer (not visible to attendees)</h2>
 					<textarea data-bind="value: SelectedSession().Notes"></textarea>
@@ -156,8 +196,8 @@
 			</section>
 		</main>
 		<aside>
-				<!--# include file="leftSidebar.shtml" -->
-				<!--# include file="rightSidebar.shtml" -->
+			<!--# include file="leftSidebar.shtml" -->
+			<!--# include file="rightSidebar.shtml" -->
 		</aside>
 	</div>
 </body>

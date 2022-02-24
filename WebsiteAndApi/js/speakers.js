@@ -80,11 +80,9 @@ function ViewModel() {
 	// 
 	var ProfileRequest = new XMLHttpRequest();
 	if (qd && qd.id)
-		ProfileRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/user/' + qd.id, true); // staging
-		// ProfileRequest.open('GET', '/api/v1/user/' + qd.id, true);
+		ProfileRequest.open('GET', `${currentEnvironment}/user/` + qd.id, true);
 	else
-		ProfileRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/user', true); // staging
-		// ProfileRequest.open('GET', '/api/v1/user', true);
+		ProfileRequest.open('GET', `${currentEnvironment}/user`, true);
 	ProfileRequest.send();
 
 	ProfileRequest.onreadystatechange = function () {

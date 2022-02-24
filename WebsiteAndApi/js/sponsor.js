@@ -44,8 +44,7 @@ function SponsorSidebarViewModel() {
 	Self.SponsorLevels = ko.observableArray([]);
 
 	var SponsorRequest = new XMLHttpRequest();
-	SponsorRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/sponsor', true); //	Staging
-	// SponsorRequest.open('GET', '/api/v1/sponsor', true);
+	SponsorRequest.open('GET', `${currentEnvironment}/sponsor`, true);
 	SponsorRequest.send();
 
 	SponsorRequest.onreadystatechange = function () {

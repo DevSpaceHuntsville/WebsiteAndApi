@@ -8,7 +8,7 @@
 	    Self.isBusy(true);
 
 		var CodeRequest = new XMLHttpRequest();
-		CodeRequest.open('POST', '/api/v1/ticket', true);
+		CodeRequest.open('POST', `${currentEnvironment}/ticket`, true);
 		CodeRequest.setRequestHeader('Content-Type', 'application/json');
 		var str = '{"id":0,"email":"' + Self.Email() + '","code":null}';
         

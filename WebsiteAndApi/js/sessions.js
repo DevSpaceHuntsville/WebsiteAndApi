@@ -79,21 +79,17 @@ function ViewModel() {
 
 	var SessionsRequest = new XMLHttpRequest();
 	if (!qd) {
-		SessionsRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/session', true); //	staging
-		// SessionsRequest.open('GET', '/api/v1/session', true);
+		SessionsRequest.open('GET', `${currentEnvironment}/session`, true);
 		SessionsRequest.send();
 		return;
 	}
 
 	if (qd.id) {
-		SessionsRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/session/' + qd.id, true); // staging
-		// SessionsRequest.open('GET', '/api/v1/session/' + qd.id, true);
+		SessionsRequest.open('GET', `${currentEnvironment}/session/` + qd.id, true);
 	} else if (qd.tagId) {
-		SessionsRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/v1/session/tag/' + qd.tagId, true); // staging
-		// SessionsRequest.open('GET', '/api/v1/session/tag/' + qd.tagId, true);
+		SessionsRequest.open('GET', `${currentEnvironment}/session/tag/` + qd.tagId, true);
 	} else {
-		SessionsRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/session', true); // staging
-		// SessionsRequest.open('GET', '/api/v1/session', true);
+		SessionsRequest.open('GET', `${currentEnvironment}/session`, true);
 	}
 	SessionsRequest.send();
 

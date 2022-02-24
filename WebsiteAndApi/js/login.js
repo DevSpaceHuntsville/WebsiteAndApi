@@ -11,8 +11,7 @@ function login(event) {
 
 	var Request = new XMLHttpRequest();
 	Request.withCredentials = true;
-	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login', true);	//	Staging
-	// Request.open('GET', '/api/v1/Login', true);
+	Request.open('GET', `${currentEnvironment}/Login`, true);
 	Request.setRequestHeader('Accept', 'text/plain');
 	const email = document.getElementById('accountEmail');
 	const password = document.getElementById('password');
@@ -31,6 +30,7 @@ function login(event) {
 					break;
 				default:
 					showMessage('Something went wrong, please try again later');
+					alert(Request.status);
 					break;
 			}
 		}
@@ -48,8 +48,7 @@ function Force() {
 
 	var Request = new XMLHttpRequest();
 	Request.withCredentials = true;
-	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login', true);	//	Staging
-	// Request.open('GET', '/api/v1/Login', true);
+	Request.open('GET', `${currentEnvironment}/Login`, true);
 	Request.setRequestHeader('Accept', 'text/plain');
 	Request.setRequestHeader('Authorization', 'Force ' + Token);
 	Request.send();
@@ -81,8 +80,7 @@ function getToken() {
 
 	var Request = new XMLHttpRequest();
 	Request.withCredentials = true;
-	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login/?Email=' + email, true);	//	Staging
-	// Request.open('GET', '/api/v1/Login/?Email=' + document.getElementById('Email').value, true);
+	Request.open('GET', `${currentEnvironment}/Login/?Email=` + email, true);
 	Request.setRequestHeader('Accept', 'text/plain');
 	Request.send();
 
@@ -134,8 +132,7 @@ function register(event) {
 
 	var Request = new XMLHttpRequest();
 	Request.withCredentials = true;
-	Request.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/Login', true);	//	Staging
-	// Request.open('POST', '/api/v1/user', true);
+	Request.open('GET', `${currentEnvironment}/Login`, true);
 	Request.setRequestHeader('Content-Type', 'application/json');
 	Request.send(JSON.stringify(RequestJson));
 

@@ -129,6 +129,17 @@ button:not(:disabled):hover, button:not(:disabled):focus,
 
 /** Forms Stuff **/
 
+input + .error { 
+	visibility: hidden;
+	height: 0;
+	margin: 0;
+}
+input:invalid + .error { 
+	visibility: visible;
+	height: auto;
+	margin: .5rem 0;
+}
+
 input, textarea, select {
 	display: block;
 	width: 100%;
@@ -140,11 +151,16 @@ input, textarea, select {
 	outline: none;
 	margin-bottom: 1rem;
 }
-input:disabled, textarea:disabled, select:disabled {
-	background: initial;
+textarea { resize: vertical; }
+input.has-hint, .has-errors { margin-bottom: 0; }
+input:invalid {
+	border-left: solid 10px var(--error-color);
+}
+input:disabled, textarea:disabled, select:disabled, input:read-only {
+	background: #eee;
 	border-color: var(--disabled-border);
 }
-input:not(:disabled):hover, input:not(:disabled):focus,
+input:not(:disabled):not(:read-only):hover, input:not(:disabled):focus,
 textarea:not(:disabled):hover, textarea:not(:disabled):focus,
 select:not(:disabled):hover, select:not(:disabled):focus {
 	border-color: var(--primary);

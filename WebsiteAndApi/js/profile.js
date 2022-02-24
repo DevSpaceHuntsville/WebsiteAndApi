@@ -39,6 +39,8 @@ function Profile(data) {
 	});
 
 	Self.TransformedBio = ko.pureComputed(function () {
+		const characterCount = Self.Bio()?.length || 0;
+		document.getElementById('bioHint').innerText = characterCount + ' / 5000';
 		if (Self.Bio()) {
 			var converter = new showdown.Converter();
 			return converter.makeHtml(Self.Bio());
@@ -110,8 +112,7 @@ function ViewModel() {
 
 	var ProfileRequest = new XMLHttpRequest();
 	ProfileRequest.withCredentials = true;
-	ProfileRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/user/' + sessionStorage.getItem('Id'), true); //	Staging
-	// ProfileRequest.open('GET', '/api/v1/user/' + sessionStorage.getItem('Id'), true);
+	ProfileRequest.open('GET', `${currentEnvironment}/user/` + sessionStorage.getItem('Id'), true);
 	ProfileRequest.send();
 
 	ProfileRequest.onreadystatechange = function () {
@@ -140,7 +141,7 @@ function ViewModel() {
 
 	var SessionsRequest = new XMLHttpRequest();
 	SessionsRequest.withCredentials = true;
-	SessionsRequest.open('GET', '/api/v1/session/user/' + sessionStorage.getItem('Id'), true);
+	SessionsRequest.open('GET', `${currentEnvironment}/session/user/` + sessionStorage.getItem('Id'), true);
 	SessionsRequest.send();
 	
 	SessionsRequest.onreadystatechange = function () {
@@ -168,7 +169,7 @@ function ViewModel() {
 	
 	var TagsRequest = new XMLHttpRequest();
 	TagsRequest.withCredentials = true;
-	TagsRequest.open('GET', '/api/v1/tag', true);
+	TagsRequest.open('GET', `${currentEnvironment}/tag`, true);
 	TagsRequest.send();
 	
 	TagsRequest.onreadystatechange = function () {
@@ -192,7 +193,7 @@ function ViewModel() {
 
 	var LevelsRequest = new XMLHttpRequest();
 	LevelsRequest.withCredentials = true;
-	LevelsRequest.open('GET', '/api/v1/level', true);
+	LevelsRequest.open('GET', `${currentEnvironment}/level`, true);
 	LevelsRequest.send();
 
 	LevelsRequest.onreadystatechange = function () {
@@ -216,7 +217,7 @@ function ViewModel() {
 
 	var CategoriesRequest = new XMLHttpRequest();
 	CategoriesRequest.withCredentials = true;
-	CategoriesRequest.open('GET', '/api/v1/category', true);
+	CategoriesRequest.open('GET', `${currentEnvironment}/category`, true);
 	CategoriesRequest.send();
 
 	CategoriesRequest.onreadystatechange = function () {
@@ -274,7 +275,7 @@ function ViewModel() {
 	Self.SaveProfile = function () {
 		var Request = new XMLHttpRequest();
 		Request.withCredentials = true;
-		Request.open('POST', '/api/v1/user', true);
+		Request.open('POST', `${currentEnvironment}/user`, true);
 		Request.setRequestHeader('Content-Type', 'application/json');
 		Request.send(ko.toJSON(Self.Profile));
 
@@ -311,7 +312,7 @@ function ViewModel() {
 	
 		var Request = new XMLHttpRequest();
 		Request.withCredentials = true;
-		Request.open('POST', '/api/v1/user/' + sessionStorage.getItem('Id'), true);
+		Request.open('POST', `${currentEnvironment}/user/` + sessionStorage.getItem('Id'), true);
 		Request.setRequestHeader('Content-Type', 'application/json');
 		Request.send(ko.toJSON(Self.Profile));
 	
@@ -337,7 +338,7 @@ function ViewModel() {
 	Self.SaveSession = function () {
 		var Request = new XMLHttpRequest();
 		Request.withCredentials = true;
-		Request.open('POST', '/api/v1/session', true);
+		Request.open('POST', `${currentEnvironment}/session`, true);
 		Request.setRequestHeader('Accept', 'application/json');
 		Request.setRequestHeader('Content-Type', 'application/json');
 		Request.send(ko.toJSON(Self.SelectedSession()));
@@ -367,7 +368,7 @@ function ViewModel() {
 
 		var Request = new XMLHttpRequest();
 		Request.withCredentials = true;
-		Request.open('POST', '/api/v1/session', true);
+		Request.open('POST', `${currentEnvironment}/session`, true);
 		Request.setRequestHeader('Accept', 'application/json');
 		Request.setRequestHeader('Content-Type', 'application/json');
 		Request.send(ko.toJSON(copy));
@@ -392,7 +393,7 @@ function ViewModel() {
 	Self.DeleteSession = function (data) {
 		var Request = new XMLHttpRequest();
 		Request.withCredentials = true;
-		Request.open('DELETE', '/api/v1/session/' + data.Id(), true);
+		Request.open('DELETE', `${currentEnvironment}/session/` + data.Id(), true);
 		Request.send();
 	
 		Request.onreadystatechange = function () {
@@ -443,7 +444,7 @@ function ViewModel() {
 
 		var TagRequest = new XMLHttpRequest();
 		TagRequest.withCredentials = true;
-		TagRequest.open('POST', '/api/v1/tag', true);
+		TagRequest.open('POST', `${currentEnvironment}/tag`, true);
 		TagRequest.setRequestHeader('Content-Type', 'application/json');
 		TagRequest.send(JSON.stringify(RequestJson));
 	
@@ -469,3 +470,4 @@ function ViewModel() {
 }
 
 ko.applyBindings(new ViewModel(), document.getElementById('Content'));
+

@@ -33,11 +33,9 @@ function ContentViewModel() {
 
 	var ContentRequest = new XMLHttpRequest();
 	if (qd && qd.id)
-		ContentRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/content/' + qd.id, true); // Staging
-		// ContentRequest.open('GET', '/api/v1/content/' + qd.id, true);
+		ContentRequest.open('GET', `${currentEnvironment}/content/` + qd.id, true);
 	else
-		ContentRequest.open('GET', 'https://devspaceconf-staging.azurewebsites.net/api/v1/content', true);	//	Staging
-		// ContentRequest.open('GET', '/api/v1/content', true);
+		ContentRequest.open('GET', `${currentEnvironment}/content`, true);
 	ContentRequest.send();
 
 	ContentRequest.onreadystatechange = function () {
@@ -63,7 +61,7 @@ function ContentViewModel() {
 //	    Self.isBusy(true);
 
 //		var CodeRequest = new XMLHttpRequest();
-//		CodeRequest.open('POST', '/api/v1/ticket', true);
+//		CodeRequest.open('POST', `${currentEnvironment}/ticket`, true);
 //		CodeRequest.setRequestHeader('Content-Type', 'application/json');
 //		var str = '{"id":0,"email":"' + Self.Email() + '","code":null}';
         
