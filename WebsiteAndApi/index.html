@@ -22,6 +22,7 @@
 				</div>
 				<div class="location">
 					Live on Twitch
+          <br><a href="https://twitch.tv/devspaceconf">https://twitch.tv/devspaceconf</a>
 					<!--700 Monroe Street<br />
 		Huntsville, AL 35801-->
 				</div>
@@ -31,8 +32,10 @@
 
 	<div class="container">
 		<main id="Content">
-
-			<section data-bind="foreach: Content">
+      
+      <!-- To show or hidden sections or articles, add / remove the hidden class from the section -->
+			
+      <section data-bind="foreach: Content">
 				<article>
 					<h2 data-bind="text: Title"></h2>
 					<div class="Markdown" data-bind="html: Body"></div>
@@ -43,7 +46,7 @@
 			<section>
 				<h2>What is DevSpace</h2>
 				<p>
-					DevSpace is an annual developer’s conference that takes place in Huntsville, Alabama.
+					DevSpace is an annual developer's conference that takes place in Huntsville, Alabama.
 					Fueled by extensive space and missile research and a vibrant, emerging start-up culture, Huntsville is a
 					market poised and ready to burst onto the national stage.
 				</p>
@@ -134,6 +137,14 @@
 					We were tired of competing against that, anyway.
 				</p>
 			</section>
+      
+      <section>
+          <h2>The Schedule is Live!</h2>
+          <p>
+            Our full schedule is live.
+            You can view our list of sessions and stream times on the <a href="sessions.html">Sessions Page</a>.
+          </p>
+      </section>
 
 			<section class="info hidden">
 				<h2>Ticket Prices</h2>
