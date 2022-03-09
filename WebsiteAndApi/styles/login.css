@@ -1,0 +1,33 @@
+.password div {
+  display: flex;
+  gap: .5rem;
+  margin-bottom: .5rem;
+}
+
+.password input {
+  margin: 0;
+}
+
+.password button {
+  padding: 0;
+  width: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.forgot-password {
+  background: none;
+  color: var(--primary);
+  padding: 0;
+}
+button.forgot-password:hover,
+button.forgot-password:focus {
+  background: none;
+  text-decoration: underline;
+  text-decoration-color: var(--accent);
+}
+
+input[type="submit"] {
+  margin-top: 1rem;
+}

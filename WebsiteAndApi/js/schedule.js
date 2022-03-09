@@ -26,7 +26,7 @@ function ViewModel() {
 	};
 
 	var SessionsRequest = new XMLHttpRequest();
-	SessionsRequest.open('GET', '/api/v1/session', true);
+	SessionsRequest.open('GET', `${currentEnvironment}/session`, true);
 	SessionsRequest.send();
 
 	SessionsRequest.onreadystatechange = function () {

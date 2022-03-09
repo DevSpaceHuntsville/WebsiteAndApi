@@ -1,90 +1,110 @@
 ﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en">
 
 <head>
-	<!-- #include file="head.shtml" -->
-    <meta property="og:url" content="https://www.devspaceconf.com/sessions" />
-	<script type="text/javascript" src="/js/Sessions.js" defer></script>
+  <title>Sessions | DevSpace Technical Conference</title>
+  <!--# include file="head.shtml" -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+  <meta property="og:url" content="https://www.devspaceconf.com/sessions" />
+  <script type="text/javascript" src="/js/sessions.js" defer></script>
 </head>
 
 <body>
-	<!-- #include file="menu.shtml" -->
 
-    <section id="Content">
-        <article style="display: none;">
-            <h1>Call For Speakers Now Open</h1>
-            <p>
-                Want to be featured on this page?
-                Head over to our <a href="/speakers.html">speakers page</a> to find out about our Call for Speakers.
-            </p>
-            <p>
-                Still not ready to commit to giving a session for DevSpace 2021.
-                Why not check out our sessions from previous years to get you excited for things to come?
-            </p>
-        </article>
+  <!--# include file="menu.shtml" -->
+	
+  <div class="container">
+    <main id="Content">
+			<h1>Sessions</h1>
+      
+      <!-- To show or hidden sections or articles, add / remove the hidden class from the section -->
 
-        <article style="display: none;">
-            <h1>Call For Speakers Coming Soon</h1>
-            <p>
-                We are currently preparing for our 2021 conferences.
-                The Call for Speakers should open soon.
-                And, I mean, VERY soon.
-                Like, hoping in the next few days soon.
-                You get the idea.
-            </p>
-            <p>
-                Why not check out our sessions from previous years to get you excited for things to come?
-            </p>
-        </article>
+      <section class="call-to-action hidden">
+        <h2>Call For Speakers Now Open</h2>
+        <p>
+          Want to be featured on this page?
+          Head over to our <a href="/speakers.html">speakers page</a> to find out about our Call for Speakers.
+        </p>
+				<div class="actions">
+					<a class="action" href="speakers.html">Apply to Speak</a> 
+				</div>
+      </section>
 
-        <article style="display: none;">
-            <h1>Agenda and Printable Schedule</h1>
-            <p>
-                We now have a full agenda ready.
-                This agenda has all necessary CSS to print to one double-sided page.
-                It will also update if things get moved around.
-                You can view it a <a href="/schedule.html">https://www.devspaceconf.com/schedule.html</a>.
-            </p>
-            <p>
-                There is also an alternate view, created by Dan Nagle available at <a href="https://dannagle.github.io/">https://dannagle.github.io/</a>.
-            </p>
-        </article>
+      <section class="hidden">
+        <h2>Call For Speakers Coming Soon</h2>
+        <p>
+          We are currently preparing for our 2021 conferences.
+          The Call for Speakers should open soon.
+          And, I mean, VERY soon.
+          Like, hoping in the next few days soon.
+          You get the idea.
+        </p>
+        <p>Why not check out our sessions from previous years to get you excited for things to come?</p>
+      </section>
 
-        <section data-bind="foreach: Sessions">
-            <article>
-                <h1 data-bind="text: Title"></h1>
-                <p data-bind="html: Abstract"></p>
+      <section>
+        <h2>Agenda and Printable Schedule</h2>
+        <p>
+          We now have a full agenda ready.
+          This agenda has all necessary CSS to print to one double-sided page.
+          It will also update if things get moved around.
+          You can view it a <a href="/schedule.html">https://www.devspaceconf.com/schedule.html</a>.
+        </p>
+        <p>
+          There is also an alternate view, created by Dan Nagle available at <a rel="noopener" target="_blank" href="https://dannagle.github.io/">https://dannagle.github.io/</a>.
+        </p>
+      </section>
 
-                <!--<h2 data-bind="text: Room"></h2>-->
-                <h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>
-                <h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
-                <!--<h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
-                <h2>Tags:--> <!-- ko foreach: Tags --><!--<a data-bind="text: Text, attr: { href: Link }"></a>;--> <!-- /ko --><!--</h2>-->
-            </article>
-        </section>
+      <ul data-bind="foreach: Sessions">
+        <li>
+          <div class="title" data-bind="text: Title"></div>
+          <div class="speaker"><a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></div>
+          <div class="room-date">
+            <span data-bind="text: TimeSlot().DisplayDateTime"></span>
+            - <span data-bind="text: Room"></span>
+          </div> 
+          <div data-bind="html: Abstract"></div>
 
-        <article>
-            <h1>Sessions From Previous Years</h1>
-            <p>
-                <a href="/2015/sessions.html">Sessions from 2015</a>
-            </p>
-            <p>
-                <a href="/2016/sessions.html">Sessions from 2016</a>
-            </p>
-            <p>
-                <a href="/2017/sessions.html">Sessions from 2017</a>
-            </p>
-            <p>
-                <a href="/2018/sessions.html">Sessions from 2018</a>
-            </p>
-            <p>
-                <a href="/2019/sessions.html">Sessions from 2019</a>
-            </p>
-        </article>
-    </section>
+          <div data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></div>
+          <ul class="tags" title="tags">
+            <!-- ko foreach: Tags -->
+              <a data-bind="text: Text, attr: { href: Link }"></a>
+            <!-- /ko -->
+          </ul>
+        </li>
+      </ul>
 
-	<!-- #include file="leftSidebar.shtml" -->
-	<!-- #include file="rightSidebar.shtml" -->
+      <section class="previous-years">
+        <h2>Sessions From Previous Years</h2>
+				<p>
+          Still not ready to commit to giving a session for DevSpace 2021.
+          Why not check out our sessions from previous years to get you excited for things to come?
+        </p>
+        <ul>
+          <li>
+            <a href="/2015/sessions.html">Sessions from 2015</a>
+          </li>
+          <li>
+            <a href="/2016/sessions.html">Sessions from 2016</a>
+          </li>
+          <li>
+            <a href="/2017/sessions.html">Sessions from 2017</a>
+          </li>
+          <li>
+            <a href="/2018/sessions.html">Sessions from 2018</a>
+          </li>
+          <li>
+            <a href="/2019/sessions.html">Sessions from 2019</a>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <aside>
+      <!--# include file="leftSidebar.shtml" -->
+      <!--# include file="rightSidebar.shtml" -->
+    </aside>
+  </div>
 </body>
 
 </html>

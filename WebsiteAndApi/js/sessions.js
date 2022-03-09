@@ -3,13 +3,11 @@
 	Self.Id = ko.observable();
 	Self.DisplayName = ko.observable();
 	Self.Link = ko.observable();
+	if (!data) { return; }
+	Self.Id(data.Id);
+	Self.DisplayName(data.DisplayName);
 
-	if (data) {
-		Self.Id(data.Id);
-		Self.DisplayName(data.DisplayName);
-
-		Self.Link('/speakers.html?id=' + data.Id);
-	}
+	Self.Link('/speakers.html?id=' + data.Id);
 }
 
 function TimeSlot(data) {
@@ -21,7 +19,7 @@ function TimeSlot(data) {
 	if (data) {
 		Self.StartTime(new Date(data.StartTime));
 		Self.EndTime(new Date(data.EndTime));
-		Self.DisplayDateTime( data.DisplayDateTime)
+		Self.DisplayDateTime(data.DisplayDateTime);
 	}
 }
 
@@ -43,21 +41,22 @@ function Session(data) {
 		return TagList;
 	}, Self);
 
-	if (data) {
-		Self.Id(data.Id);
-		Self.Speaker(new Profile(data.Speaker));
-		Self.Title(data.Title);
-		Self.Abstract('<p>' + data.Abstract.trim().replace(/\r\n/g, '\n').replace(/\n\n/g, '\n').replace(/\n/g, '</p><p>') + '</p>');
-		Self.Room(data.Room);
-		Self.TimeSlot(new TimeSlot(data.TimeSlot));
-		Self.Level(new Tag(data.Level));
+	if (!data) { return; }
+	Self.Id(data.Id);
+	Self.Speaker(new Profile(data.Speaker));
+	Self.Title(data.Title);
+	Self.Abstract('<p>' + data.Abstract.trim().replace(/\r\n/g, '\n').replace(/\n\n/g, '\n').replace(/\n/g, '</p><p>') + '</p>');
+	Self.Room(data.Room);
+	Self.TimeSlot(new TimeSlot(data.TimeSlot));
+	Self.Level(new Tag(data.Level));
 
-		if (data.Tags)
-			for (var index = 0; index < data.Tags.length; ++index)
-				if (ko.isObservable(data.Tags[index]))
-					Self.Tags.push(data.Tags[index]);
-				else
-					Self.Tags.push(new Tag(data.Tags[index]));
+	if (!data.Tags) { return; }
+	for (var index = 0; index < data.Tags.length; ++index) {
+		if (ko.isObservable(data.Tags[index])) {
+			Self.Tags.push(data.Tags[index]);
+		} else {
+			Self.Tags.push(new Tag(data.Tags[index]));
+		}
 	}
 }
 
@@ -79,37 +78,41 @@ function ViewModel() {
 	}
 
 	var SessionsRequest = new XMLHttpRequest();
-	if (qd)
-		if (qd.id)
-			SessionsRequest.open('GET', '/api/v1/session/' + qd.id, true);
-		else if (qd.tagId)
-			SessionsRequest.open('GET', '/api/v1/session/tag/' + qd.tagId, true);
-		else
-			SessionsRequest.open('GET', '/api/v1/session', true);
-	else
-		SessionsRequest.open('GET', '/api/v1/session', true);
+	if (!qd) {
+		SessionsRequest.open('GET', `${currentEnvironment}/session`, true);
+		SessionsRequest.send();
+		return;
+	}
+
+	if (qd.id) {
+		SessionsRequest.open('GET', `${currentEnvironment}/session/` + qd.id, true);
+	} else if (qd.tagId) {
+		SessionsRequest.open('GET', `${currentEnvironment}/session/tag/` + qd.tagId, true);
+	} else {
+		SessionsRequest.open('GET', `${currentEnvironment}/session`, true);
+	}
 	SessionsRequest.send();
 
 	SessionsRequest.onreadystatechange = function () {
-		if (SessionsRequest.readyState == SessionsRequest.DONE) {
-			switch (SessionsRequest.status) {
-				case 200:
-					var SessionList = JSON.parse(SessionsRequest.responseText);
-					if (SessionList.length)
-						for (var index = 0; index < SessionList.length; ++index)
-							Self.Sessions.push(new Session(SessionList[index]));
-					else
-						Self.Sessions.push(new Session(SessionList));
-					break;
-
-				case 401:
-					// Login failed
-
-				default:
-					break;
-			}
+		if (SessionsRequest.readyState !== SessionsRequest.DONE) { return; }
+		switch (SessionsRequest.status) {
+			case 200:
+				var SessionList = JSON.parse(SessionsRequest.responseText);
+				if (SessionList.length) {
+					for (var index = 0; index < SessionList.length; ++index) {
+						Self.Sessions.push(new Session(SessionList[index]));
+					}
+				} else {
+					Self.Sessions.push(new Session(SessionList));
+				}
+				break;
+			case 401:
+			// Login failed
+			default:
+				break;
 		}
 	};
 }
+
 
 ko.applyBindings(new ViewModel(), document.getElementById('Content'));

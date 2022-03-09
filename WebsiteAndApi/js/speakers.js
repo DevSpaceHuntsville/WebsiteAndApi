@@ -77,11 +77,12 @@ function ViewModel() {
 		location.search.substr(1).split("&").forEach(function (item) { var s = item.split("="), k = s[0], v = s[1] && decodeURIComponent(s[1]); (k in qd) ? qd[k].push(v) : qd[k] = [v] });
 	}
 
+	// 
 	var ProfileRequest = new XMLHttpRequest();
 	if (qd && qd.id)
-		ProfileRequest.open('GET', '/api/v1/user/' + qd.id, true);
+		ProfileRequest.open('GET', `${currentEnvironment}/user/` + qd.id, true);
 	else
-		ProfileRequest.open('GET', '/api/v1/user', true);
+		ProfileRequest.open('GET', `${currentEnvironment}/user`, true);
 	ProfileRequest.send();
 
 	ProfileRequest.onreadystatechange = function () {
