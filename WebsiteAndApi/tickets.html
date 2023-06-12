@@ -12,42 +12,13 @@
 
 	<section id="Content">
 		<article>
-			<h1>No Tickets Are Necessary</h1>
-			<p>
-				DevSpace will be a free event that is hosted on Twitch.
-				As such, tickets are not necessary.
-			</p>
-			<p>
-				If you'd like the support the event (and be AWESOME,) you can find details on how to make tex-deductable donations to us on the <a href="./sponsors.html">Sponsors Page</a>.
-			</p>
-		</article>
-	</section>
-
-	<section id="ContentOld" style="display: none;">
-		<article>
-			<h1>A brief message about tickets and COVID-19</h1>
-			<p>
-				We plan on having our conference on September 9-10 of this year.
-				However, as you know, we are still on the tail end of a pandemic.
-				He are hoping the levels of vaccinated adults will be high enough by early September.
-			</p>
-			<p>
-				To ensure the safely of all our guests, we ask that only fully vaccinated people attend.
-				We will provide some content free on our Twitch channel.
-			</p>
-			<p>
-				As for the precautions taking place during the event, we will assess the situation as we get closer to the event.
-				We assure you that we take the safety off all of our guests as a top priority.
-			</p>
-		</article>
-		<article>
-			<h1>Tickets will be available on EventBrite soon</h1>
+			<h1>Tickets are available on EventBrite</h1>
 			<p>
 				DevSpace uses EventBrite for our tickets and PayPal as our payment processor.
 				This gives you security you can trust.
 			</p>
 			<p>
-				To access our EventBrite page for 2021, just press the stupidly large button below.
+				To access our EventBrite page for 2023, just press the stupidly large button below.
 			</p>
 			<input type="button" onclick="window.location.href = 'https://devspace.eventbrite.com/';" value="Get Tickets From EventBrite" />
 		</article>
@@ -61,28 +32,28 @@
 			</p>
 			<p>
 				We will soon be offering a limited number of Super Early Bird Tickets.
-				These tickets are going for the super affordable price of $100.
+				These tickets are going for the super affordable price of $150.
 				These will be available until they either sell out or we start announcing some details.
 			</p>
 			<p>
 				Once the Super Early bird tickets are gone, we will start selling Early Bird Tickets.
-				These tickets are going for the not quite super affordable but still very affordable price of $125.
+				These tickets are going for the not quite super affordable but still very affordable price of $200.
 				These will be available until they either sell out or we announce all the details.
 			</p>
 			<p>
 				Once the Early Bird tickets are gone, we will have standard tickets.
 				They are so standard, I didn't even upper case the word ticket.
-				These tickets are going for the not quite very affordable but still affordable price of $150.
+				These tickets are going for the not quite very affordable but still affordable price of $250.
 			</p>
 			<p>
 				Finally, once we get too close to the event, we will have late tickets.
 				Late tickets are the same as standard tickets, but cost more.
 				This is because I have to make projections on ticket sales that may or may not happen in the last 3 weeks.
-				These tickets are going for the still affordable but annoyingly increased price of $200.
+				These tickets are going for the still affordable but annoyingly increased price of $300.
 			</p>
 			<p>
 				There will also be a limited number of Student Tickets.
-				These tickets are going for the unbelievable price of $25.
+				These tickets are going for the unbelievable price of $50.
 				The catch is that you have to have a valid .edu email account to get one.
 				Oh, and the fact that there are only 25 of them.
 			</p>
@@ -105,7 +76,7 @@
 				We will verify the email address and send you the access code.
 				Further instructions will be in the email.
 			</p>
-			<form id="StudentCodeForm" data-bind="submit: GetCode">
+			<form style="display: none;" id="StudentCodeForm" data-bind="submit: GetCode">
 				<input type="email" data-bind="value: Email" />
 				<span data-bind="html:showSpinner"><input type="submit" value="Get Student Access Code" /></span>
 				<p data-bind="text: StatusMessage"></p>

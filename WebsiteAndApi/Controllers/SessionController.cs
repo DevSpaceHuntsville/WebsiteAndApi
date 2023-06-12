@@ -93,7 +93,7 @@ namespace DevSpace.Api.Controllers {
 			try {
 				IList<ISession> Sessions = ( await _DataStore.GetAll() )
 					.Where( ses => ses.Accepted ?? false )
-					.Where( ses => ses.EventId == 2021 )
+					.Where( ses => ses.EventId == 2023 )
 					.OrderBy( ses => ses.Title )
 					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
 					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
@@ -124,7 +124,7 @@ namespace DevSpace.Api.Controllers {
 			try {
 				IList<ISession> Sessions = ( await _DataStore.GetAll() )
 					.Where( ses => ses.Accepted ?? false )
-					.Where( ses => ses.EventId == 2021 )
+					.Where( ses => ses.EventId == 2023 )
 					.OrderBy( ses => ses.Title )
 //					.Where( ses => ( ses.TimeSlot?.EndTime.Year ?? DateTime.MaxValue.Year ) > 2016 )
 					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )

@@ -11,10 +11,10 @@
 	<!-- #include file="menu.shtml" -->
 
     <section id="Content">
-        <article style="display: none;">
+        <article>
             <h1>Call For Speakers Coming Soon</h1>
             <p>
-                We are currently preparing for our 2021 conferences.
+                We are currently preparing for our 2023 conference.
                 The Call for Speakers should open soon.
                 And, I mean, VERY soon.
                 Like, hoping in the next few days soon.
@@ -135,7 +135,7 @@
             <input type="button" onclick="window.location.href = './login.html';" value="Submit Your Masterpieces!" />
         </article>
 
-        <section data-bind="foreach: Profiles">
+        <section style="display: none;" data-bind="foreach: Profiles">
             <article>
                 <h1 data-bind="text: DisplayName"></h1>
                 <!-- ko if: ProfilePicture --><img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" /><!-- /ko -->
