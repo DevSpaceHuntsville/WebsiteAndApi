@@ -12,18 +12,6 @@
 
     <section id="Content">
         <article style="display: none;">
-            <h1>Call For Speakers Now Open</h1>
-            <p>
-                Want to be featured on this page?
-                Head over to our <a href="/speakers.html">speakers page</a> to find out about our Call for Speakers.
-            </p>
-            <p>
-                Still not ready to commit to giving a session for DevSpace 2021.
-                Why not check out our sessions from previous years to get you excited for things to come?
-            </p>
-        </article>
-
-        <article>
             <h1>Call For Speakers Coming Soon</h1>
             <p>
                 We are currently preparing for our 2023 conference.
@@ -33,6 +21,18 @@
                 You get the idea.
             </p>
             <p>
+                Why not check out our sessions from previous years to get you excited for things to come?
+            </p>
+        </article>
+
+        <article>
+            <h1>Call For Speakers Now Open</h1>
+            <p>
+                Want to be featured on this page?
+                Head over to our <a href="/speakers.html">speakers page</a> to find out about our Call for Speakers.
+            </p>
+            <p>
+                Still not ready to commit to giving a session for DevSpace 2023.
                 Why not check out our sessions from previous years to get you excited for things to come?
             </p>
         </article>
@@ -59,7 +59,8 @@
                 <h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>
                 <h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
                 <!--<h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
-                <h2>Tags:--> <!-- ko foreach: Tags --><!--<a data-bind="text: Text, attr: { href: Link }"></a>;--> <!-- /ko --><!--</h2>-->
+            <h2>Tags:-->
+                <!-- ko foreach: Tags --><!--<a data-bind="text: Text, attr: { href: Link }"></a>;--> <!-- /ko --><!--</h2>-->
             </article>
         </section>
 
