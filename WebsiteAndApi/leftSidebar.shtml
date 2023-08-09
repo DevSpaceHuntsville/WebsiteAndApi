@@ -36,20 +36,9 @@
 		<!--End mc_embed_signup-->
 	</article>
 
-	<article>
+	<article style="display: none;">
 		<h1>Twitter</h1>
-		<a class="twitter-timeline" data-dnt="true" href="https://twitter.com/devspaceconf" data-widget-id="625652386460233728">Tweets by @devspaceconf</a>
-		<script defer>
-			!function(d,s,id){
-				var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';
-				if(!d.getElementById(id)){
-					js=d.createElement(s);
-					js.id=id;
-					js.src=p+"://platform.twitter.com/widgets.js";
-					fjs.parentNode.insertBefore(js,fjs);
-				}
-			}(document,"script","twitter-wjs");
-		</script>
-
+		<a class="twitter-timeline" data-width="250" data-dnt="true" href="https://twitter.com/devspaceconf?ref_src=twsrc%5Etfw">Tweets by devspaceconf</a>
+		<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 	</article>
 </section>
