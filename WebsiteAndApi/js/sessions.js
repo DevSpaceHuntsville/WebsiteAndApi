@@ -34,6 +34,7 @@ function Session(data) {
 	Self.Room = ko.observable();
 	Self.TimeSlot = ko.observable();
 	Self.Level = ko.observable();
+	Self.Category = ko.observable();
 	Self.Tags = ko.observableArray([]);
 
 	Self.TagList = ko.pureComputed(function () {
@@ -50,22 +51,23 @@ function Session(data) {
 		Self.Abstract('<p>' + data.Abstract.trim().replace(/\r\n/g, '\n').replace(/\n\n/g, '\n').replace(/\n/g, '</p><p>') + '</p>');
 		Self.Room(data.Room);
 		Self.TimeSlot(new TimeSlot(data.TimeSlot));
-		Self.Level(new Tag(data.Level));
+		Self.Level(new Tag('levelId', data.Level));
+		Self.Category(new Tag('categoryId', data.Category));
 
 		if (data.Tags)
 			for (var index = 0; index < data.Tags.length; ++index)
 				if (ko.isObservable(data.Tags[index]))
 					Self.Tags.push(data.Tags[index]);
 				else
-					Self.Tags.push(new Tag(data.Tags[index]));
+					Self.Tags.push(new Tag('tagId', data.Tags[index]));
 	}
 }
 
-function Tag(data) {
+function Tag(param, data) {
 	var Self = this;
 	Self.Id = ko.observable(data.Id);
 	Self.Text = ko.observable(data.Text);
-	Self.Link = ko.observable('sessions.html?tagId=' + data.Id);
+	Self.Link = ko.observable('sessions.html?' + param + '=' + data.Id);
 }
 
 function ViewModel() {
@@ -82,6 +84,10 @@ function ViewModel() {
 	if (qd)
 		if (qd.id)
 			SessionsRequest.open('GET', '/api/v1/session/' + qd.id, true);
+		else if (qd.levelId)
+			SessionsRequest.open('GET', '/api/v1/session/level/' + qd.levelId, true);
+		else if (qd.categoryId)
+			SessionsRequest.open('GET', '/api/v1/session/category/' + qd.categoryId, true);
 		else if (qd.tagId)
 			SessionsRequest.open('GET', '/api/v1/session/tag/' + qd.tagId, true);
 		else

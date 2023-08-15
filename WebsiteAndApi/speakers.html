@@ -22,7 +22,7 @@
             </p>
         </article>
 
-        <article>
+        <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
                 We are pleased to announce our call for speakers for DevSpace 2023.
@@ -117,8 +117,8 @@
             </p>
         </article>
 
-        <section style="display: none;" data-bind="foreach: Profiles">
-            <article>
+        <section data-bind="foreach: Profiles">
+            <article style="min-height: 300px;">
                 <h1 data-bind="text: DisplayName"></h1>
                 <!-- ko if: ProfilePicture --><img data-bind="attr: { src: ProfilePicture }" width="200" height="200" style="float: right" /><!-- /ko -->
                 <p data-bind="html: Bio"></p>
@@ -141,8 +141,8 @@
                     <!-- /ko -->
                 </p>
                 <!-- /ko -->
-                <h1 style="clear: right; display: none;">Sessions</h1>
-                <p data-bind="foreach: Sessions" style="display: none;">
+                <h1 style="clear: right;">Sessions</h1>
+                <p data-bind="foreach: Sessions">
                     <span><a data-bind="text: Title, attr: { href: Link }"></a></span><br />
                 </p>
             </article>

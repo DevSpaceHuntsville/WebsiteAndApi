@@ -80,6 +80,7 @@ namespace DevSpace.Api.Controllers {
 
 		private async Task<string> CreateJsonSessionArray( IList<ISession> Sessions ) {
 			IList<IUser> Users = await ( new Database.UserDataStore() ).GetAll();
+			Sessions = Sessions.Where( s => Users.Select( u => u.Id ).Contains( s.UserId ) ).ToList();
 
 			JArray JsonArray = new JArray();
 			foreach( ISession Session in Sessions ) {
@@ -95,7 +96,7 @@ namespace DevSpace.Api.Controllers {
 					.Where( ses => ses.Accepted ?? false )
 					.Where( ses => ses.EventId == 2023 )
 					.OrderBy( ses => ses.Title )
-					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
 					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
 					.ToList();
 
@@ -119,32 +120,62 @@ namespace DevSpace.Api.Controllers {
 		}
 
 		[AllowAnonymous]
+		[Route( "api/v1/session/level/{Id}" )]
+		public async Task<HttpResponseMessage> GetSessionsByLevel( int Id ) {
+			try {
+				IList<ISession> Sessions = ( await _DataStore.GetAll() )
+					.Where( ses => ses.Accepted ?? false )
+					.Where( ses => ses.EventId == 2023 )
+					.Where( ses => ses.Level.Id == Id )
+					.OrderBy( ses => ses.Title )
+					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					//.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
+					.ToList();
+
+				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
+				Response.Content = new StringContent( await CreateJsonSessionArray( Sessions ) );
+				return Response;
+			} catch {
+				return new HttpResponseMessage( HttpStatusCode.InternalServerError );
+			}
+		}
+
+		[AllowAnonymous]
+		[Route( "api/v1/session/category/{Id}" )]
+		public async Task<HttpResponseMessage> GetSessionsByCategory( int Id ) {
+			try {
+				IList<ISession> Sessions = ( await _DataStore.GetAll() )
+					.Where( ses => ses.Accepted ?? false )
+					.Where( ses => ses.EventId == 2023 )
+					.Where( ses => ses.Category.Id == Id )
+					.OrderBy( ses => ses.Title )
+					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					//.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
+					.ToList();
+
+				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
+				Response.Content = new StringContent( await CreateJsonSessionArray( Sessions ) );
+				return Response;
+			} catch {
+				return new HttpResponseMessage( HttpStatusCode.InternalServerError );
+			}
+		}
+
+		[AllowAnonymous]
 		[Route( "api/v1/session/tag/{Id}" )]
 		public async Task<HttpResponseMessage> GetSessionsByTag( int Id ) {
 			try {
 				IList<ISession> Sessions = ( await _DataStore.GetAll() )
 					.Where( ses => ses.Accepted ?? false )
 					.Where( ses => ses.EventId == 2023 )
+					.Where( ses => ses.Tags.Select( t => t.Id ).Contains( Id ) )
 					.OrderBy( ses => ses.Title )
-//					.Where( ses => ( ses.TimeSlot?.EndTime.Year ?? DateTime.MaxValue.Year ) > 2016 )
-					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
-					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
+					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					//.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
 					.ToList();
 
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
-				Response.Content = new StringContent( 
-					await CreateJsonSessionArray( 
-						Sessions
-							.Where( ses => 
-								ses
-									.Tags
-									.Concat( new[] { ses.Level } )
-									.ToDictionary( tag => tag.Id )
-									.ContainsKey( Id ) )
-							.OrderBy( ses => ses.Title )
-							.ToList() 
-					)
-				);
+				Response.Content = new StringContent( await CreateJsonSessionArray( Sessions ) );
 				return Response;
 			} catch {
 				return new HttpResponseMessage( HttpStatusCode.InternalServerError );

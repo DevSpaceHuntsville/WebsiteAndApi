@@ -25,7 +25,7 @@
             </p>
         </article>
 
-        <article>
+        <article style="display: none;">
             <h1>Call For Speakers Now Open</h1>
             <p>
                 Want to be featured on this page?
@@ -50,17 +50,20 @@
             </p>
         </article>
 
-        <section style="display: none;" data-bind="foreach: Sessions">
+        <section data-bind="foreach: Sessions">
             <article>
                 <h1 data-bind="text: Title"></h1>
                 <p data-bind="html: Abstract"></p>
 
                 <!--<h2 data-bind="text: Room"></h2>-->
-                <h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>
+                <!--<h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>-->
                 <h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
-                <!--<h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
-            <h2>Tags:-->
-                <!-- ko foreach: Tags --><!--<a data-bind="text: Text, attr: { href: Link }"></a>;--> <!-- /ko --><!--</h2>-->
+                <h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
+                <h2 data-bind="with:Category">Category: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
+                <h2>
+                    Tags:
+                    <!-- ko foreach: Tags --><a data-bind="text: Text, attr: { href: Link }"></a>; <!-- /ko -->
+                </h2>
             </article>
         </section>
 
