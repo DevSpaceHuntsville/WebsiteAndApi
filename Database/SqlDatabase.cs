@@ -425,6 +425,23 @@ UPDATE VersionInfo SET DbVersion = '01.00.05.0003';";
 
 UPDATE VersionInfo SET DbVersion = '01.00.05.0004';";
 
+				case "01.00.05.0004":
+					return
+@"ALTER TABLE Sessions DROP CONSTRAINT Sessions_Users_FK;
+
+CREATE TABLE SessionUsers (
+	SessionId	INTEGER						NOT NULL,
+	UserId		INTEGER						NOT NULL,
+
+	CONSTRAINT SessionUsers_PK PRIMARY KEY CLUSTERED ( SessionId, UserId ),
+	CONSTRAINT SessionUsers_Users_FK FOREIGN KEY ( UserId ) REFERENCES Users ( Id ) ON UPDATE CASCADE ON DELETE CASCADE,
+	CONSTRAINT SessionUsers_Sessions_FK FOREIGN KEY ( SessionId ) REFERENCES Sessions ( Id ) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+INSERT SessionUsers ( SessionId, UserId ) SELECT Id, UserId FROM Sessions;
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0005';";
+
 				default:
 					return string.Empty;
 			}

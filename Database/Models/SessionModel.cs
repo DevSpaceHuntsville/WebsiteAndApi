@@ -8,6 +8,7 @@ namespace DevSpace.Database.Models {
 	public class SessionModel : ISession {
 		private SessionModel() {
 			Tags = ImmutableList<ITag>.Empty;
+			UserIds = ImmutableList<int>.Empty;
 		}
 
 		internal SessionModel( SqlDataReader dataReader ) : this() {
@@ -31,7 +32,7 @@ namespace DevSpace.Database.Models {
 		public string Notes { get; internal set; }
 		public ImmutableList<ITag> Tags { get; private set; }
 		public string Title { get; internal set; }
-		public int UserId { get; internal set; }
+		public ImmutableList<int> UserIds { get; private set; }
 		public int SessionLength { get; internal set; }
 
 		public int LevelId { get; internal set; }
@@ -111,9 +112,15 @@ namespace DevSpace.Database.Models {
 			return newSession;
 		}
 
-		public ISession UpdateUserId( int value ) {
+		public ISession AddUserId( int value ) {
 			SessionModel newSession = this.Clone();
-			newSession.UserId = value;
+			newSession.UserIds = this.UserIds.Add( value );
+			return newSession;
+		}
+
+		public ISession RemoveUserId( int value ) {
+			SessionModel newSession = this.Clone();
+			newSession.UserIds = this.UserIds.Remove( value );
 			return newSession;
 		}
 
@@ -169,12 +176,14 @@ namespace DevSpace.Database.Models {
 		private SessionModel Clone() {
 			SessionModel cloned = new SessionModel {
 				Id = this.Id,
-				UserId = this.UserId,
+				UserIds = this.UserIds?.ToImmutableList(),
 				Title = string.Copy( this.Title ),
 				Abstract = string.Copy( this.Abstract ),
 				SessionLength = this.SessionLength,
 				Level = this.Level,
+				LevelId = this.LevelId,
 				Category = this.Category,
+				CategoryId = this.CategoryId,
 				Accepted = this.Accepted,
 				Tags = this.Tags?.ToImmutableList(),
 				TimeSlotId = this.TimeSlotId,

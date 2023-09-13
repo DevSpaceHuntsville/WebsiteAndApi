@@ -3,7 +3,7 @@
 namespace DevSpace.Common {
 	public interface ISession {
 		int Id { get; }
-		int UserId { get; }
+		ImmutableList<int> UserIds { get; }
 		string Title { get; }
 		string Abstract { get; }
 		string Notes { get; }
@@ -18,7 +18,8 @@ namespace DevSpace.Common {
 		int? SessionizeId { get; }
 
 		ISession UpdateId( int value );
-		ISession UpdateUserId( int value );
+		ISession AddUserId( int value );
+		ISession RemoveUserId( int value );
 		ISession UpdateTitle( string value );
 		ISession UpdateAbstract( string value );
 		ISession UpdateNotes( string value );

@@ -19,7 +19,13 @@ namespace DevSpace.Common {
 		[DataMember]public string Notes { get; private set; }
 		[DataMember]public string Title { get; private set; }
 		[DataMember]public int SessionLength { get; private set; }
-		[DataMember]public int UserId { get; private set; }
+
+		[DataMember( Name = "UserIds" )]private List<int> _userIds;
+		public ImmutableList<int> UserIds {
+			get {
+				return ImmutableList<int>.Empty.AddRange( _userIds );
+			}
+		}
 
 		[DataMember( Name = "Level" )] private Tag _level;
 		public ITag Level {
@@ -109,9 +115,15 @@ namespace DevSpace.Common {
 			return newSession;
 		}
 
-		public ISession UpdateUserId( int value ) {
+		public ISession AddUserId( int value ) {
 			Session newSession = this.Clone();
-			newSession.UserId = value;
+			newSession._userIds.Add( value );
+			return newSession;
+		}
+
+		public ISession RemoveUserId( int value ) {
+			Session newSession = this.Clone();
+			newSession._userIds.Remove( value );
 			return newSession;
 		}
 
@@ -167,7 +179,6 @@ namespace DevSpace.Common {
 		private Session Clone() {
 			Session cloned = new Session {
 				Id = this.Id,
-				UserId = this.UserId,
 				Title = string.Copy( this.Title ),
 				Abstract = string.Copy( this.Abstract ),
 				SessionLength = this.SessionLength,
@@ -186,6 +197,10 @@ namespace DevSpace.Common {
 
 			if( !string.IsNullOrWhiteSpace( this.Notes ) )
 				cloned.Notes = string.Copy( this.Notes );
+
+			foreach( int userId in this._userIds ) {
+				cloned._userIds.Add( userId );
+			}
 
 			foreach( ITag tag in this._tags ) {
 				cloned._tags.Add( new Tag( tag ) );

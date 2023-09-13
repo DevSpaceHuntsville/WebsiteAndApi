@@ -47,7 +47,7 @@ namespace DevSpace.Api.Controllers {
 			UserData["ProfilePicture"] = User.ProfilePicture;
 
 			JArray Sessions = new JArray();
-			foreach( ISession Session in SessionList.Where( ses => ses.UserId == User.Id ) ) {
+			foreach( ISession Session in SessionList.Where( ses => ses.UserIds.Contains( User.Id ) ) ) {
 				JObject jses = new JObject();
 				jses["Id"] = Session.Id;
 				jses["Title"] = Session.Title;
@@ -101,7 +101,7 @@ namespace DevSpace.Api.Controllers {
 			} else {
 				try {
 					Database.SessionDataStore SessionsDS = new Database.SessionDataStore();
-					IList<ISession> SessionList = ( await SessionsDS.GetAll() ).Where( ses => ses.UserId == Id ).Where( ses => ses.Accepted ?? false ).Where( ses => ses.EventId == 2023 ).ToList();
+					IList<ISession> SessionList = ( await SessionsDS.GetAll() ).Where( ses => ses.UserIds.Contains( Id ) ).Where( ses => ses.Accepted ?? false ).Where( ses => ses.EventId == 2023 ).ToList();
 
 					HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
 					Response.Content = new StringContent( await CreateJsonUser( await _DataStore.Get( Id ), SessionList ) );

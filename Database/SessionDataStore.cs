@@ -6,6 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DevSpace.Common;
+using DevSpace.Database.Models;
 
 namespace DevSpace.Database {
 	public class SessionDataStore : IDataStore<ISession> {
@@ -19,7 +20,7 @@ namespace DevSpace.Database {
 				// HACK: Currentlyhas hardcoded EventId
 				ISession addedSession = null;
 				using( SqlCommand sessionCommand = new SqlCommand( "INSERT Sessions ( UserId, Title, Abstract, Notes, SessionLength, LevelId, CategoryId, EventId ) VALUES ( @UserId, @Title, @Abstract, @Notes, @SessionLength, @LevelId, @CategoryId, 2023 ); SELECT SCOPE_IDENTITY();", connection ) ) {
-					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToAdd.UserId;
+					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToAdd.UserIds.First();
 					sessionCommand.Parameters.Add( "Title", SqlDbType.VarChar ).Value = ItemToAdd.Title;
 					sessionCommand.Parameters.Add( "Abstract", SqlDbType.VarChar ).Value = ItemToAdd.Abstract;
 					sessionCommand.Parameters.Add( "SessionLength", SqlDbType.Int ).Value = ItemToAdd.SessionLength;
@@ -32,6 +33,15 @@ namespace DevSpace.Database {
 						sessionCommand.Parameters.Add( "Notes", SqlDbType.VarChar ).Value = ItemToAdd.Notes;
 
 					addedSession = ItemToAdd.UpdateId( Convert.ToInt32( await sessionCommand.ExecuteScalarAsync() ) );
+				}
+
+				using( SqlCommand userCommand = new SqlCommand( "INSERT SessionUsers ( SessionId, UserId ) VALUES ( @SessionId, @UserId );", connection ) ) {
+					userCommand.Parameters.Add( "SessionId", SqlDbType.Int ).Value = addedSession.Id;
+					SqlParameter userIdParameter = userCommand.Parameters.Add( "UserId", SqlDbType.Int );
+					foreach( int userId in ItemToAdd.UserIds ) {
+						userIdParameter.Value = userId;
+						await userCommand.ExecuteNonQueryAsync();
+					}
 				}
 
 				if( 0 < addedSession.Tags.Count ) {
@@ -83,6 +93,16 @@ namespace DevSpace.Database {
 				}
 
 				if( null != returnValue ) {
+					using( SqlCommand userCommand = new SqlCommand( "SELECT UserId FROM SessionUsers WHERE SessionId = @SessionId;", connection ) ) {
+						userCommand.Parameters.Add( "SessionId", SqlDbType.Int ).Value = returnValue.Id;
+
+						using( SqlDataReader dataReader = await userCommand.ExecuteReaderAsync() ) {
+							while( await dataReader.ReadAsync() ) {
+								returnValue = returnValue.AddUserId( dataReader.GetInt32( 0 ) );
+							}
+						}
+					}
+
 					using( SqlCommand tagCommand = new SqlCommand( "SELECT * FROM Tags WHERE Id IN ( SELECT TagId FROM SessionTags WHERE SessionId = @SessionId );", connection ) ) {
 						tagCommand.Parameters.Add( "SessionId", SqlDbType.Int ).Value = returnValue.Id;
 
@@ -134,6 +154,19 @@ namespace DevSpace.Database {
 					using( SqlDataReader dataReader = await sessionCommand.ExecuteReaderAsync() ) {
 						while( await dataReader.ReadAsync() ) {
 							sessionList.Add( new Models.SessionModel( dataReader ) );
+						}
+					}
+				}
+
+				using( SqlCommand sessionCommand = new SqlCommand( "SELECT UserId FROM SessionUsers WHERE SessionId = @sessionId", connection ) ) {
+					SqlParameter sessionIdParameter = sessionCommand.Parameters.Add( "sessionId", SqlDbType.Int );
+
+					foreach( SessionModel session in sessionList ) {
+						sessionIdParameter.Value = session.Id;
+						using( SqlDataReader dataReader = await sessionCommand.ExecuteReaderAsync() ) {
+							while( await dataReader.ReadAsync() ) {
+								session.AddUserId( dataReader.GetInt32( 0 ) );
+							}
 						}
 					}
 				}
@@ -193,6 +226,22 @@ namespace DevSpace.Database {
 					}
 				}
 
+				List<ISession> SessionsWithUserIds = new List<ISession>();
+				using( SqlCommand sessionCommand = new SqlCommand( "SELECT UserId FROM SessionUsers WHERE SessionId = @sessionId", connection ) ) {
+					SqlParameter sessionIdParameter = sessionCommand.Parameters.Add( "sessionId", SqlDbType.Int );
+
+					foreach( SessionModel session in sessionList ) {
+						sessionIdParameter.Value = session.Id;
+						ISession sessionWithUserIds = session;
+						using( SqlDataReader dataReader = await sessionCommand.ExecuteReaderAsync() ) {
+							while( await dataReader.ReadAsync() ) {
+								sessionWithUserIds = sessionWithUserIds.AddUserId( dataReader.GetInt32( 0 ) );
+							}
+						}
+						SessionsWithUserIds.Add( sessionWithUserIds );
+					}
+				}
+
 				List<Tuple<int, ITag>> TagData = new List<Tuple<int, ITag>>();
 				using( SqlCommand tagCommand = new SqlCommand( "SELECT SessionId, TagId AS Id, Text FROM Tags INNER JOIN SessionTags ON Id = TagId ORDER BY SessionId, TagId;", connection ) ) {
 					using( SqlDataReader dataReader = await tagCommand.ExecuteReaderAsync() ) {
@@ -203,7 +252,7 @@ namespace DevSpace.Database {
 				}
 
 				ISession sessionWithTags = null;
-				foreach( Models.SessionModel session in sessionList ) {
+				foreach( Models.SessionModel session in SessionsWithUserIds ) {
 					sessionWithTags = session
 						.UpdateLevel( levelsList.FirstOrDefault( l => l.Id == session.LevelId ) )
 						.UpdateCategory( categoriesList.FirstOrDefault( l => l.Id == session.CategoryId ) )
@@ -228,9 +277,9 @@ namespace DevSpace.Database {
 			using( SqlConnection connection = new SqlConnection( Settings.ConnectionString ) ) {
 				connection.Open();
 
-				using( SqlCommand sessionCommand = new SqlCommand( "UPDATE Sessions SET UserId = @UserId, Title = @Title, Abstract = @Abstract, Notes = @Notes, SessionLength = @SessionLength, LevelId = @LevelId, CategoryId = @CategoryId WHERE Id = @Id; DELETE FROM SessionTags WHERE SessionId = @Id;", connection ) ) {
+				using( SqlCommand sessionCommand = new SqlCommand( "UPDATE Sessions SET UserId = @UserId, Title = @Title, Abstract = @Abstract, Notes = @Notes, SessionLength = @SessionLength, LevelId = @LevelId, CategoryId = @CategoryId WHERE Id = @Id; DELETE FROM SessionUsers WHERE SessionId = @Id; DELETE FROM SessionTags WHERE SessionId = @Id;", connection ) ) {
 					sessionCommand.Parameters.Add( "Id", SqlDbType.Int ).Value = ItemToUpdate.Id;
-					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToUpdate.UserId;
+					sessionCommand.Parameters.Add( "UserId", SqlDbType.Int ).Value = ItemToUpdate.UserIds.First();
 					sessionCommand.Parameters.Add( "Title", SqlDbType.VarChar ).Value = ItemToUpdate.Title;
 					sessionCommand.Parameters.Add( "Abstract", SqlDbType.VarChar ).Value = ItemToUpdate.Abstract;
 					sessionCommand.Parameters.Add( "SessionLength", SqlDbType.Int ).Value = ItemToUpdate.SessionLength;
@@ -243,6 +292,15 @@ namespace DevSpace.Database {
 						sessionCommand.Parameters.Add( "Notes", SqlDbType.VarChar ).Value = ItemToUpdate.Notes;
 
 					await sessionCommand.ExecuteNonQueryAsync();
+				}
+
+				using( SqlCommand userCommand = new SqlCommand( "INSERT SessionUsers ( SessionId, UserId ) VALUES ( @SessionId, @UserId );", connection ) ) {
+					userCommand.Parameters.Add( "SessionId", SqlDbType.Int ).Value = ItemToUpdate.Id;
+					SqlParameter userIdParameter = userCommand.Parameters.Add( "UserId", SqlDbType.Int );
+					foreach( int userId in ItemToUpdate.UserIds ) {
+						userIdParameter.Value = userId;
+						await userCommand.ExecuteNonQueryAsync();
+					}
 				}
 
 				if( 0 < ItemToUpdate.Tags.Count ) {

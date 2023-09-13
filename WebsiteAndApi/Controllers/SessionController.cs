@@ -52,13 +52,15 @@ namespace DevSpace.Api.Controllers {
 			}
 			SessionData["Tags"] = Tags;
 
-			IUser User = Users.Where( user => user.Id == session.UserId ).FirstOrDefault();
-
-			JObject SpeakerData = new JObject();
-			SpeakerData["Id"] = User.Id;
-			SpeakerData["DisplayName"] = User.DisplayName;
-
-			SessionData["Speaker"] = SpeakerData;
+			IEnumerable<IUser> SessionUsers = Users.Where( user => session.UserIds.Contains( user.Id ) );
+			JArray Speakers = new JArray();
+			foreach( IUser user in SessionUsers ) {
+				JObject juser = new JObject();
+				juser["Id"] = user.Id;
+				juser["DisplayName"] = user.DisplayName;
+				Speakers.Add( juser );
+			}
+			SessionData["Speakers"] = Speakers;
 
 			// NOTE: There are many ways to convert UTC to Local Time in JS.
 			// However, I don't want local time.  I want the time zone of my event.
@@ -80,7 +82,9 @@ namespace DevSpace.Api.Controllers {
 
 		private async Task<string> CreateJsonSessionArray( IList<ISession> Sessions ) {
 			IList<IUser> Users = await ( new Database.UserDataStore() ).GetAll();
-			Sessions = Sessions.Where( s => Users.Select( u => u.Id ).Contains( s.UserId ) ).ToList();
+			Sessions = Sessions
+				.Where( s => s.UserIds.Intersect( Users.Select( u => u.Id ) ).Any() )
+				.ToList();
 
 			JArray JsonArray = new JArray();
 			foreach( ISession Session in Sessions ) {
@@ -192,7 +196,7 @@ namespace DevSpace.Api.Controllers {
 						JsonConvert.SerializeObject(
 							_DataStore.GetAll()
 								.Result
-								.Where( ses => ses.UserId == Id )
+								.Where( ses => ses.UserIds.Contains( Id ) )
 								.Select( s => null == s.Level ? s.UpdateLevel( JsonConvert.DeserializeObject<Tag>( "{'id':1,'text':'Beginner'}" ) ) : s ),
 							Formatting.None
 						)
@@ -261,7 +265,7 @@ You should receive an email with the status of your submission on or around July
 				return new HttpResponseMessage( HttpStatusCode.NotFound );
 
 			IUser CurrentUser = ( Thread.CurrentPrincipal.Identity as DevSpaceIdentity )?.Identity;
-			if( !sessionToDelete.UserId.Equals( CurrentUser?.Id ?? -1 ) )
+			if( !sessionToDelete.UserIds.Contains( CurrentUser?.Id ?? -1 ) )
 				return new HttpResponseMessage( HttpStatusCode.Unauthorized );
 
 			try {

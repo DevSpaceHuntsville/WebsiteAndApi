@@ -28,7 +28,7 @@ function TimeSlot(data) {
 function Session(data) {
 	var Self = this;
 	Self.Id = ko.observable();
-	Self.Speaker = ko.observable();
+	Self.Speakers = ko.observableArray([]);
 	Self.Title = ko.observable();
 	Self.Abstract = ko.observable();
 	Self.Room = ko.observable();
@@ -46,13 +46,19 @@ function Session(data) {
 
 	if (data) {
 		Self.Id(data.Id);
-		Self.Speaker(new Profile(data.Speaker));
 		Self.Title(data.Title);
 		Self.Abstract('<p>' + data.Abstract.trim().replace(/\r\n/g, '\n').replace(/\n\n/g, '\n').replace(/\n/g, '</p><p>') + '</p>');
 		Self.Room(data.Room);
 		Self.TimeSlot(new TimeSlot(data.TimeSlot));
 		Self.Level(new Tag('levelId', data.Level));
 		Self.Category(new Tag('categoryId', data.Category));
+
+		if (data.Speakers)
+			for (var index = 0; index < data.Speakers.length; ++index)
+				if (ko.isObservable(data.Speakers[index]))
+					Self.Speakers.push(data.Speakers[index]);
+				else
+					Self.Speakers.push(new Profile(data.Speakers[index]));
 
 		if (data.Tags)
 			for (var index = 0; index < data.Tags.length; ++index)

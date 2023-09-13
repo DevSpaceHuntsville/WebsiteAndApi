@@ -57,7 +57,7 @@
 
                 <!--<h2 data-bind="text: Room"></h2>-->
                 <!--<h2 data-bind="text: TimeSlot().DisplayDateTime"></h2>-->
-                <h2>Speaker: <a data-bind="text: Speaker().DisplayName, attr: { href: Speaker().Link }"></a></h2>
+                <!-- ko foreach: Speakers --><h2>Speaker: <a data-bind="text: DisplayName, attr: { href: Link }"></a></h2><!-- /ko -->
                 <h2 data-bind="with: Level">Level: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
                 <h2 data-bind="with:Category">Category: <a data-bind="text: Text, attr: { href: Link }"></a></h2>
                 <h2>
