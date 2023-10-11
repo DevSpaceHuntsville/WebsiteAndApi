@@ -99,8 +99,8 @@ namespace DevSpace.Api.Controllers {
 				IList<ISession> Sessions = ( await _DataStore.GetAll() )
 					.Where( ses => ses.Accepted ?? false )
 					.Where( ses => ses.EventId == 2023 )
-					.OrderBy( ses => ses.Title )
-					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					//.OrderBy( ses => ses.Title )
+					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
 					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
 					.ToList();
 
@@ -131,9 +131,9 @@ namespace DevSpace.Api.Controllers {
 					.Where( ses => ses.Accepted ?? false )
 					.Where( ses => ses.EventId == 2023 )
 					.Where( ses => ses.Level.Id == Id )
-					.OrderBy( ses => ses.Title )
-					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
-					//.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
+					//.OrderBy( ses => ses.Title )
+					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
 					.ToList();
 
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
@@ -152,9 +152,9 @@ namespace DevSpace.Api.Controllers {
 					.Where( ses => ses.Accepted ?? false )
 					.Where( ses => ses.EventId == 2023 )
 					.Where( ses => ses.Category.Id == Id )
-					.OrderBy( ses => ses.Title )
-					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
-					//.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
+					//.OrderBy( ses => ses.Title )
+					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
 					.ToList();
 
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
@@ -173,9 +173,9 @@ namespace DevSpace.Api.Controllers {
 					.Where( ses => ses.Accepted ?? false )
 					.Where( ses => ses.EventId == 2023 )
 					.Where( ses => ses.Tags.Select( t => t.Id ).Contains( Id ) )
-					.OrderBy( ses => ses.Title )
-					//.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
-					//.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
+					//.OrderBy( ses => ses.Title )
+					.OrderBy( ses => ( ses.TimeSlot?.EndTime ?? DateTime.MaxValue ) )
+					.ThenBy( ses => ( ses.Room?.DisplayName ?? string.Empty ) )
 					.ToList();
 
 				HttpResponseMessage Response = new HttpResponseMessage( HttpStatusCode.OK );
