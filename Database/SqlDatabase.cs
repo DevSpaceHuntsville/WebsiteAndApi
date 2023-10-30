@@ -442,6 +442,22 @@ INSERT SessionUsers ( SessionId, UserId ) SELECT Id, UserId FROM Sessions;
 
 UPDATE VersionInfo SET DbVersion = '01.00.05.0005';";
 
+				case "01.00.05.0005":
+					return
+@"ALTER TABLE Sessions DROP CONSTRAINT Sessions_Users_FK;
+
+CREATE TABLE SessionFeedback (
+	Id			INT		IDENTITY(1,1)	NOT NULL,
+	SessionId	INT						NOT NULL,
+	Rating		INT						NOT NULL,
+	Notes		NVARCHAR(MAX)			NULL,
+
+	CONSTRAINT SessionFeedback_PK PRIMARY KEY ( SessionId, Id ),
+	CONSTRAINT SessionFeedback_Sessions_FK FOREIGN KEY ( SessionId ) REFERENCES Sessions ( Id ) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+UPDATE VersionInfo SET DbVersion = '01.00.05.0006';";
+
 				default:
 					return string.Empty;
 			}
