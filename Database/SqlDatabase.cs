@@ -444,9 +444,7 @@ UPDATE VersionInfo SET DbVersion = '01.00.05.0005';";
 
 				case "01.00.05.0005":
 					return
-@"ALTER TABLE Sessions DROP CONSTRAINT Sessions_Users_FK;
-
-CREATE TABLE SessionFeedback (
+@"CREATE TABLE SessionFeedback (
 	Id			INT		IDENTITY(1,1)	NOT NULL,
 	SessionId	INT						NOT NULL,
 	Rating		INT						NOT NULL,
